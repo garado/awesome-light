@@ -36,7 +36,7 @@ A Spotify client for the Light Phone III.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/9ec9cdf7-026b-4cdf-bc28-fbd44f7a4472" />
 
-### [light-music](https://github.com/dryane/light-music) ([dryane](https://github.com/dryane/light-music))
+### [light-music](https://github.com/dryane/light-music) ([dryane](https://github.com/dryane))
 
 A minimal, intentional music player for the Light Phone 3, built with React Native and Expo. Designed to match the Light Phone's philosophy — no clutter, no distractions, just your music.
 
