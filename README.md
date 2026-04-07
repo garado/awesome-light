@@ -1,7 +1,8 @@
 # awesome-light
 A list of community-developed apps and tools for the Light Phone. Feel free to open a PR and add things!
 
-## Resources
+## Links
+- [Light Phone III modding guide](https://www.reddit.com/r/ModifiedLightPhones/comments/1nufbm9/light_phone_iii_modding_guide/)
 - Check out [No Scrolling](https://noscroll.ing/), a collection of apps by [Vandam D.](https://vandamdinh.com/) for the Light Phone.
 
 ## Light Phone III
@@ -35,6 +36,12 @@ A simple camera app for the Light Phone III.
 A Spotify client for the Light Phone III.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/9ec9cdf7-026b-4cdf-bc28-fbd44f7a4472" />
+
+### [Buses](https://github.com/vandamd/buses) ([vandamd](https://github.com/vandamd/))
+
+An app for the Light Phone III to track buses in the UK. 
+
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/ac04b858-1299-4979-be84-cb9eedd31654" />
 
 ### [light-music](https://github.com/dryane/light-music) ([dryane](https://github.com/dryane))
 
