@@ -43,14 +43,11 @@ An app for the Light Phone III to track buses in the UK.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/ac04b858-1299-4979-be84-cb9eedd31654" />
 
-### [light-music](https://github.com/dryane/light-music) ([dryane](https://github.com/dryane))
+### [Tunes](https://github.com/dryane/light-music) ([dryane](https://github.com/dryane))
 
-A minimal, intentional music player for the Light Phone 3, built with React Native and Expo. Designed to match the Light Phone's philosophy — no clutter, no distractions, just your music.
+A minimal music app for the Light Phone 3.
 
-<img height="270" alt="image" src="https://github.com/user-attachments/assets/86419979-96e1-4b00-b71f-26cfa9e7284f" />
-<img height="270" alt="image" src="https://github.com/user-attachments/assets/6d846036-830d-492c-b063-0dff4b633ec3" />
-<img height="270" alt="image" src="https://github.com/user-attachments/assets/c4bae9f7-4b9a-4b87-bda0-267f99673bcb" />
-<img height="270" alt="image" src="https://github.com/user-attachments/assets/4871a572-14c8-4a76-a8b4-036d25237f1a" />
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/e852bfbf-2e5c-4233-a188-2ff720532c65" />
 
 ### [Checklist](https://github.com/ak-nattyb/Checklist) ([ak-nattyb](https://github.com/ak-nattyb/))
 
