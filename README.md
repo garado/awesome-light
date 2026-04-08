@@ -59,7 +59,7 @@ An app that adds a simple list with checkbox functionality for Light Phone/Luma 
 
 A minimal metronome app for the Light Phone 3.
 
-<img width="2572" height="1049" alt="image" src="https://github.com/user-attachments/assets/a97ffd9f-9ffe-4530-a4d0-5563e3774b1c" />
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/065f8ca7-64fc-49c9-925f-98acc1c204bf" />
 
 ### [Strings](https://github.com/garado/strings) ([garado](https://github.com/garado))
 
