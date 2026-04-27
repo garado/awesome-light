@@ -43,6 +43,12 @@ An app for the Light Phone III to track buses in the UK.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/ac04b858-1299-4979-be84-cb9eedd31654" />
 
+### [Reverb](https://github.com/vandamd/reverb) ([vandamd](https://github.com/vandamd/))
+
+A music player for the Light Phone III.
+
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/8e06d025-7915-4e33-b15a-624d829f355d" />
+
 ### [Tunes](https://github.com/dryane/light-music) ([dryane](https://github.com/dryane))
 
 A minimal music app for the Light Phone 3.
