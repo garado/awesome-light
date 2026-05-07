@@ -90,3 +90,13 @@ An outdoor maps app for the Light Phone III.
 A fork of [GPSLogger](https://github.com/mendhak/gpslogger) by [mendhak](https://github.com/mendhak), redesigned to be Light.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/a57b3576-cca0-4426-baab-b1f79c284b0e" />
+
+### [Reminders](https://github.com/im360noscope/reminders-tool) ([im360noscope](https://github.com/im360noscope))
+
+ A simple productivity task management tool designed for the Light Phone III.
+
+<img width="2160" height="900" alt="image" src="https://github.com/user-attachments/assets/21f21017-dcb1-48d4-80c1-3fce2027c857" />
+
+### [Emojis](https://github.com/im360noscope/emoji-tool) ([im360noscope](https://github.com/im360noscope))
+
+An Emoji picker for LPIII that copies to the clipboard. Searchable by name and keyword.
