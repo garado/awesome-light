@@ -7,3 +7,5 @@ Thanks for contributing to the Light community! To ensure the quality of this li
 1. Apps should make an effort to match the Light aesthetic as closely as possible. [Vandam](https:/github.com/vandamd) has created a nice [light-template](https://github.com/vandamd/light-template) starter kit which contains prebuilt UI components for doing exactly this.
 
 2. Apps should preferably match the Light ethos as closely as possible. (Everybody will understandably have different needs, so it is difficult to define the line, but it's worth a reminder.)
+
+3. Bonus points for formatting the image showcase for your submission in the same style as the other entries in the list! (Vandam's light-template has a script for generating a showcase image.)
