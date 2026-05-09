@@ -5,6 +5,12 @@ A list of community-developed apps and tools for the Light Phone. Feel free to o
 - [Light Phone III modding guide](https://www.reddit.com/r/ModifiedLightPhones/comments/1nufbm9/light_phone_iii_modding_guide/)
 - Check out [No Scrolling](https://noscroll.ing/), a collection of apps by [Vandam D.](https://vandamdinh.com/) for the Light Phone.
 
+## General
+
+### [Unofficial Light Phone API/CLI/TUI](https://github.com/garado/light) ([garado](https://github.com/garado))
+
+Community-maintained Python API and CLI/TUI for managing music, notes, podcasts, and tools on Light devices *without* the Light dashboard.
+
 ## Light Phone III
 
 ### [Luma](https://github.com/vandamd/luma) ([vandamd](https://github.com/vandamd/))
