@@ -100,3 +100,9 @@ A fork of [GPSLogger](https://github.com/mendhak/gpslogger) by [mendhak](https:/
 ### [Emojis](https://github.com/im360noscope/emoji-tool) ([im360noscope](https://github.com/im360noscope))
 
 An Emoji picker for LPIII that copies to the clipboard. Searchable by name and keyword.
+
+<img width="2160" height="900" alt="image" src="https://github.com/ruditimmermans/LightEmail/blob/main/metadata/en-US/images/phoneScreenshots/Combined.png" />
+
+### [LightEmail](https://github.com/ruditimmermans/LightEmail) ([ruditimmermans](https://github.com/ruditimmermans))
+
+An Simply E-Mail client for the Light Phone.
