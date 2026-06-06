@@ -113,4 +113,11 @@ An Emoji picker for LPIII that copies to the clipboard. Searchable by name and k
 
 A clone of the Light Phone 3's built-in keyboard, for a unified look across apps.
 
-<img width="2572" height="1048" alt="example" src="https://github.com/user-attachments/assets/e324da77-33f1-4eec-aa9c-7b592d2bafed" />
+<img width="2572" height="1048" alt="example" src="https://github.com/user-attachments/assets/e324da77-33f1-4eec-aa9c-7b592d2bafed" /> 
+
+### [MediLight](https://github.com/ruditimmermans/LIghtMedication) ([ruditimmermans](https://github.com/ruditimmermans))
+
+A mediation reminder app.
+  
+<img width="2572" height="1048" alt="example" src="https://github.com/ruditimmermans/LIghtMedication/blob/main/screenshots/combined.png"  
+/>
