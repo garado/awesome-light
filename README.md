@@ -9,9 +9,9 @@ A list of community-developed apps and tools for the Light Phone. Feel free to o
 
 ### [Unofficial Light Phone API/CLI/TUI](https://github.com/garado/light) ([garado](https://github.com/garado))
 
-Community-maintained Python API and CLI/TUI for managing music, notes, podcasts, and tools on Light devices *without* the Light dashboard.
+Community-maintained Python API and CLI/TUI for managing music, notes, podcasts, and tools on Light devices without the Light dashboard.
 
-## Light Phone III
+## Launchers
 
 ### [Luma](https://github.com/vandamd/luma) ([vandamd](https://github.com/vandamd/))
 
@@ -19,35 +19,13 @@ A minimal launcher for the Light Phone III.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/8733403a-98a2-4341-802c-ce5bec3f103a" />
 
-### [Passes](https://github.com/vandamd/passes) ([vandamd](https://github.com/vandamd/))
-
-An app for the Light Phone III to store and scan various codes.
-
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/205fcd57-7cf3-4921-ae7a-10256c4c22cd" />
-
-### [Weather](https://github.com/vandamd/weather) ([vandamd](https://github.com/vandamd/))
-
-An app for the Light Phone III to check the weather.
-
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/a4dcc45d-b1ab-4f7f-bccf-c199db632b12" />
-
-### [Zero](https://github.com/vandamd/zero) ([vandamd](https://github.com/vandamd/))
-
-A simple camera app for the Light Phone III.
-
-<img width="2572" height="1068" alt="image" src="https://github.com/user-attachments/assets/685a5c6b-d498-4264-ac0e-856352e93ddc" />
+## Music
 
 ### [Echo](https://github.com/vandamd/echo) ([vandamd](https://github.com/vandamd/))
 
 A Spotify client for the Light Phone III.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/9ec9cdf7-026b-4cdf-bc28-fbd44f7a4472" />
-
-### [Buses](https://github.com/vandamd/buses) ([vandamd](https://github.com/vandamd/))
-
-An app for the Light Phone III to track buses in the UK. 
-
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/ac04b858-1299-4979-be84-cb9eedd31654" />
 
 ### [Reverb](https://github.com/vandamd/reverb) ([vandamd](https://github.com/vandamd/))
 
@@ -61,11 +39,35 @@ A minimal music app for the Light Phone 3.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/e852bfbf-2e5c-4233-a188-2ff720532c65" />
 
+## Photos
+
+### [Zero](https://github.com/vandamd/zero) ([vandamd](https://github.com/vandamd/))
+
+A simple camera app for the Light Phone III.
+
+<img width="2572" height="1068" alt="image" src="https://github.com/user-attachments/assets/685a5c6b-d498-4264-ac0e-856352e93ddc" />
+
+## Productivity
+
+### [Reminders](https://github.com/zacksimpson/reminders-tool) ([zacksimpson](https://github.com/zacksimpson))
+
+A simple productivity task management tool designed for the Light Phone III.
+
+<img width="2572" height="1048" alt="reminders-example" src="https://github.com/user-attachments/assets/aea34fe5-27bb-4eb8-946d-54137c995a9d" />
+
 ### [Checklist](https://github.com/ak-nattyb/Checklist) ([ak-nattyb](https://github.com/ak-nattyb/))
 
 An app that adds a simple list with checkbox functionality for Light Phone/Luma users.
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/04ac288f-1aae-4cbc-8291-2e0ef02f0333" />
+
+## Utility
+
+### [Passes](https://github.com/vandamd/passes) ([vandamd](https://github.com/vandamd/))
+
+An app for the Light Phone III to store and scan various codes.
+
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/205fcd57-7cf3-4921-ae7a-10256c4c22cd" />
 
 ### [Metronome](https://github.com/garado/metronome) ([garado](https://github.com/garado))
 
@@ -85,11 +87,11 @@ A simple offline dictionary app for the Light Phone III.
 
 <img width="2572" height="1122" alt="image" src="https://github.com/user-attachments/assets/c0e71209-c338-488a-bbda-5ccc61e0e39b" />
 
-### [Topographic](https://github.com/garado/topographic) ([garado](https://github.com/garado))
+### [Weather](https://github.com/vandamd/weather) ([vandamd](https://github.com/vandamd/))
 
-An outdoor maps app for the Light Phone III.
+An app for the Light Phone III to check the weather.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/059d5dfa-105b-444e-82a9-6bff074f065f" />
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/a4dcc45d-b1ab-4f7f-bccf-c199db632b12" />
 
 ### [Light GPSLogger](https://github.com/garado/light-gpslogger) ([garado](https://github.com/garado))
 
@@ -97,11 +99,21 @@ A fork of [GPSLogger](https://github.com/mendhak/gpslogger) by [mendhak](https:/
 
 <img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/a57b3576-cca0-4426-baab-b1f79c284b0e" />
 
-### [Reminders](https://github.com/zacksimpson/reminders-tool) ([zacksimpson](https://github.com/zacksimpson))
+## Navigation
 
-A simple productivity task management tool designed for the Light Phone III.
+### [Buses](https://github.com/vandamd/buses) ([vandamd](https://github.com/vandamd/))
 
-<img width="2572" height="1048" alt="reminders-example" src="https://github.com/user-attachments/assets/aea34fe5-27bb-4eb8-946d-54137c995a9d" />
+An app for the Light Phone III to track buses in the UK. 
+
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/ac04b858-1299-4979-be84-cb9eedd31654" />
+
+### [Topographic](https://github.com/garado/topographic) ([garado](https://github.com/garado))
+
+An outdoor maps app for the Light Phone III.
+
+<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/059d5dfa-105b-444e-82a9-6bff074f065f" />
+
+## Keyboard
 
 ### [Emojis](https://github.com/zacksimpson/emoji-tool) ([zacksimpson](https://github.com/zacksimpson))
 
