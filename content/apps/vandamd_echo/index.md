@@ -11,6 +11,7 @@ images:
   - B.png
   - C.png
   - D.png
+description: "A Spotify client for the Light Phone III."
 ---
 
 A Spotify client for the Light Phone III.

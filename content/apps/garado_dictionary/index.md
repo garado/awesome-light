@@ -7,7 +7,10 @@ author: "garado"
 author_url: "https://github.com/garado"
 category: "Utility"
 images:
-  - "https://github.com/user-attachments/assets/c0e71209-c338-488a-bbda-5ccc61e0e39b"
+  - A.png
+  - B.png
+  - C.png
+description: "A simple offline dictionary app for the Light Phone III."
 ---
 
 A simple offline dictionary app for the Light Phone III.

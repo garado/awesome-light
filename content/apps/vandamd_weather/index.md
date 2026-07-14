@@ -7,7 +7,11 @@ author: "vandamd"
 author_url: "https://github.com/vandamd/"
 category: "Utility"
 images:
-  - "https://github.com/user-attachments/assets/a4dcc45d-b1ab-4f7f-bccf-c199db632b12"
+  - A.png
+  - B.png
+  - C.png
+  - D.png
+description: "An app for the Light Phone III to check the weather."
 ---
 
 An app for the Light Phone III to check the weather.

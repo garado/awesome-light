@@ -7,7 +7,11 @@ author: "garado"
 author_url: "https://github.com/garado"
 category: "Utility"
 images:
-  - "https://github.com/user-attachments/assets/a57b3576-cca0-4426-baab-b1f79c284b0e"
+  - A.png
+  - B.png
+  - C.png
+  - D.png
+description: "A fork of GPSLogger by mendhak, redesigned to be Light."
 ---
 
 A fork of [GPSLogger](https://github.com/mendhak/gpslogger) by [mendhak](https://github.com/mendhak), redesigned to be Light.

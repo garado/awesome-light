@@ -11,6 +11,7 @@ images:
   - B.png
   - C.png
   - D.png
+description: "An app for the Light Phone III to track buses in the UK."
 ---
 
 An app for the Light Phone III to track buses in the UK.

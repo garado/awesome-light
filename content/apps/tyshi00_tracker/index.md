@@ -13,6 +13,7 @@ images:
   - "https://github.com/user-attachments/assets/2d02fa37-f70f-499b-a000-99657b72b378"
   - "https://github.com/user-attachments/assets/5d59eb16-3918-464a-9626-5f7f2f2056fd"
   - "https://github.com/user-attachments/assets/51442e14-f846-4685-89ab-9e9cd62648bc"
+description: "A health tracker for the Light Phone III. Just a simple way to keep tabs on your water intake, sleep, movement, and more, without any distractions."
 ---
 
 A health tracker for the Light Phone III. Just a simple way to keep tabs on your water intake, sleep, movement, and more, without any distractions.

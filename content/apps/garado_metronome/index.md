@@ -7,7 +7,11 @@ author: "garado"
 author_url: "https://github.com/garado"
 category: "Utility"
 images:
-  - "https://github.com/user-attachments/assets/065f8ca7-64fc-49c9-925f-98acc1c204bf"
+  - A.png
+  - B.png
+  - C.png
+  - D.png
+description: "A minimal metronome app for the Light Phone 3."
 ---
 
 A minimal metronome app for the Light Phone 3.

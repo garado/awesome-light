@@ -7,7 +7,11 @@ author: "garado"
 author_url: "https://github.com/garado"
 category: "Navigation"
 images:
-  - "https://github.com/user-attachments/assets/059d5dfa-105b-444e-82a9-6bff074f065f"
+  - A.png
+  - C.png
+  - B.png
+  - D.png
+description: "An outdoor maps app for the Light Phone III."
 ---
 
 An outdoor maps app for the Light Phone III.

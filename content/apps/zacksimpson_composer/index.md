@@ -11,6 +11,7 @@ images:
   - B.jpg
   - C.jpg
   - D.jpg
+description: "A distraction-free Markdown notes tool for the Light Phone III."
 ---
 
 A distraction-free Markdown notes tool for the Light Phone III.

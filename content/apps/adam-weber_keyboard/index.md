@@ -7,7 +7,11 @@ author: "adam-weber"
 author_url: "https://github.com/adam-weber"
 category: "Keyboard"
 images:
-  - "https://github.com/user-attachments/assets/e324da77-33f1-4eec-aa9c-7b592d2bafed"
+  - A.png
+  - B.png
+  - C.png
+  - D.png
+description: "A clone of the Light Phone 3's built-in keyboard, for a unified look across apps."
 ---
 
 A clone of the Light Phone 3's built-in keyboard, for a unified look across apps.

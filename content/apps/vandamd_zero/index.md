@@ -7,7 +7,10 @@ author: "vandamd"
 author_url: "https://github.com/vandamd/"
 category: "Photos"
 images:
-  - "https://github.com/user-attachments/assets/685a5c6b-d498-4264-ac0e-856352e93ddc"
+  - A.png
+  - B.png
+  - C.png
+description: "A simple camera app for the Light Phone III."
 ---
 
 A simple camera app for the Light Phone III.

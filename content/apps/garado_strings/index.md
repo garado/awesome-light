@@ -7,7 +7,10 @@ author: "garado"
 author_url: "https://github.com/garado"
 category: "Utility"
 images:
-  - "https://github.com/user-attachments/assets/a0bbb1ee-1f37-43c9-b43c-d0809d8fcf4a"
+  - A.png
+  - B.png
+  - C.png
+description: "A minimal tuner app for the Light Phone 3."
 ---
 
 A minimal tuner app for the Light Phone 3.

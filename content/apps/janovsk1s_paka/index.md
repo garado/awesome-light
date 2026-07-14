@@ -11,6 +11,7 @@ images:
   - "https://github.com/user-attachments/assets/9c9d3bec-a713-4804-9517-3ff7434a9108"
   - "https://github.com/user-attachments/assets/683b078e-b953-4df0-91f5-238b544e606a"
   - "https://github.com/user-attachments/assets/ea77f832-4dab-414b-afba-0af1ecd586af"
+description: "Paka is an intentionally small, offline pass-and-authenticator tool designed for Light Phone III. It scans and renders common barcode formats, carries encrypted PDF passes, encrypted one- or two-sided document photos, and generates TOTP codes without Google Play Services."
 ---
 
 Paka is an intentionally small, offline pass-and-authenticator tool designed for Light Phone III. It scans and renders common barcode formats, carries encrypted PDF passes, encrypted one- or two-sided document photos, and generates TOTP codes without Google Play Services.

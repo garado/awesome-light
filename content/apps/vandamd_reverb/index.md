@@ -11,6 +11,7 @@ images:
   - B.png
   - C.png
   - D.png
+description: "A music player for the Light Phone III."
 ---
 
 A music player for the Light Phone III.

@@ -11,6 +11,7 @@ images:
   - B.png
   - C.png
   - D.png
+description: "An app to play NTS Radio Live shows and Infinite Mixtapes."
 ---
 
 An app to play NTS Radio Live shows and Infinite Mixtapes.

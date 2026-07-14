@@ -11,6 +11,7 @@ images:
   - B.jpg
   - C.jpg
   - D.jpg
+description: "A mindfulness-first daily check-in tool for the Light Phone III."
 ---
 
 A mindfulness-first daily check-in tool for the Light Phone III.

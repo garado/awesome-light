@@ -7,7 +7,11 @@ author: "zacksimpson"
 author_url: "https://github.com/zacksimpson"
 category: "Productivity"
 images:
-  - "https://github.com/user-attachments/assets/aea34fe5-27bb-4eb8-946d-54137c995a9d"
+  - A.jpg
+  - B.jpg
+  - C.jpg
+  - D.jpg
+description: "A simple productivity task management tool designed for the Light Phone III."
 ---
 
 A simple productivity task management tool designed for the Light Phone III.

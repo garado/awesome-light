@@ -11,6 +11,7 @@ images:
   - B.png
   - C.png
   - D.png
+description: "An Emoji picker for LPIII that copies to the clipboard. Searchable by name and keyword."
 ---
 
 An Emoji picker for LPIII that copies to the clipboard. Searchable by name and keyword.
