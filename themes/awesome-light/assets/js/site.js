@@ -15,6 +15,33 @@
   }
 
   /* ---------------------------------------------------------------- */
+  /* About modal                                                      */
+  /* ---------------------------------------------------------------- */
+  var aboutToggle = document.getElementById("about-toggle");
+  var aboutOverlay = document.getElementById("about-overlay");
+  var aboutClose = document.getElementById("about-close");
+  if (aboutToggle && aboutOverlay) {
+    function openAbout() {
+      aboutOverlay.classList.add("open");
+      aboutOverlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeAbout() {
+      aboutOverlay.classList.remove("open");
+      aboutOverlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    aboutToggle.addEventListener("click", openAbout);
+    if (aboutClose) aboutClose.addEventListener("click", closeAbout);
+    aboutOverlay.addEventListener("click", function (e) {
+      if (e.target === aboutOverlay) closeAbout();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && aboutOverlay.classList.contains("open")) closeAbout();
+    });
+  }
+
+  /* ---------------------------------------------------------------- */
   /* Mobile sidebar toggle                                            */
   /* ---------------------------------------------------------------- */
   var sidebar = document.getElementById("sidebar");
@@ -41,7 +68,7 @@
   /* ---------------------------------------------------------------- */
   /* View toggle: grid / expanded                                     */
   /* ---------------------------------------------------------------- */
-  var viewBtns = Array.from(document.querySelectorAll(".sidebar-view-btn"));
+  var viewBtns = Array.from(document.querySelectorAll("#view-bar .sidebar-view-btn"));
   var viewKey = "awesome-light-view";
 
   function applyView(view) {
@@ -59,6 +86,36 @@
       var view = btn.dataset.view;
       localStorage.setItem(viewKey, view);
       applyView(view);
+    });
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Sort: a-z / newest                                                */
+  /* ---------------------------------------------------------------- */
+  var sortBtns = Array.from(document.querySelectorAll("#sort-bar .sidebar-view-btn"));
+  var sortKey = "awesome-light-sort";
+
+  function applySort(sortMode) {
+    cards = cards.slice().sort(function (a, b) {
+      if (sortMode === "date") {
+        return (b.dataset.date || "").localeCompare(a.dataset.date || "");
+      }
+      return (a.dataset.title || "").localeCompare(b.dataset.title || "", undefined, { sensitivity: "base" });
+    });
+    cards.forEach(function (card) { grid.appendChild(card); });
+    sortBtns.forEach(function (b) {
+      b.classList.toggle("sidebar-view-btn--active", b.dataset.sort === sortMode);
+    });
+  }
+
+  var savedSort = localStorage.getItem(sortKey) || "title";
+  applySort(savedSort);
+
+  sortBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var sortMode = btn.dataset.sort;
+      localStorage.setItem(sortKey, sortMode);
+      applySort(sortMode);
     });
   });
 
@@ -109,11 +166,21 @@
   var selectCategory = createFilterGroup(catButtons, "category", function (v) { activeCategory = v; });
   createFilterGroup(stackButtons, "stack", function (v) { activeStack = v; });
 
+  var searchClear = document.getElementById("sidebar-search-clear");
   if (searchInput) {
-    searchInput.addEventListener("input", function () {
+    function runSearch() {
       activeQuery = searchInput.value.trim().toLowerCase();
+      if (searchClear) searchClear.hidden = !activeQuery;
       applyFilters();
-    });
+    }
+    searchInput.addEventListener("input", runSearch);
+    if (searchClear) {
+      searchClear.addEventListener("click", function () {
+        searchInput.value = "";
+        runSearch();
+        searchInput.focus();
+      });
+    }
   }
 
   /* ---------------------------------------------------------------- */
@@ -196,10 +263,10 @@
     closeToHome();
   });
 
-  cards.forEach(function (card, i) {
-    card.addEventListener("click", function () { openAt(i); });
+  cards.forEach(function (card) {
+    card.addEventListener("click", function () { openAt(cards.indexOf(card)); });
     card.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openAt(i); }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openAt(cards.indexOf(card)); }
     });
   });
 

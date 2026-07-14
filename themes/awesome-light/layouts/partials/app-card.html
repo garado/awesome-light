@@ -25,8 +25,6 @@
   {{ end }}
 {{ end }}
 
-{{ $cover := index ($images | append "") 0 }}
-
 {{ $linkIcon := `<svg class="modal-meta-link-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>` }}
 
 <div class="app-card"
@@ -35,6 +33,7 @@
      data-slug="{{ $page.File.ContentBaseName }}"
      data-permalink="{{ $page.RelPermalink }}"
      data-title="{{ $page.Title }}"
+     data-date="{{ $page.Params.date_added }}"
      data-category="{{ $page.Params.category }}"
      data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
      data-search="{{ lower (printf "%s %s %s" $page.Title ($page.Params.author | default "") $page.Plain) }}"
@@ -42,10 +41,10 @@
      data-videos="{{ delimit $videos "|" }}"
      data-content-id="app-{{ $page.File.UniqueID }}">
   <div class="app-card-thumb">
-    {{ if $cover }}
-      <img src="{{ $cover }}" alt="{{ $page.Title }}" loading="lazy">
+    {{ if $images }}
+      {{ range $images }}<img src="{{ . }}" class="app-card-thumb-img" alt="{{ $page.Title }}" loading="lazy">{{ end }}
     {{ else if $videos }}
-      <video src="{{ index $videos 0 }}" muted preload="metadata"></video>
+      {{ range $videos }}<video src="{{ . }}" class="app-card-thumb-img" muted preload="metadata"></video>{{ end }}
     {{ else }}
       <span class="app-card-fallback">{{ substr $page.Title 0 1 }}</span>
     {{ end }}
@@ -54,12 +53,12 @@
   <div class="app-card-info">
     <div class="app-card-title-row">
       <span class="app-card-title">{{ $page.Title }}</span>
-      {{ with $page.Params.author }}<span class="app-card-author">{{ . }}</span>{{ end }}
+      {{ with $page.Params.author }} <span class="app-card-author">{{ . }}</span>{{ end }}
     </div>
     <div class="app-card-meta">
       {{ with $page.Params.category }}<span class="app-card-category">{{ . }}</span>{{ end }}
     </div>
-    <p class="app-card-summary">{{ $page.Summary | plainify }}</p>
+    <p class="app-card-summary">{{ $page.Params.description | default ($page.Summary | plainify) }}</p>
   </div>
 </div>
 <template id="app-{{ $page.File.UniqueID }}">
