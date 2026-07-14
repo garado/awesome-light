@@ -3,9 +3,8 @@
   Expects: . = the app page (content/apps/<slug>/index.md)
 */}}
 {{ $page := . }}
-{{ $rawImages := $page.Params.images | default slice }}
 {{ $images := slice }}
-{{ range $rawImages }}
+{{ range $page.Params.images | default slice }}
   {{ if hasPrefix . "http" }}
     {{ $images = $images | append . }}
   {{ else }}
@@ -14,18 +13,21 @@
     {{ end }}
   {{ end }}
 {{ end }}
-{{ $videos := $page.Params.videos | default slice }}
+
+{{ $videos := slice }}
+{{ range $page.Params.videos | default slice }}
+  {{ if hasPrefix . "http" }}
+    {{ $videos = $videos | append . }}
+  {{ else }}
+    {{ with $page.Resources.GetMatch . }}
+      {{ $videos = $videos | append .RelPermalink }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{ $cover := index ($images | append "") 0 }}
 
 {{ $linkIcon := `<svg class="modal-meta-link-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>` }}
-
-{{ $meta := slice }}
-{{ with $page.Params.author }}
-  {{ $meta = $meta | append (dict "label" "Author" "value" .) }}
-{{ end }}
-{{ with $page.Params.category }}
-  {{ $meta = $meta | append (dict "label" "Category" "value" .) }}
-{{ end }}
 
 <div class="app-card"
      tabindex="0"
@@ -35,9 +37,6 @@
      data-title="{{ $page.Title }}"
      data-category="{{ $page.Params.category }}"
      data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
-     data-author="{{ $page.Params.author }}"
-     data-repo="{{ $page.Params.repo }}"
-     data-author-url="{{ $page.Params.author_url }}"
      data-search="{{ lower (printf "%s %s %s" $page.Title ($page.Params.author | default "") $page.Plain) }}"
      data-images="{{ delimit $images "|" }}"
      data-videos="{{ delimit $videos "|" }}"

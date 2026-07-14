@@ -79,31 +79,35 @@
     if (emptyMsg) emptyMsg.hidden = visible !== 0;
   }
 
-  catButtons.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      activeCategory = btn.dataset.category || "";
-      catButtons.forEach(function (b) { b.classList.remove("sidebar-cat--active"); });
-      btn.classList.add("sidebar-cat--active");
-      applyFilters();
-      if (sidebar && sidebar.classList.contains("open")) {
-        sidebar.classList.remove("open");
-        if (mobileToggle) mobileToggle.classList.remove("open");
-      }
-    });
-  });
+  function closeMobileSidebar() {
+    if (sidebar && sidebar.classList.contains("open")) {
+      sidebar.classList.remove("open");
+      if (mobileToggle) mobileToggle.classList.remove("open");
+    }
+  }
 
-  stackButtons.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      activeStack = btn.dataset.stack || "";
-      stackButtons.forEach(function (b) { b.classList.remove("sidebar-cat--active"); });
-      btn.classList.add("sidebar-cat--active");
+  // Wires up a button-group filter (category, stack): clicking a button
+  // marks it active, updates state via onChange, and re-filters. Returns a
+  // `select(value)` function so other UI (e.g. the modal's category link)
+  // can trigger the same selection without simulating a click.
+  function createFilterGroup(buttons, datasetKey, onChange) {
+    function select(value) {
+      var val = value || "";
+      buttons.forEach(function (b) {
+        b.classList.toggle("sidebar-cat--active", (b.dataset[datasetKey] || "") === val);
+      });
+      onChange(val);
       applyFilters();
-      if (sidebar && sidebar.classList.contains("open")) {
-        sidebar.classList.remove("open");
-        if (mobileToggle) mobileToggle.classList.remove("open");
-      }
+      closeMobileSidebar();
+    }
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () { select(btn.dataset[datasetKey] || ""); });
     });
-  });
+    return select;
+  }
+
+  var selectCategory = createFilterGroup(catButtons, "category", function (v) { activeCategory = v; });
+  createFilterGroup(stackButtons, "stack", function (v) { activeStack = v; });
 
   if (searchInput) {
     searchInput.addEventListener("input", function () {
@@ -129,17 +133,12 @@
   function mediaFor(card) {
     var images = (card.dataset.images || "").split("|").filter(Boolean);
     var videos = (card.dataset.videos || "").split("|").filter(Boolean);
-    var html = "";
 
-    if (images.length) {
-      html = images.map(function (src) {
-        return '<img src="' + src + '" class="modal-media-item">';
-      }).join("");
-    } else if (videos.length) {
-      html = videos.map(function (src) {
-        return '<video src="' + src + '" class="modal-media-item" controls playsinline></video>';
-      }).join("");
-    }
+    var html = images.map(function (src) {
+      return '<img src="' + src + '" class="modal-media-item">';
+    }).join("") + videos.map(function (src) {
+      return '<video src="' + src + '" class="modal-media-item" controls playsinline></video>';
+    }).join("");
 
     return html ? '<div class="modal-media-row">' + html + '</div>' : "";
   }
@@ -193,8 +192,7 @@
     var link = e.target.closest(".modal-category-link");
     if (!link) return;
     e.preventDefault();
-    var target = catButtons.filter(function (b) { return b.dataset.category === link.dataset.category; })[0];
-    if (target) target.click();
+    selectCategory(link.dataset.category || "");
     closeToHome();
   });
 
