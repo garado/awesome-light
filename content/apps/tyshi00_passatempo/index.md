@@ -8,8 +8,8 @@ author_url: "https://github.com/tyshi00/"
 category: "Entertainment"
 light_sdk: true
 images:
-  - A.png
-  - B.png
+  - A.jpg
+  - B.jpg
   - C.png
   - D.jpg
   - E.png

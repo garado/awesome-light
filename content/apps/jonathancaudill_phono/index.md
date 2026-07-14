@@ -7,7 +7,7 @@ author: "jonathancaudill"
 author_url: "https://github.com/jonathancaudill"
 category: "Music/Audio"
 images:
-  - "https://github.com/user-attachments/assets/a355aee7-d660-4d06-90ba-182b3417f86d"
+  - A.png
 description: "An independent, minimal Spotify client for LightOS. Playback runs in-process via a patched fork of librespot (Rust). Metadata (search, library, albums, artists, playlists) uses the official Spotify Web API with your own developer-app credentials."
 ---
 

@@ -2,4 +2,6 @@
 title: "awesome-light"
 ---
 
-Community-developed apps for the Light Phone.
+A list of community-developed apps and tools for the Light Phone.
+
+Not affiliated with or endorsed by Light.
