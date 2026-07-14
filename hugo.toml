@@ -1,0 +1,13 @@
+baseURL = "https://awesome-light.garado.dev/"
+languageCode = "en-us"
+title = "awesome-light"
+theme = "awesome-light"
+
+enableRobotsTXT = true
+
+[params]
+  description = "Community-developed apps and tools for the Light Phone."
+  bg = "#464646"
+
+[markup.goldmark.renderer]
+  unsafe = true

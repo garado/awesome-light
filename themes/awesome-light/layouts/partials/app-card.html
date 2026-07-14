@@ -1,0 +1,97 @@
+{{/*
+  Renders one grid tile + its hidden <template> with modal content.
+  Expects: . = the app page (content/apps/<slug>/index.md)
+*/}}
+{{ $page := . }}
+{{ $rawImages := $page.Params.images | default slice }}
+{{ $images := slice }}
+{{ range $rawImages }}
+  {{ if hasPrefix . "http" }}
+    {{ $images = $images | append . }}
+  {{ else }}
+    {{ with $page.Resources.GetMatch . }}
+      {{ $images = $images | append .RelPermalink }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $videos := $page.Params.videos | default slice }}
+{{ $cover := index ($images | append "") 0 }}
+
+{{ $linkIcon := `<svg class="modal-meta-link-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>` }}
+
+{{ $meta := slice }}
+{{ with $page.Params.author }}
+  {{ $meta = $meta | append (dict "label" "Author" "value" .) }}
+{{ end }}
+{{ with $page.Params.category }}
+  {{ $meta = $meta | append (dict "label" "Category" "value" .) }}
+{{ end }}
+
+<div class="app-card"
+     tabindex="0"
+     role="button"
+     data-slug="{{ $page.File.ContentBaseName }}"
+     data-permalink="{{ $page.RelPermalink }}"
+     data-title="{{ $page.Title }}"
+     data-category="{{ $page.Params.category }}"
+     data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
+     data-author="{{ $page.Params.author }}"
+     data-repo="{{ $page.Params.repo }}"
+     data-author-url="{{ $page.Params.author_url }}"
+     data-search="{{ lower (printf "%s %s %s" $page.Title ($page.Params.author | default "") $page.Plain) }}"
+     data-images="{{ delimit $images "|" }}"
+     data-videos="{{ delimit $videos "|" }}"
+     data-content-id="app-{{ $page.File.UniqueID }}">
+  <div class="app-card-thumb">
+    {{ if $cover }}
+      <img src="{{ $cover }}" alt="{{ $page.Title }}" loading="lazy">
+    {{ else if $videos }}
+      <video src="{{ index $videos 0 }}" muted preload="metadata"></video>
+    {{ else }}
+      <span class="app-card-fallback">{{ substr $page.Title 0 1 }}</span>
+    {{ end }}
+    {{ if $page.Params.light_sdk }}<span class="app-card-badge" title="Built with the Light SDK">SDK</span>{{ end }}
+  </div>
+  <div class="app-card-info">
+    <div class="app-card-title-row">
+      <span class="app-card-title">{{ $page.Title }}</span>
+      {{ with $page.Params.author }}<span class="app-card-author">{{ . }}</span>{{ end }}
+    </div>
+    <div class="app-card-meta">
+      {{ with $page.Params.category }}<span class="app-card-category">{{ . }}</span>{{ end }}
+    </div>
+    <p class="app-card-summary">{{ $page.Summary | plainify }}</p>
+  </div>
+</div>
+<template id="app-{{ $page.File.UniqueID }}">
+  <div class="modal-meta-row">
+    {{ $first := true }}
+    {{ with $page.Params.author }}
+      {{ $first = false }}
+      <span class="modal-meta-label">author</span>
+      <span class="modal-meta-value">{{ if $page.Params.author_url }}<a href="{{ $page.Params.author_url }}" target="_blank" rel="noopener" class="modal-meta-link">{{ . }}</a>{{ else }}{{ . }}{{ end }}</span>
+    {{ end }}
+    {{ with $page.Params.category }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <span class="modal-meta-label">categories</span>
+      <a href="#" class="modal-meta-value modal-meta-value--lower modal-meta-link modal-category-link" data-category="{{ . | lower }}">{{ . }}</a>
+    {{ end }}
+    {{ if $page.Params.light_sdk }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <span class="modal-meta-value">made with light sdk</span>
+    {{ end }}
+    {{ with $page.Params.repo }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">source</span>{{ $linkIcon | safeHTML }}</a>
+    {{ end }}
+    {{ with $page.Params.download }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">download</span>{{ $linkIcon | safeHTML }}</a>
+    {{ end }}
+  </div>
+  <div class="modal-body">{{ $page.Content }}</div>
+</template>

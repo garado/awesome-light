@@ -1,0 +1,19 @@
+{{ define "main" }}
+{{ $appsSection := .Site.GetPage "apps" }}
+{{ $apps := sort $appsSection.Pages "Title" }}
+
+<div class="site">
+  {{ partial "sidebar.html" $appsSection }}
+
+  <main class="content">
+    <div class="app-grid" id="app-grid">
+      {{ range $apps }}
+        {{ partial "app-card.html" . }}
+      {{ end }}
+    </div>
+    <p class="app-grid-empty" id="app-grid-empty" hidden>No apps match your search.</p>
+  </main>
+</div>
+
+{{ partial "modal.html" . }}
+{{ end }}

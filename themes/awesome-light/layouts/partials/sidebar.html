@@ -1,0 +1,66 @@
+{{/*
+  Left sidebar: search + theme toggle on top, category nav below.
+  Expects: . = the apps section (site.GetPage "apps")
+*/}}
+{{ $apps := .Pages }}
+{{ $categories := slice }}
+{{ $counts := dict }}
+{{ range $apps }}
+  {{ with .Params.category }}
+    {{ if not (in $categories .) }}{{ $categories = $categories | append . }}{{ end }}
+    {{ $counts = merge $counts (dict . (add (index $counts . | default 0) 1)) }}
+  {{ end }}
+{{ end }}
+{{ $categories = sort $categories }}
+{{ $sdkCount := len (where $apps "Params.light_sdk" true) }}
+{{ $diyCount := sub (len $apps) $sdkCount }}
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-search">
+      <svg class="sidebar-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="app-search" class="sidebar-search-input" placeholder="Search apps&hellip;" aria-label="Search apps">
+    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+  <div class="sidebar-view" id="view-bar">
+    <span class="sidebar-view-label">view</span>
+    <button class="sidebar-view-btn sidebar-view-btn--active" data-view="grid">grid</button>
+    <span class="sidebar-view-sep">/</span>
+    <button class="sidebar-view-btn" data-view="expanded">expanded</button>
+  </div>
+  <div class="sidebar-section">
+    <span class="sidebar-section-label">Categories</span>
+    <nav class="sidebar-categories" id="sidebar-categories" aria-label="Categories">
+      <button class="sidebar-cat sidebar-cat--active" data-category="">
+        <span class="sidebar-cat-name">All</span><span class="sidebar-cat-count">{{ len $apps }}</span>
+      </button>
+      {{ range $categories }}
+      <button class="sidebar-cat" data-category="{{ . | lower }}">
+        <span class="sidebar-cat-name">{{ . }}</span><span class="sidebar-cat-count">{{ index $counts . }}</span>
+      </button>
+      {{ end }}
+    </nav>
+  </div>
+  <div class="sidebar-section">
+    <span class="sidebar-section-label">Stack</span>
+    <nav class="sidebar-categories" id="stack-bar" aria-label="Stack">
+      <button class="sidebar-cat sidebar-cat--active" data-stack="">
+        <span class="sidebar-cat-name">All</span><span class="sidebar-cat-count">{{ len $apps }}</span>
+      </button>
+      <button class="sidebar-cat" data-stack="sdk">
+        <span class="sidebar-cat-name">Light SDK</span><span class="sidebar-cat-count">{{ $sdkCount }}</span>
+      </button>
+      <button class="sidebar-cat" data-stack="diy">
+        <span class="sidebar-cat-name">DIY</span><span class="sidebar-cat-count">{{ $diyCount }}</span>
+      </button>
+    </nav>
+  </div>
+  <a class="sidebar-footer-link" href="https://github.com/garado/awesome-light" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
+</aside>
+<button class="sidebar-mobile-toggle" id="sidebar-mobile-toggle" aria-label="Toggle menu">
+  <span></span><span></span><span></span>
+</button>
