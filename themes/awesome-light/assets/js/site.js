@@ -65,6 +65,7 @@
   var stackButtons = Array.from(document.querySelectorAll("#stack-bar .sidebar-cat"));
   var badgeButtons = Array.from(document.querySelectorAll("#badge-bar .sidebar-cat"));
   var searchInput = document.getElementById("app-search");
+  var resetBtn = document.getElementById("sidebar-reset");
 
   /* ---------------------------------------------------------------- */
   /* View toggle: grid / list                                          */
@@ -139,6 +140,10 @@
       if (show) visible++;
     });
     if (emptyMsg) emptyMsg.hidden = visible !== 0;
+    if (resetBtn) {
+      var hasActiveFilter = !!(activeCategory || activeStack || activeBadge || activeQuery);
+      resetBtn.classList.toggle("sidebar-reset--active", hasActiveFilter);
+    }
   }
 
   function closeMobileSidebar() {
@@ -188,6 +193,18 @@
         searchInput.focus();
       });
     }
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      selectCategory("");
+      selectStack("");
+      selectBadge("");
+      if (searchInput) searchInput.value = "";
+      activeQuery = "";
+      if (searchClear) searchClear.hidden = true;
+      applyFilters();
+    });
   }
 
   /* ---------------------------------------------------------------- */

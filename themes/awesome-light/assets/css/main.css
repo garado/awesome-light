@@ -178,6 +178,21 @@ button { font-family: inherit; }
 
 .sidebar-view-label { color: var(--muted); }
 
+.sidebar-reset {
+  align-self: center;
+  margin-top: auto;
+  background: none;
+  border: none;
+  padding: 0.4rem 0;
+  font-size: 1rem;
+  color: var(--fg);
+  text-decoration: none;
+  cursor: pointer;
+  visibility: hidden;
+}
+.sidebar-reset:hover { text-decoration: underline; }
+.sidebar-reset.sidebar-reset--active { visibility: visible; }
+
 .sidebar-view-sep { color: var(--fg); }
 
 .sidebar-view-btn {
@@ -199,6 +214,7 @@ button { font-family: inherit; }
 }
 
 .sidebar-section--spaced { margin-top: 1rem; }
+.sidebar-toggles + .sidebar-section--spaced { margin-top: 0.4rem; }
 
 .sidebar-section-label {
   color: var(--muted);
@@ -240,11 +256,11 @@ button { font-family: inherit; }
 }
 
 .sidebar-footer-link {
-  margin-top: auto;
   font-size: 1rem;
   color: var(--fg);
   text-decoration: none;
   padding: 0.4rem 0.5rem;
+  text-align: center;
 }
 .sidebar-footer-link:hover { text-decoration: underline; }
 
