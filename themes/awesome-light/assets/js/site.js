@@ -63,6 +63,7 @@
   var emptyMsg = document.getElementById("app-grid-empty");
   var catButtons = Array.from(document.querySelectorAll("#sidebar-categories .sidebar-cat"));
   var stackButtons = Array.from(document.querySelectorAll("#stack-bar .sidebar-cat"));
+  var badgeButtons = Array.from(document.querySelectorAll("#badge-bar .sidebar-cat"));
   var searchInput = document.getElementById("app-search");
 
   /* ---------------------------------------------------------------- */
@@ -121,6 +122,7 @@
 
   var activeCategory = "";
   var activeStack = "";
+  var activeBadge = "";
   var activeQuery = "";
 
   function applyFilters() {
@@ -128,8 +130,11 @@
     cards.forEach(function (card) {
       var matchesCategory = !activeCategory || (card.dataset.category || "").toLowerCase() === activeCategory;
       var matchesStack = !activeStack || card.dataset.lightSdk === activeStack;
+      var matchesBadge = !activeBadge ||
+        (activeBadge === "approved" && card.dataset.lightApproved === "true") ||
+        (activeBadge === "pick" && card.dataset.editorPick === "true");
       var matchesQuery = !activeQuery || (card.dataset.search || "").indexOf(activeQuery) !== -1;
-      var show = matchesCategory && matchesStack && matchesQuery;
+      var show = matchesCategory && matchesStack && matchesBadge && matchesQuery;
       card.style.display = show ? "" : "none";
       if (show) visible++;
     });
@@ -164,7 +169,9 @@
   }
 
   var selectCategory = createFilterGroup(catButtons, "category", function (v) { activeCategory = v; });
-  createFilterGroup(stackButtons, "stack", function (v) { activeStack = v; });
+  var selectStack = createFilterGroup(stackButtons, "stack", function (v) { activeStack = v; });
+  var selectBadge = createFilterGroup(badgeButtons, "badge", function (v) { activeBadge = v; });
+  var filterSelectors = { category: selectCategory, stack: selectStack, badge: selectBadge };
 
   var searchClear = document.getElementById("sidebar-search-clear");
   if (searchInput) {
@@ -210,9 +217,25 @@
     return html ? '<div class="modal-media-row">' + html + '</div>' : "";
   }
 
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function titleStar(card) {
+    if (card.dataset.lightApproved === "true") {
+      return '<span class="app-card-star app-card-star--filled" title="Light Approved">&#9733;</span>';
+    }
+    if (card.dataset.editorPick === "true") {
+      return '<span class="app-card-star app-card-star--hollow" title="Editor\'s Pick">&#9734;</span>';
+    }
+    return "";
+  }
+
   function open(card) {
     modalMedia.innerHTML = mediaFor(card);
-    modalTitle.textContent = card.dataset.title || "";
+    modalTitle.innerHTML = titleStar(card) + (card.dataset.title ? escapeHtml(card.dataset.title) : "");
 
     var tmpl = document.getElementById(card.dataset.contentId);
     modalContent.innerHTML = tmpl ? tmpl.innerHTML : "";
@@ -256,10 +279,12 @@
   }
 
   modalContent.addEventListener("click", function (e) {
-    var link = e.target.closest(".modal-category-link");
+    var link = e.target.closest(".modal-filter-link");
     if (!link) return;
     e.preventDefault();
-    selectCategory(link.dataset.category || "");
+    var select = filterSelectors[link.dataset.filterType];
+    if (!select) return;
+    select(link.dataset.filterValue || "");
     closeToHome();
   });
 

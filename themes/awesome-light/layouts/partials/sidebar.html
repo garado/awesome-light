@@ -14,6 +14,8 @@
 {{ $categories = sort $categories }}
 {{ $sdkCount := len (where $apps "Params.light_sdk" true) }}
 {{ $diyCount := sub (len $apps) $sdkCount }}
+{{ $approvedCount := len (where $apps "Params.light_approved" true) }}
+{{ $pickCount := len (where $apps "Params.editor_pick" true) }}
 
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-top">
@@ -48,7 +50,20 @@
       <button class="sidebar-view-btn" data-sort="date">newest</button>
     </div>
   </div>
-  <div class="sidebar-section">
+  <div class="sidebar-section sidebar-section--spaced">
+    <nav class="sidebar-categories" id="badge-bar" aria-label="Recognition">
+      <button class="sidebar-cat sidebar-cat--active" data-badge="">
+        <span class="sidebar-cat-name">All</span><span class="sidebar-cat-count">{{ len $apps }}</span>
+      </button>
+      <button class="sidebar-cat" data-badge="approved">
+        <span class="sidebar-cat-name">Light Approved</span><span class="sidebar-cat-count">{{ $approvedCount }}</span>
+      </button>
+      <button class="sidebar-cat" data-badge="pick">
+        <span class="sidebar-cat-name">Editor's Pick</span><span class="sidebar-cat-count">{{ $pickCount }}</span>
+      </button>
+    </nav>
+  </div>
+  <div class="sidebar-section sidebar-section--spaced">
     <span class="sidebar-section-label">Categories</span>
     <nav class="sidebar-categories" id="sidebar-categories" aria-label="Categories">
       <button class="sidebar-cat sidebar-cat--active" data-category="">
@@ -61,7 +76,7 @@
       {{ end }}
     </nav>
   </div>
-  <div class="sidebar-section">
+  <div class="sidebar-section sidebar-section--spaced">
     <span class="sidebar-section-label">Stack</span>
     <nav class="sidebar-categories" id="stack-bar" aria-label="Stack">
       <button class="sidebar-cat sidebar-cat--active" data-stack="">

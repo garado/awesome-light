@@ -198,6 +198,8 @@ button { font-family: inherit; }
   gap: 0.5rem;
 }
 
+.sidebar-section--spaced { margin-top: 1rem; }
+
 .sidebar-section-label {
   color: var(--muted);
   font-size: 0.85rem;
@@ -334,12 +336,32 @@ button { font-family: inherit; }
 .app-card-title {
   font-size: 1.25rem;
   color: var(--fg);
+  vertical-align: middle;
+}
+
+.app-card-star {
+  font-size: 1.1rem;
+  margin-right: 0.25rem;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.app-card-star--filled {
+  color: #d6b25e;
+  -webkit-text-stroke: 0.5px #d6b25e;
+}
+.app-card-star--hollow {
+  color: var(--muted);
+  -webkit-text-stroke: 1px var(--muted);
 }
 
 .app-card-author {
   font-size: 1.25rem;
   color: var(--muted);
   white-space: nowrap;
+  vertical-align: middle;
+  margin-left: 0.25rem;
 }
 
 .app-card-meta,
@@ -360,6 +382,26 @@ button { font-family: inherit; }
   padding: 0.12rem 0.35rem;
   border-radius: 0.2rem;
 }
+
+.app-card-badge-stack {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.app-card-badge-stack .app-card-badge {
+  position: static;
+}
+
+.app-card-badge--approved {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
 
 /* List view — title, description, then a horizontal image carousel */
 .app-grid--list {
@@ -461,6 +503,15 @@ button { font-family: inherit; }
   font-weight: 100;
   color: var(--fg);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.modal-title .app-card-star {
+  font-size: 0.75em;
+  margin-right: 0;
 }
 
 .modal-media {

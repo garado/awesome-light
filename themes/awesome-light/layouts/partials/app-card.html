@@ -42,6 +42,8 @@
      data-date="{{ $page.Params.date_added }}"
      data-category="{{ $page.Params.category }}"
      data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
+     data-light-approved="{{ if $page.Params.light_approved }}true{{ else }}false{{ end }}"
+     data-editor-pick="{{ if $page.Params.editor_pick }}true{{ else }}false{{ end }}"
      data-search="{{ lower (printf "%s %s %s" $page.Title ($page.Params.author | default "") $page.Plain) }}"
      data-images="{{ delimit $images "|" }}"
      data-videos="{{ delimit $videos "|" }}"
@@ -55,11 +57,18 @@
       <span class="app-card-fallback">{{ substr $page.Title 0 1 }}</span>
     {{ end }}
     {{ if $page.Params.light_sdk }}<span class="app-card-badge" title="Built with the Light SDK">SDK</span>{{ end }}
+    {{ if $page.Params.light_approved }}
+    <div class="app-card-badge-stack">
+      <span class="app-card-badge app-card-badge--approved" title="Light Approved">Light Approved</span>
+    </div>
+    {{ end }}
   </div>
   <div class="app-card-info">
     <div class="app-card-title-row">
+      {{ if $page.Params.light_approved }}<span class="app-card-star app-card-star--filled" title="Light Approved">&#9733;</span>
+      {{ else if $page.Params.editor_pick }}<span class="app-card-star app-card-star--hollow" title="Editor's Pick">&#9734;</span>{{ end }}
       <span class="app-card-title">{{ $page.Title }}</span>
-      {{ with $page.Params.author }} <span class="app-card-author">{{ . }}</span>{{ end }}
+      {{ with $page.Params.author }}<span class="app-card-author">{{ . }}</span>{{ end }}
     </div>
     <div class="app-card-meta">
       {{ with $page.Params.category }}<span class="app-card-category">{{ . }}</span>{{ end }}
@@ -79,12 +88,21 @@
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
       <span class="modal-meta-label">categories</span>
-      <a href="#" class="modal-meta-value modal-meta-value--lower modal-meta-link modal-category-link" data-category="{{ . | lower }}">{{ . }}</a>
+      <a href="#" class="modal-meta-value modal-meta-value--lower modal-meta-link modal-filter-link" data-filter-type="category" data-filter-value="{{ . | lower }}">{{ . }}</a>
     {{ end }}
     {{ if $page.Params.light_sdk }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
-      <span class="modal-meta-value">made with light sdk</span>
+      <a href="#" class="modal-meta-value modal-meta-link modal-filter-link" data-filter-type="stack" data-filter-value="sdk">made with light sdk</a>
+    {{ end }}
+    {{ if $page.Params.light_approved }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a href="#" class="modal-meta-value modal-meta-link modal-filter-link" data-filter-type="badge" data-filter-value="approved">light approved</a>
+    {{ else if $page.Params.editor_pick }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a href="#" class="modal-meta-value modal-meta-link modal-filter-link" data-filter-type="badge" data-filter-value="pick">editor's pick</a>
     {{ end }}
     {{ with $page.Params.repo }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
