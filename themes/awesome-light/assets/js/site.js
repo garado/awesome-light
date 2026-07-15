@@ -66,13 +66,13 @@
   var searchInput = document.getElementById("app-search");
 
   /* ---------------------------------------------------------------- */
-  /* View toggle: grid / expanded                                     */
+  /* View toggle: grid / list                                          */
   /* ---------------------------------------------------------------- */
   var viewBtns = Array.from(document.querySelectorAll("#view-bar .sidebar-view-btn"));
   var viewKey = "awesome-light-view";
 
   function applyView(view) {
-    grid.classList.toggle("app-grid--expanded", view === "expanded");
+    grid.classList.toggle("app-grid--list", view === "list");
     viewBtns.forEach(function (b) {
       b.classList.toggle("sidebar-view-btn--active", b.dataset.view === view);
     });

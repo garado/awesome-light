@@ -309,7 +309,7 @@ button { font-family: inherit; }
   object-fit: cover;
 }
 
-.app-grid:not(.app-grid--expanded) .app-card-thumb-img:not(:first-child) {
+.app-grid:not(.app-grid--list) .app-card-thumb-img:not(:first-child) {
   display: none;
 }
 
@@ -361,41 +361,41 @@ button { font-family: inherit; }
   border-radius: 0.2rem;
 }
 
-/* Expanded view — title, description, then a horizontal image carousel */
-.app-grid--expanded {
+/* List view — title, description, then a horizontal image carousel */
+.app-grid--list {
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
 
-.app-grid--expanded .app-card {
+.app-grid--list .app-card {
   flex-direction: column;
   align-items: stretch;
   gap: 0.5rem;
 }
 
-.app-grid--expanded .app-card-info {
+.app-grid--list .app-card-info {
   order: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.app-grid--expanded .app-card-author {
+.app-grid--list .app-card-author {
   margin-left: 0.3rem;
 }
 
-.app-grid--expanded .app-card-meta {
+.app-grid--list .app-card-meta {
   display: none;
 }
 
-.app-grid--expanded .app-card-summary {
+.app-grid--list .app-card-summary {
   display: block;
   font-size: 1rem;
   color: var(--fg);
 }
 
-.app-grid--expanded .app-card-thumb {
+.app-grid--list .app-card-thumb {
   order: 2;
   display: flex;
   align-items: flex-start;
@@ -406,7 +406,7 @@ button { font-family: inherit; }
   border: none;
 }
 
-.app-grid--expanded .app-card-thumb-img {
+.app-grid--list .app-card-thumb-img {
   display: block;
   width: auto;
   height: 16rem;
