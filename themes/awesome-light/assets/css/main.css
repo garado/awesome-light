@@ -557,6 +557,7 @@ button { font-family: inherit; }
 /* Responsive                                                         */
 /* ------------------------------------------------------------------ */
 @media (max-width: 48rem) {
+  html { font-size: 16px; }
   :root {
     --page-pad-x: 1.25rem;
     --page-pad-y: 1.5rem;
@@ -574,6 +575,21 @@ button { font-family: inherit; }
     padding: 4rem 1.5rem 1.5rem;
   }
   .sidebar.open { transform: translateX(0); }
-  .sidebar-mobile-toggle { display: flex; }
+  .sidebar-mobile-toggle {
+    display: flex;
+    top: auto;
+    left: auto;
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
   .app-grid { grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); }
+
+  .modal-overlay { padding: 0; }
+  .modal {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border: none;
+  }
 }
