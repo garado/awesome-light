@@ -6,6 +6,7 @@ download: "https://github.com/vandamd/weather/releases"
 author: "vandamd"
 author_url: "https://github.com/vandamd/"
 category: "Utility"
+editor_pick: true
 images:
   - A.png
   - B.png

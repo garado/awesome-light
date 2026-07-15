@@ -6,6 +6,7 @@ download: "https://github.com/vandamd/zero/releases"
 author: "vandamd"
 author_url: "https://github.com/vandamd/"
 category: "Photos"
+editor_pick: true
 images:
   - A.png
   - B.png

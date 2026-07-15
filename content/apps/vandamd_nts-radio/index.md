@@ -6,6 +6,7 @@ download: "https://github.com/vandamd/nts-radio/releases"
 author: "vandamd"
 author_url: "https://github.com/vandamd/"
 category: "Music/Audio"
+editor_pick: true
 images:
   - A.png
   - B.png

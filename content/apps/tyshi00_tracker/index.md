@@ -5,7 +5,7 @@ repo: "https://github.com/tyshi00/Tracker"
 download: "https://github.com/tyshi00/Tracker/releases"
 author: "tyshi00"
 author_url: "https://github.com/tyshi00"
-category: "Productivity"
+category: "Utility"
 images:
   - "https://github.com/user-attachments/assets/5e0d487b-2cf5-44cf-8395-7525bff90094"
   - "https://github.com/user-attachments/assets/fe211082-f250-4216-8d8d-1e41e0fcc90e"

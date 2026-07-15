@@ -5,6 +5,7 @@ repo: "https://github.com/zacksimpson/emoji-tool"
 download: "https://github.com/zacksimpson/emoji-tool/releases"
 author: "zacksimpson"
 author_url: "https://github.com/zacksimpson"
+editor_pick: true
 category: "Keyboard"
 images:
   - A.png

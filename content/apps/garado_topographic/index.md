@@ -6,6 +6,7 @@ download: "https://github.com/garado/topographic/releases"
 author: "garado"
 author_url: "https://github.com/garado"
 category: "Navigation"
+editor_pick: true
 images:
   - A.png
   - C.png

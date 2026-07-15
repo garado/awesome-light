@@ -5,7 +5,7 @@ repo: "https://github.com/zacksimpson/nourish-tool"
 download: "https://github.com/zacksimpson/nourish-tool/releases"
 author: "zacksimpson"
 author_url: "https://github.com/zacksimpson/"
-category: "Productivity"
+category: "Utility"
 images:
   - A.jpg
   - B.jpg

@@ -6,6 +6,7 @@ download: "https://github.com/garado/dictionary/releases"
 author: "garado"
 author_url: "https://github.com/garado"
 category: "Utility"
+editor_pick: true
 images:
   - A.png
   - B.png

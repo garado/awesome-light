@@ -6,6 +6,7 @@ download: "https://github.com/ak-nattyb/Checklist/releases"
 author: "ak-nattyb"
 author_url: "https://github.com/ak-nattyb/"
 category: "Productivity"
+editor_pick: true
 images:
   - A.png
   - B.png

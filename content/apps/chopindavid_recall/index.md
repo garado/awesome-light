@@ -18,6 +18,6 @@ description: "A review-only, Anki-compatible spaced-repetition client for LightO
 
 A review-only, Anki-compatible spaced-repetition client for LightOS (the Light Phone III), built on the light-sdk.
 
-<p align="center" style="border: 1px solid white">
-<video src="https://github.com/user-attachments/assets/7d07f3b2-ab14-4f2e-8149-7a9cfa5f55f0" height=500>
+<p align="center">
+<video src="https://github.com/user-attachments/assets/7d07f3b2-ab14-4f2e-8149-7a9cfa5f55f0" height=500 controls=true style="border: 1px solid white;">
 </p>
