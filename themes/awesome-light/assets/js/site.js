@@ -1,14 +1,14 @@
-(function () {
+(() => {
   "use strict";
 
   /* ---------------------------------------------------------------- */
   /* Theme toggle                                                     */
   /* ---------------------------------------------------------------- */
-  var themeToggle = document.getElementById("theme-toggle");
+  const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      var current = document.documentElement.getAttribute("data-theme") || "dark";
-      var next = current === "dark" ? "light" : "dark";
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", next);
       localStorage.setItem("theme", next);
     });
@@ -17,26 +17,26 @@
   /* ---------------------------------------------------------------- */
   /* About modal                                                      */
   /* ---------------------------------------------------------------- */
-  var aboutToggle = document.getElementById("about-toggle");
-  var aboutOverlay = document.getElementById("about-overlay");
-  var aboutClose = document.getElementById("about-close");
+  const aboutToggle = document.getElementById("about-toggle");
+  const aboutOverlay = document.getElementById("about-overlay");
+  const aboutClose = document.getElementById("about-close");
   if (aboutToggle && aboutOverlay) {
-    function openAbout() {
+    const openAbout = () => {
       aboutOverlay.classList.add("open");
       aboutOverlay.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
-    }
-    function closeAbout() {
+    };
+    const closeAbout = () => {
       aboutOverlay.classList.remove("open");
       aboutOverlay.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
-    }
+    };
     aboutToggle.addEventListener("click", openAbout);
     if (aboutClose) aboutClose.addEventListener("click", closeAbout);
-    aboutOverlay.addEventListener("click", function (e) {
+    aboutOverlay.addEventListener("click", (e) => {
       if (e.target === aboutOverlay) closeAbout();
     });
-    document.addEventListener("keydown", function (e) {
+    document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && aboutOverlay.classList.contains("open")) closeAbout();
     });
   }
@@ -44,10 +44,10 @@
   /* ---------------------------------------------------------------- */
   /* Mobile sidebar toggle                                            */
   /* ---------------------------------------------------------------- */
-  var sidebar = document.getElementById("sidebar");
-  var mobileToggle = document.getElementById("sidebar-mobile-toggle");
+  const sidebar = document.getElementById("sidebar");
+  const mobileToggle = document.getElementById("sidebar-mobile-toggle");
   if (sidebar && mobileToggle) {
-    mobileToggle.addEventListener("click", function () {
+    mobileToggle.addEventListener("click", () => {
       sidebar.classList.toggle("open");
       mobileToggle.classList.toggle("open");
     });
@@ -56,36 +56,36 @@
   /* ---------------------------------------------------------------- */
   /* Grid: category filter + search                                   */
   /* ---------------------------------------------------------------- */
-  var grid = document.getElementById("app-grid");
+  const grid = document.getElementById("app-grid");
   if (!grid) return;
 
-  var cards = Array.from(grid.querySelectorAll(".app-card"));
-  var emptyMsg = document.getElementById("app-grid-empty");
-  var catButtons = Array.from(document.querySelectorAll("#sidebar-categories .sidebar-cat"));
-  var stackButtons = Array.from(document.querySelectorAll("#stack-bar .sidebar-cat"));
-  var badgeButtons = Array.from(document.querySelectorAll("#badge-bar .sidebar-cat"));
-  var searchInput = document.getElementById("app-search");
-  var resetBtn = document.getElementById("sidebar-reset");
+  let cards = Array.from(grid.querySelectorAll(".app-card"));
+  const emptyMsg = document.getElementById("app-grid-empty");
+  const catButtons = Array.from(document.querySelectorAll("#sidebar-categories .sidebar-cat"));
+  const stackButtons = Array.from(document.querySelectorAll("#stack-bar .sidebar-cat"));
+  const badgeButtons = Array.from(document.querySelectorAll("#badge-bar .sidebar-cat"));
+  const searchInput = document.getElementById("app-search");
+  const resetBtn = document.getElementById("sidebar-reset");
 
   /* ---------------------------------------------------------------- */
   /* View toggle: grid / list                                          */
   /* ---------------------------------------------------------------- */
-  var viewBtns = Array.from(document.querySelectorAll("#view-bar .sidebar-view-btn"));
-  var viewKey = "awesome-light-view";
+  const viewBtns = Array.from(document.querySelectorAll("#view-bar .sidebar-view-btn"));
+  const viewKey = "awesome-light-view";
 
-  function applyView(view) {
+  const applyView = (view) => {
     grid.classList.toggle("app-grid--list", view === "list");
-    viewBtns.forEach(function (b) {
+    viewBtns.forEach((b) => {
       b.classList.toggle("sidebar-view-btn--active", b.dataset.view === view);
     });
-  }
+  };
 
-  var savedView = localStorage.getItem(viewKey) || "grid";
+  const savedView = localStorage.getItem(viewKey) || "grid";
   applyView(savedView);
 
-  viewBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var view = btn.dataset.view;
+  viewBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const view = btn.dataset.view;
       localStorage.setItem(viewKey, view);
       applyView(view);
     });
@@ -94,100 +94,100 @@
   /* ---------------------------------------------------------------- */
   /* Sort: a-z / newest                                                */
   /* ---------------------------------------------------------------- */
-  var sortBtns = Array.from(document.querySelectorAll("#sort-bar .sidebar-view-btn"));
-  var sortKey = "awesome-light-sort";
+  const sortBtns = Array.from(document.querySelectorAll("#sort-bar .sidebar-view-btn"));
+  const sortKey = "awesome-light-sort";
 
-  function applySort(sortMode) {
-    cards = cards.slice().sort(function (a, b) {
+  const applySort = (sortMode) => {
+    cards = cards.slice().sort((a, b) => {
       if (sortMode === "date") {
         return (b.dataset.date || "").localeCompare(a.dataset.date || "");
       }
       return (a.dataset.title || "").localeCompare(b.dataset.title || "", undefined, { sensitivity: "base" });
     });
-    cards.forEach(function (card) { grid.appendChild(card); });
-    sortBtns.forEach(function (b) {
+    cards.forEach((card) => grid.appendChild(card));
+    sortBtns.forEach((b) => {
       b.classList.toggle("sidebar-view-btn--active", b.dataset.sort === sortMode);
     });
-  }
+  };
 
-  var savedSort = localStorage.getItem(sortKey) || "title";
+  const savedSort = localStorage.getItem(sortKey) || "title";
   applySort(savedSort);
 
-  sortBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var sortMode = btn.dataset.sort;
+  sortBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const sortMode = btn.dataset.sort;
       localStorage.setItem(sortKey, sortMode);
       applySort(sortMode);
     });
   });
 
-  var activeCategory = "";
-  var activeStack = "";
-  var activeBadge = "";
-  var activeQuery = "";
+  let activeCategory = "";
+  let activeStack = "";
+  let activeBadge = "";
+  let activeQuery = "";
 
-  function applyFilters() {
-    var visible = 0;
-    cards.forEach(function (card) {
-      var matchesCategory = !activeCategory || (card.dataset.category || "").toLowerCase() === activeCategory;
-      var matchesStack = !activeStack || card.dataset.lightSdk === activeStack;
-      var matchesBadge = !activeBadge ||
+  const applyFilters = () => {
+    let visible = 0;
+    cards.forEach((card) => {
+      const matchesCategory = !activeCategory || (card.dataset.category || "").toLowerCase() === activeCategory;
+      const matchesStack = !activeStack || card.dataset.lightSdk === activeStack;
+      const matchesBadge = !activeBadge ||
         (activeBadge === "approved" && card.dataset.lightApproved === "true") ||
         (activeBadge === "pick" && card.dataset.editorPick === "true");
-      var matchesQuery = !activeQuery || (card.dataset.search || "").indexOf(activeQuery) !== -1;
-      var show = matchesCategory && matchesStack && matchesBadge && matchesQuery;
+      const matchesQuery = !activeQuery || (card.dataset.search || "").indexOf(activeQuery) !== -1;
+      const show = matchesCategory && matchesStack && matchesBadge && matchesQuery;
       card.style.display = show ? "" : "none";
       if (show) visible++;
     });
     if (emptyMsg) emptyMsg.hidden = visible !== 0;
     if (resetBtn) {
-      var hasActiveFilter = !!(activeCategory || activeStack || activeBadge || activeQuery);
+      const hasActiveFilter = !!(activeCategory || activeStack || activeBadge || activeQuery);
       resetBtn.classList.toggle("sidebar-reset--active", hasActiveFilter);
     }
-  }
+  };
 
-  function closeMobileSidebar() {
+  const closeMobileSidebar = () => {
     if (sidebar && sidebar.classList.contains("open")) {
       sidebar.classList.remove("open");
       if (mobileToggle) mobileToggle.classList.remove("open");
     }
-  }
+  };
 
   // Wires up a button-group filter (category, stack): clicking a button
   // marks it active, updates state via onChange, and re-filters. Returns a
   // `select(value)` function so other UI (e.g. the modal's category link)
   // can trigger the same selection without simulating a click.
-  function createFilterGroup(buttons, datasetKey, onChange) {
-    function select(value) {
-      var val = value || "";
-      buttons.forEach(function (b) {
+  const createFilterGroup = (buttons, datasetKey, onChange) => {
+    const select = (value) => {
+      const val = value || "";
+      buttons.forEach((b) => {
         b.classList.toggle("sidebar-cat--active", (b.dataset[datasetKey] || "") === val);
       });
       onChange(val);
       applyFilters();
       closeMobileSidebar();
-    }
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", function () { select(btn.dataset[datasetKey] || ""); });
+    };
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => select(btn.dataset[datasetKey] || ""));
     });
     return select;
-  }
+  };
 
-  var selectCategory = createFilterGroup(catButtons, "category", function (v) { activeCategory = v; });
-  var selectStack = createFilterGroup(stackButtons, "stack", function (v) { activeStack = v; });
-  var selectBadge = createFilterGroup(badgeButtons, "badge", function (v) { activeBadge = v; });
-  var filterSelectors = { category: selectCategory, stack: selectStack, badge: selectBadge };
+  const selectCategory = createFilterGroup(catButtons, "category", (v) => { activeCategory = v; });
+  const selectStack = createFilterGroup(stackButtons, "stack", (v) => { activeStack = v; });
+  const selectBadge = createFilterGroup(badgeButtons, "badge", (v) => { activeBadge = v; });
+  const filterSelectors = { category: selectCategory, stack: selectStack, badge: selectBadge };
 
-  var searchClear = document.getElementById("sidebar-search-clear");
+  const searchClear = document.getElementById("sidebar-search-clear");
   if (searchInput) {
-    function runSearch() {
+    const runSearch = () => {
       activeQuery = searchInput.value.trim().toLowerCase();
       if (searchClear) searchClear.hidden = !activeQuery;
       applyFilters();
-    }
+    };
     searchInput.addEventListener("input", runSearch);
     if (searchClear) {
-      searchClear.addEventListener("click", function () {
+      searchClear.addEventListener("click", () => {
         searchInput.value = "";
         runSearch();
         searchInput.focus();
@@ -196,7 +196,7 @@
   }
 
   if (resetBtn) {
-    resetBtn.addEventListener("click", function () {
+    resetBtn.addEventListener("click", () => {
       selectCategory("");
       selectStack("");
       selectBadge("");
@@ -210,37 +210,34 @@
   /* ---------------------------------------------------------------- */
   /* Modal                                                             */
   /* ---------------------------------------------------------------- */
-  var overlay = document.getElementById("modal-overlay");
-  var modalMedia = document.getElementById("modal-media");
-  var modalTitle = document.getElementById("modal-title");
-  var modalContent = document.getElementById("modal-content");
-  var closeBtn = document.getElementById("modal-close");
-  var prevBtn = document.getElementById("modal-prev");
-  var nextBtn = document.getElementById("modal-next");
+  const overlay = document.getElementById("modal-overlay");
+  const modalMedia = document.getElementById("modal-media");
+  const modalTitle = document.getElementById("modal-title");
+  const modalContent = document.getElementById("modal-content");
+  const closeBtn = document.getElementById("modal-close");
+  const prevBtn = document.getElementById("modal-prev");
+  const nextBtn = document.getElementById("modal-next");
 
-  var homePath = window.location.pathname;
-  var currentIndex = -1;
+  const homePath = window.location.pathname;
+  let currentIndex = -1;
 
-  function mediaFor(card) {
-    var images = (card.dataset.images || "").split("|").filter(Boolean);
-    var videos = (card.dataset.videos || "").split("|").filter(Boolean);
+  const mediaFor = (card) => {
+    const images = (card.dataset.images || "").split("|").filter(Boolean);
+    const videos = (card.dataset.videos || "").split("|").filter(Boolean);
 
-    var html = images.map(function (src) {
-      return '<img src="' + src + '" class="modal-media-item">';
-    }).join("") + videos.map(function (src) {
-      return '<video src="' + src + '" class="modal-media-item" controls playsinline></video>';
-    }).join("");
+    const html = images.map((src) => `<img src="${src}" class="modal-media-item">`).join("") +
+      videos.map((src) => `<video src="${src}" class="modal-media-item" controls playsinline></video>`).join("");
 
-    return html ? '<div class="modal-media-row">' + html + '</div>' : "";
-  }
+    return html ? `<div class="modal-media-row">${html}</div>` : "";
+  };
 
-  function escapeHtml(str) {
-    var div = document.createElement("div");
+  const escapeHtml = (str) => {
+    const div = document.createElement("div");
     div.textContent = str;
     return div.innerHTML;
-  }
+  };
 
-  function titleStar(card) {
+  const titleStar = (card) => {
     if (card.dataset.lightApproved === "true") {
       return '<span class="app-card-star app-card-star--filled" title="Light Approved">&#9733;</span>';
     }
@@ -248,83 +245,83 @@
       return '<span class="app-card-star app-card-star--hollow" title="Editor\'s Pick">&#9734;</span>';
     }
     return "";
-  }
+  };
 
-  function open(card) {
+  const openModal = (card) => {
     modalMedia.innerHTML = mediaFor(card);
     modalTitle.innerHTML = titleStar(card) + (card.dataset.title ? escapeHtml(card.dataset.title) : "");
 
-    var tmpl = document.getElementById(card.dataset.contentId);
+    const tmpl = document.getElementById(card.dataset.contentId);
     modalContent.innerHTML = tmpl ? tmpl.innerHTML : "";
 
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-  }
+  };
 
-  function close() {
+  const closeModal = () => {
     overlay.classList.remove("open");
     overlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-  }
+  };
 
-  function step(from, dir) {
-    var visibleCards = cards.filter(function (c) { return c.style.display !== "none"; });
+  const step = (from, dir) => {
+    const visibleCards = cards.filter((c) => c.style.display !== "none");
     if (!visibleCards.length) return from;
-    var pos = visibleCards.indexOf(cards[from]);
+    let pos = visibleCards.indexOf(cards[from]);
     if (pos === -1) pos = 0;
-    var nextPos = ((pos + dir) % visibleCards.length + visibleCards.length) % visibleCards.length;
+    const nextPos = ((pos + dir) % visibleCards.length + visibleCards.length) % visibleCards.length;
     return cards.indexOf(visibleCards[nextPos]);
-  }
+  };
 
-  function openAt(i, replaceOnly) {
+  const openAt = (i, replaceOnly) => {
     if (i < 0 || i >= cards.length) return;
     currentIndex = i;
-    var card = cards[i];
-    open(card);
-    var url = card.dataset.permalink;
+    const card = cards[i];
+    openModal(card);
+    const url = card.dataset.permalink;
     if (replaceOnly) {
       history.replaceState({ modal: true }, "", url);
     } else {
       history.pushState({ modal: true }, "", url);
     }
-  }
+  };
 
-  function closeToHome() {
-    close();
+  const closeToHome = () => {
+    closeModal();
     history.pushState(null, "", homePath);
-  }
+  };
 
-  modalContent.addEventListener("click", function (e) {
-    var link = e.target.closest(".modal-filter-link");
+  modalContent.addEventListener("click", (e) => {
+    const link = e.target.closest(".modal-filter-link");
     if (!link) return;
     e.preventDefault();
-    var select = filterSelectors[link.dataset.filterType];
+    const select = filterSelectors[link.dataset.filterType];
     if (!select) return;
     select(link.dataset.filterValue || "");
     closeToHome();
   });
 
-  cards.forEach(function (card) {
-    card.addEventListener("click", function () { openAt(cards.indexOf(card)); });
-    card.addEventListener("keydown", function (e) {
+  cards.forEach((card) => {
+    card.addEventListener("click", () => openAt(cards.indexOf(card)));
+    card.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openAt(cards.indexOf(card)); }
     });
   });
 
   if (closeBtn) closeBtn.addEventListener("click", closeToHome);
-  if (prevBtn) prevBtn.addEventListener("click", function () {
+  if (prevBtn) prevBtn.addEventListener("click", () => {
     if (currentIndex !== -1) openAt(step(currentIndex, -1));
   });
-  if (nextBtn) nextBtn.addEventListener("click", function () {
+  if (nextBtn) nextBtn.addEventListener("click", () => {
     if (currentIndex !== -1) openAt(step(currentIndex, 1));
   });
 
   if (overlay) {
-    overlay.addEventListener("click", function (e) {
+    overlay.addEventListener("click", (e) => {
       if (e.target === overlay) closeToHome();
     });
-    document.addEventListener("keydown", function (e) {
+    document.addEventListener("keydown", (e) => {
       if (!overlay.classList.contains("open")) return;
       if (e.key === "Escape") closeToHome();
       if (e.key === "ArrowLeft") prevBtn && prevBtn.click();
@@ -332,27 +329,27 @@
     });
   }
 
-  window.addEventListener("popstate", function (e) {
+  window.addEventListener("popstate", (e) => {
     if (e.state && e.state.modal) {
-      var found = cards.findIndex(function (c) { return c.dataset.permalink === window.location.pathname; });
-      if (found !== -1) { currentIndex = found; open(cards[found]); }
+      const found = cards.findIndex((c) => c.dataset.permalink === window.location.pathname);
+      if (found !== -1) { currentIndex = found; openModal(cards[found]); }
     } else {
-      close();
+      closeModal();
     }
   });
 
   // Deep link on load: either a direct /apps/<slug>/ visit that redirected
   // here with a stored path, or the URL already points at an app.
-  (function () {
-    var stored = sessionStorage.getItem("openModal");
-    var path = stored || window.location.pathname;
+  (() => {
+    const stored = sessionStorage.getItem("openModal");
+    const path = stored || window.location.pathname;
     if (stored) sessionStorage.removeItem("openModal");
     if (path === homePath || path === "/") return;
-    var found = cards.findIndex(function (c) { return c.dataset.permalink === path; });
+    const found = cards.findIndex((c) => c.dataset.permalink === path);
     if (found !== -1) {
       currentIndex = found;
       if (stored) history.replaceState({ modal: true }, "", path);
-      open(cards[found]);
+      openModal(cards[found]);
     }
   })();
 })();
