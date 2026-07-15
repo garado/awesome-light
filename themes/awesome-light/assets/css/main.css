@@ -460,9 +460,13 @@ button { font-family: inherit; }
   gap: 0.75rem;
   aspect-ratio: auto;
   overflow-x: auto;
+  overflow-y: hidden;
   background: none;
   border: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.app-grid--list .app-card-thumb::-webkit-scrollbar { display: none; }
 
 .app-grid--list .app-card-thumb-img {
   display: block;
