@@ -5,12 +5,18 @@
 {{ $page := . }}
 {{ $images := slice }}
 {{ range $page.Params.images | default slice }}
+  {{ $img := "" }}
   {{ if hasPrefix . "http" }}
-    {{ $images = $images | append . }}
+    {{ with resources.GetRemote . }}{{ $img = . }}{{ end }}
   {{ else }}
-    {{ with $page.Resources.GetMatch . }}
-      {{ $images = $images | append .RelPermalink }}
+    {{ $img = $page.Resources.GetMatch . }}
+  {{ end }}
+  {{ with $img }}
+    {{ $out := . }}
+    {{ if gt .Width 1200 }}
+      {{ $out = .Resize "1200x" }}
     {{ end }}
+    {{ $images = $images | append $out.RelPermalink }}
   {{ end }}
 {{ end }}
 
