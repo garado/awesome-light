@@ -11,4 +11,4 @@ Thanks for contributing to the Light community! To ensure the quality of this li
     - Everybody will understandably have different needs, so it is difficult to define the line, but it's worth a reminder.
 
 5. Bonus points for formatting the image showcase for your submission in the same style as the other entries in the list!
-    - Vandam's light-template has a script for generating a showcase image.
+    - This [hero image formatter](https://awesome-light.garado.dev/hero-image-formatter) will generate one for you.
