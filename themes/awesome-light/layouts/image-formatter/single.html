@@ -48,7 +48,7 @@
 
   <canvas id="imf-canvas"></canvas>
 
-  <p class="imf-hint">Drag images to reposition &middot; Drag-and-drop, paste, or click "Upload Images" to add &middot; 2572&times;1048</p>
+  <p class="imf-hint">Drag images to reposition &middot; Drag-and-drop, paste, or click "Upload Images" to add &middot; <span id="imf-dims">2572&times;1048</span></p>
   <p class="imf-footer">
     awesome-light (<a href="https://awesome-light.garado.dev" target="_blank" rel="noopener">site</a>/<a href="https://github.com/garado/awesome-light" target="_blank" rel="noopener">github</a>) &middot;
     Made by Alexis Garado (<a href="https://garado.dev" target="_blank" rel="noopener">site</a>/<a href="https://github.com/garado/" target="_blank" rel="noopener">github</a>)
@@ -70,6 +70,7 @@
   const descEl   = document.getElementById('imf-desc');
   const uploadEl = document.getElementById('imf-upload');
   const chipsEl  = document.getElementById('imf-chips');
+  const dimsEl   = document.getElementById('imf-dims');
   const imfEl    = document.querySelector('.imf');
 
   let images    = []; // {el, name, caption}
@@ -99,6 +100,7 @@
 
   // ── Render ────────────────────────────────────────────────────
   function render() {
+    dimsEl.textContent = W + '×' + canvas.height;
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, W, canvas.height);
     drawHeader();
