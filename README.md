@@ -51,7 +51,7 @@ An independent, minimal Spotify client for LightOS. Playback runs in-process via
 > **How is this different from Echo?**<br>
 > Basically, this has a few extra features, less album art, and doesn't require the Spotify app to be installed.
 
-<img height="500" alt="image" src="https://github.com/user-attachments/assets/a355aee7-d660-4d06-90ba-182b3417f86d" />
+<img width="2572" height="1062" alt="Phono" src="https://github.com/user-attachments/assets/95fe2e3c-ce39-4427-88b6-b02c6332ea2a" />
 
 ### [NTS Radio](https://github.com/vandamd/nts-radio) ([vandamd](https://github.com/vandamd/))
 
@@ -103,18 +103,7 @@ A distraction-free Markdown notes tool for the Light Phone III.
 
 A health tracker for the Light Phone III. Just a simple way to keep tabs on your water intake, sleep, movement, and more, without any distractions.
 
-<table>
-<tr>
-<td><img width="200" alt="image" src="https://github.com/user-attachments/assets/5e0d487b-2cf5-44cf-8395-7525bff90094" /><br><sub>Home</sub></td>
-<td><img width="200" alt="image" src="https://github.com/user-attachments/assets/fe211082-f250-4216-8d8d-1e41e0fcc90e" /><br><sub>Home (Cycle enabled)</sub></td>
-<td><img width="200" alt="image" src="https://github.com/user-attachments/assets/77aba406-a76a-4da6-a0a9-f325c90957ff" /><br><sub>Water</sub></td>
-</tr>
-<tr>
-<td><img width="200" alt="image" src="https://github.com/user-attachments/assets/2d02fa37-f70f-499b-a000-99657b72b378" /><br><sub>Water history</sub></td>
-<td><img width="200" alt="image" src="https://github.com/user-attachments/assets/5d59eb16-3918-464a-9626-5f7f2f2056fd" /><br><sub>Mood</sub></td>
-<td><img width="200" alt="image" src="https://github.com/user-attachments/assets/51442e14-f846-4685-89ab-9e9cd62648bc" /><br><sub>Sleep</sub></td>
-</tr>
-</table>
+<img width="2572" height="1698" alt="tracker" src="https://github.com/user-attachments/assets/e739af27-d416-4eb0-b784-cfc28bd57052" />
 
 ### [Recall](https://github.com/ChopinDavid/recall-lightos) ([ChopinDavid](https://github.com/ChopinDavid))
 
@@ -189,21 +178,13 @@ A fork of [GPSLogger](https://github.com/mendhak/gpslogger) by [mendhak](https:/
 
 A personal GLP-1 injection and weight tracker for the Light Phone III.
 
-| Home | Log Shot | Profile |
-|---|---|---|
-| <img alt="image" src="https://github.com/user-attachments/assets/5e13c685-7265-4526-8a74-cdf3a9c8c547" /> | <img alt="image" src="https://github.com/user-attachments/assets/9d1ae3aa-67e3-4081-8b57-c80417c851c9" /> | <img alt="image" src="https://github.com/user-attachments/assets/4840e99e-1d41-4764-aa64-65d8720dac03" /> |
+<img width="2572" height="1062" alt="pokey" src="https://github.com/user-attachments/assets/68195b23-cd78-4535-9a2a-2b36df62370e" />
 
 ### [Backlog](https://github.com/Alexis-NM/light-backlog) ([Alexis-NM](https://github.com/Alexis-NM))
 
 A minimal, LightOS-inspired video game tracker for the Light Phone III — a stripped-down Backloggd experience. Track your games by status, rate them, browse by console, write them into custom lists, and read game descriptions & screenshots — all in a distraction-free black & white interface. Game data comes from IGDB (by Twitch).
 
-<p align="center">
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/62a33106-83a3-4d8b-8539-105a5c53a0ca" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/d4326092-7fa8-4ddb-beb7-938df616948a" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/c9d67e66-bdfe-4a15-ba5d-276f8a585c65" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/2a84d4fd-0d9e-4b98-9ec7-add0b7adf5a1" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/cb299546-dc7f-4b48-b8c7-a28582d6d2c0" />
-</p>
+<img width="2572" height="781" alt="backlog" src="https://github.com/user-attachments/assets/3596075c-f85b-44b8-a847-84376cbca975" />
 
 ## Navigation
 
@@ -225,13 +206,7 @@ An outdoor maps app for the Light Phone III.
 
 A small games tool for LightOS, built with the Light SDK. Eight things to do: Snake, Brick Breaker, Pong, Tic-Tac-Toe, Connect Four, Sudoku, Word Search, and Dice. Formerly called "Games" - renamed to Passatempo (Portuguese/Italian for "pastime").
 
-<p align="center">
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/10d4a2a2-c2a8-452f-891a-61bb8da2c036" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/03492e64-26d9-4f54-b87a-a199cb4263cb" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/9bd22863-69c9-4bed-9251-984e906671c9" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/984292ef-115d-49d4-908c-31e33d7e8d4c" />
-<img width="180" alt="image" src="https://github.com/user-attachments/assets/8e0b8618-de70-4bed-bc53-b5f044b83dae" />
-</p>
+<img width="2572" height="782" alt="passatempo" src="https://github.com/user-attachments/assets/f2bedc45-b872-4a9c-9120-120f6bc75906" />
 
 ## Keyboard
 
