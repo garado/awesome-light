@@ -39,7 +39,7 @@ Community-maintained Python API and CLI/TUI for managing music, notes, podcasts,
 
 A minimal launcher for the Light Phone III.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/8733403a-98a2-4341-802c-ce5bec3f103a" />
+<a href="https://github.com/vandamd/luma" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Luma" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_luma/hero.png" /></a>
 
 ## Music/Audio
 
@@ -47,34 +47,31 @@ A minimal launcher for the Light Phone III.
 
 A Spotify client for the Light Phone III.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/9ec9cdf7-026b-4cdf-bc28-fbd44f7a4472" />
-
-### [Phono](https://github.com/jonathancaudill/phono) ([jonathancaudill](https://github.com/jonathancaudill))
-
-An independent, minimal Spotify client for LightOS. Playback runs in-process via a patched fork of librespot (Rust). Metadata (search, library, albums, artists, playlists) uses the official Spotify Web API with your own developer-app credentials.
-
-> **How is this different from Echo?**<br>
-> Basically, this has a few extra features, less album art, and doesn't require the Spotify app to be installed.
-
-<img width="2572" height="1062" alt="Phono" src="https://github.com/user-attachments/assets/95fe2e3c-ce39-4427-88b6-b02c6332ea2a" />
+<a href="https://github.com/vandamd/echo" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Echo" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_echo/hero.png" /></a>
 
 ### [NTS Radio](https://github.com/vandamd/nts-radio) ([vandamd](https://github.com/vandamd/))
 
 An app to play NTS Radio Live shows and Infinite Mixtapes.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/f8820e9b-1bf3-4c9c-987e-33ba4cebee4d" />
+<a href="https://github.com/vandamd/nts-radio" target="_blank" rel="noopener"><img width="2572" height="1048" alt="NTS Radio" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_nts-radio/hero.png" /></a>
+
+### [Phono](https://github.com/jonathancaudill/phono) ([jonathancaudill](https://github.com/jonathancaudill))
+
+An independent, minimal Spotify client for LightOS. Playback runs in-process via a patched fork of librespot (Rust). Metadata (search, library, albums, artists, playlists) uses the official Spotify Web API with your own developer-app credentials.
+
+<a href="https://github.com/jonathancaudill/phono" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Phono" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/jonathancaudill_phono/hero.png" /></a>
 
 ### [Reverb](https://github.com/vandamd/reverb) ([vandamd](https://github.com/vandamd/))
 
-A music player for the Light Phone III.
+A local music player for the Light Phone III.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/8e06d025-7915-4e33-b15a-624d829f355d" />
+<a href="https://github.com/vandamd/reverb" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Reverb" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_reverb/hero.png" /></a>
 
 ### [Tunes](https://github.com/dryane/light-music) ([dryane](https://github.com/dryane))
 
 A minimal music app for the Light Phone 3.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/e852bfbf-2e5c-4233-a188-2ff720532c65" />
+<a href="https://github.com/dryane/light-music" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Tunes" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/dryane_tunes/hero.png" /></a>
 
 ## Photos
 
@@ -82,136 +79,153 @@ A minimal music app for the Light Phone 3.
 
 A simple camera app for the Light Phone III.
 
-<img width="2572" height="1068" alt="image" src="https://github.com/user-attachments/assets/685a5c6b-d498-4264-ac0e-856352e93ddc" />
+<a href="https://github.com/vandamd/zero" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Zero" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_zero/hero.png" /></a>
 
 ## Productivity
-
-### [Reminders](https://github.com/zacksimpson/reminders-tool) ([zacksimpson](https://github.com/zacksimpson))
-
-A simple productivity task management tool designed for the Light Phone III.
-
-<img width="2572" height="1048" alt="reminders-example" src="https://github.com/user-attachments/assets/aea34fe5-27bb-4eb8-946d-54137c995a9d" />
 
 ### [Checklist](https://github.com/ak-nattyb/Checklist) ([ak-nattyb](https://github.com/ak-nattyb/))
 
 An app that adds a simple list with checkbox functionality for Light Phone/Luma users.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/04ac288f-1aae-4cbc-8291-2e0ef02f0333" />
+<a href="https://github.com/ak-nattyb/Checklist" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Checklist" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/ak-nattyb_checklist/hero.png" /></a>
 
 ### [Composer](https://github.com/zacksimpson/composer-tool) ([zacksimpson](https://github.com/zacksimpson/))
 
 A distraction-free Markdown notes tool for the Light Phone III.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/53f5e3ff-33ba-4b12-988c-911d545d3699" />
-
-### [Tracker](https://github.com/tyshi00/Tracker) ([tyshi00](https://github.com/tyshi00))
-
-A health tracker for the Light Phone III. Just a simple way to keep tabs on your water intake, sleep, movement, and more, without any distractions.
-
-<img width="2572" height="1698" alt="tracker" src="https://github.com/user-attachments/assets/e739af27-d416-4eb0-b784-cfc28bd57052" />
-
-### [Recall](https://github.com/ChopinDavid/recall-lightos) ([ChopinDavid](https://github.com/ChopinDavid))
-
-A review-only, Anki-compatible spaced-repetition client for LightOS (the Light Phone III), built on the light-sdk.
-
-https://github.com/user-attachments/assets/7d07f3b2-ab14-4f2e-8149-7a9cfa5f55f0
-
-### [Nourish](https://github.com/zacksimpson/nourish-tool) ([zacksimpson](https://github.com/zacksimpson/))
-
-A mindfulness-first daily check-in tool for the Light Phone III.
-
-Nourish is not a calorie tracker. It's a lightweight daily log for people who want to be more intentional about what they eat – connecting eating habits with context like stress, sleep, and how the day went. Built to be used once a day, in under a minute.
-
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/c05a21b1-4f31-4c25-a8a7-d0ad6a2c9e91" />
+<a href="https://github.com/zacksimpson/composer-tool" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Composer" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/zacksimpson_composer/hero.png" /></a>
 
 ### [Luminous Strategies](https://github.com/ak-nattyb/luminous-strategies) ([ak-nattyb](https://github.com/ak-nattyb/))
 
 An app that lets you choose a card from Brian Eno's Oblique Strategies to inspire your creatvity.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/61badc93-14ef-4a78-9542-82c91e0dac9f" />
+<a href="https://github.com/ak-nattyb/luminous-strategies" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Luminous Strategies" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/ak-nattyb_luminous-strategies/hero.png" /></a>
+
+### [Recall](https://github.com/ChopinDavid/recall-lightos) ([ChopinDavid](https://github.com/ChopinDavid))
+
+A review-only, Anki-compatible spaced-repetition client for LightOS (the Light Phone III), built on the light-sdk.
+
+<a href="https://github.com/ChopinDavid/recall-lightos" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Recall" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/chopindavid_recall/hero.png" /></a>
+
+### [Reminders](https://github.com/zacksimpson/reminders-tool) ([zacksimpson](https://github.com/zacksimpson))
+
+A simple productivity task management tool designed for the Light Phone III.
+
+<a href="https://github.com/zacksimpson/reminders-tool" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Reminders" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/zacksimpson_reminders/hero.png" /></a>
 
 ## Utility
 
-### [Passes](https://github.com/vandamd/passes) ([vandamd](https://github.com/vandamd/))
+### [Backlog](https://github.com/Alexis-NM/light-backlog) ([Alexis-NM](https://github.com/Alexis-NM))
 
-An app for the Light Phone III to store and scan various codes.
+A minimal, LightOS-inspired video game tracker for the Light Phone III — a stripped-down Backloggd experience.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/205fcd57-7cf3-4921-ae7a-10256c4c22cd" />
+<a href="https://github.com/Alexis-NM/light-backlog" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Backlog" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/alexis-nm_backlog/hero.png" /></a>
 
-### [Paka](https://github.com/janovsk1s/paka) ([janovsk1s](https://github.com/janovsk1s))
+### [Bible](https://github.com/greghare/light-bible) ([greghare](https://github.com/greghare/))
 
-Paka is an intentionally small, offline pass-and-authenticator tool designed for Light Phone III. It scans and renders common barcode formats, carries encrypted PDF passes, encrypted one- or two-sided document photos, and generates TOTP codes without Google Play Services.
+A simple, distraction-free Bible reading app for the Light Phone III.
 
-<p align="center">
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/ae2045a5-5ac3-4a75-ae8a-ccabad1287fc" />
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/9c9d3bec-a713-4804-9517-3ff7434a9108" />
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/683b078e-b953-4df0-91f5-238b544e606a" />
-<img width="200" alt="image" src="https://github.com/user-attachments/assets/ea77f832-4dab-414b-afba-0af1ecd586af" />
-</p>
-
-### [Metronome](https://github.com/garado/metronome) ([garado](https://github.com/garado))
-
-A minimal metronome app for the Light Phone 3.
-
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/065f8ca7-64fc-49c9-925f-98acc1c204bf" />
-
-### [Strings](https://github.com/garado/strings) ([garado](https://github.com/garado))
-
-A minimal tuner app for the Light Phone 3.
-
-<img width="2572" height="1049" alt="image" src="https://github.com/user-attachments/assets/a0bbb1ee-1f37-43c9-b43c-d0809d8fcf4a" />
+<a href="https://github.com/greghare/light-bible" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Bible" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/greghare_bible/hero.png" /></a>
 
 ### [Dictionary](https://github.com/garado/dictionary) ([garado](https://github.com/garado))
 
 A simple offline dictionary app for the Light Phone III.
 
-<img width="2572" height="1122" alt="image" src="https://github.com/user-attachments/assets/c0e71209-c338-488a-bbda-5ccc61e0e39b" />
-
-### [Weather](https://github.com/vandamd/weather) ([vandamd](https://github.com/vandamd/))
-
-An app for the Light Phone III to check the weather.
-
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/a4dcc45d-b1ab-4f7f-bccf-c199db632b12" />
+<a href="https://github.com/garado/dictionary" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Dictionary" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/garado_dictionary/hero.png" /></a>
 
 ### [Light GPSLogger](https://github.com/garado/light-gpslogger) ([garado](https://github.com/garado))
 
-A fork of [GPSLogger](https://github.com/mendhak/gpslogger) by [mendhak](https://github.com/mendhak), redesigned to be Light.
+A fork of GPSLogger by mendhak, redesigned to be Light.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/a57b3576-cca0-4426-baab-b1f79c284b0e" />
+<a href="https://github.com/garado/light-gpslogger" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Light GPSLogger" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/garado_light-gpslogger/hero.png" /></a>
+
+### [MediLight](https://github.com/ruditimmermans/LightMedication) ([ruditimmermans](https://github.com/ruditimmermans/))
+
+Simple medication tool for the LP3.
+
+<a href="https://github.com/ruditimmermans/LightMedication" target="_blank" rel="noopener"><img width="2572" height="1048" alt="MediLight" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/ruditimmermans_light-medication/hero.png" /></a>
+
+### [Metronome](https://github.com/garado/metronome) ([garado](https://github.com/garado))
+
+A minimal metronome app for the Light Phone 3.
+
+<a href="https://github.com/garado/metronome" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Metronome" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/garado_metronome/hero.png" /></a>
+
+### [Nourish](https://github.com/zacksimpson/nourish-tool) ([zacksimpson](https://github.com/zacksimpson/))
+
+A mindfulness-first daily check-in tool for the Light Phone III.
+
+<a href="https://github.com/zacksimpson/nourish-tool" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Nourish" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/zacksimpson_nourish/hero.png" /></a>
+
+### [Paka](https://github.com/janovsk1s/paka) ([janovsk1s](https://github.com/janovsk1s))
+
+Paka is an intentionally small, offline pass-and-authenticator tool designed for Light Phone III. It scans and renders common barcode formats, carries encrypted PDF passes, encrypted one- or two-sided document photos, and generates TOTP codes without Google Play Services.
+
+<a href="https://github.com/janovsk1s/paka" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Paka" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/janovsk1s_paka/hero.png" /></a>
+
+### [Passes](https://github.com/vandamd/passes) ([vandamd](https://github.com/vandamd/))
+
+An app for the Light Phone III to store and scan various codes.
+
+<a href="https://github.com/vandamd/passes" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Passes" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_passes/hero.png" /></a>
 
 ### [Pokey](https://github.com/jabberbox/pokey) ([jabberbox](https://github.com/jabberbox))
 
 A personal GLP-1 injection and weight tracker for the Light Phone III.
 
-<img width="2572" height="1062" alt="pokey" src="https://github.com/user-attachments/assets/68195b23-cd78-4535-9a2a-2b36df62370e" />
+<a href="https://github.com/jabberbox/pokey" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Pokey" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/jabberbox_pokey/hero.png" /></a>
 
-### [Backlog](https://github.com/Alexis-NM/light-backlog) ([Alexis-NM](https://github.com/Alexis-NM))
+### [Ritual](https://github.com/KEZO555/Ritual) ([KEZ0555](https://github.com/KEZ0555/))
 
-A minimal, LightOS-inspired video game tracker for the Light Phone III — a stripped-down Backloggd experience. Track your games by status, rate them, browse by console, write them into custom lists, and read game descriptions & screenshots — all in a distraction-free black & white interface. Game data comes from IGDB (by Twitch).
+An AeroPress recipe guide for the Light Phone III.
 
-<img width="2572" height="781" alt="backlog" src="https://github.com/user-attachments/assets/3596075c-f85b-44b8-a847-84376cbca975" />
+<a href="https://github.com/KEZO555/Ritual" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Ritual" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZ0555_ritual/hero.png" /></a>
+
+### [Strings](https://github.com/garado/strings) ([garado](https://github.com/garado))
+
+A minimal tuner app for the Light Phone 3.
+
+<a href="https://github.com/garado/strings" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Strings" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/garado_strings/hero.png" /></a>
+
+### [Tracker](https://github.com/tyshi00/Tracker) ([tyshi00](https://github.com/tyshi00))
+
+A health tracker for the Light Phone III. Just a simple way to keep tabs on your water intake, sleep, movement, and more, without any distractions.
+
+<a href="https://github.com/tyshi00/Tracker" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Tracker" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/tyshi00_tracker/hero.png" /></a>
+
+### [Verses](https://github.com/zacksimpson/verses-tool) ([zacksimpson](https://github.com/zacksimpson/))
+
+A simple daily Bible verse tool for the Light Phone III.
+
+<a href="https://github.com/zacksimpson/verses-tool" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Verses" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/zacksimpson_verses/hero.png" /></a>
+
+### [Weather](https://github.com/vandamd/weather) ([vandamd](https://github.com/vandamd/))
+
+An app for the Light Phone III to check the weather.
+
+<a href="https://github.com/vandamd/weather" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Weather" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_weather/hero.png" /></a>
 
 ## Navigation
 
 ### [Buses](https://github.com/vandamd/buses) ([vandamd](https://github.com/vandamd/))
 
-An app for the Light Phone III to track buses in the UK. 
+An app for the Light Phone III to track buses in the UK.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/ac04b858-1299-4979-be84-cb9eedd31654" />
+<a href="https://github.com/vandamd/buses" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Buses" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_buses/hero.png" /></a>
 
 ### [Topographic](https://github.com/garado/topographic) ([garado](https://github.com/garado))
 
 An outdoor maps app for the Light Phone III.
 
-<img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/059d5dfa-105b-444e-82a9-6bff074f065f" />
+<a href="https://github.com/garado/topographic" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Topographic" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/garado_topographic/hero.png" /></a>
 
 ## Entertainment
 
-### [Passatempo](https://github.com/tyshi00/Light-Games-Passatempo) ([tyshi00](https://github.com/tyshi00/Light-Games-Passatempo)
+### [Passatempo](https://github.com/tyshi00/Light-Games-Passatempo) ([tyshi00](https://github.com/tyshi00/))
 
-A small games tool for LightOS, built with the Light SDK. Eight things to do: Snake, Brick Breaker, Pong, Tic-Tac-Toe, Connect Four, Sudoku, Word Search, and Dice. Formerly called "Games" - renamed to Passatempo (Portuguese/Italian for "pastime").
+A small games tool for LightOS, built with the Light SDK.
 
-<img width="2572" height="782" alt="passatempo" src="https://github.com/user-attachments/assets/f2bedc45-b872-4a9c-9120-120f6bc75906" />
+<a href="https://github.com/tyshi00/Light-Games-Passatempo" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Passatempo" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/tyshi00_passatempo/hero.png" /></a>
 
 ## Keyboard
 
@@ -219,10 +233,16 @@ A small games tool for LightOS, built with the Light SDK. Eight things to do: Sn
 
 An Emoji picker for LPIII that copies to the clipboard. Searchable by name and keyword.
 
-<img width="2572" height="1048" alt="emojis-example" src="https://github.com/user-attachments/assets/6e096bd5-03f6-4324-a7c8-fc9f8e6eb08e" />
+<a href="https://github.com/zacksimpson/emoji-tool" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Emojis" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/zacksimpson_emojis/hero.png" /></a>
 
 ### [Keyboard](https://github.com/adam-weber/light-keyboard) ([adam-weber](https://github.com/adam-weber))
 
 A clone of the Light Phone 3's built-in keyboard, for a unified look across apps.
 
-<img width="2572" height="1048" alt="example" src="https://github.com/user-attachments/assets/e324da77-33f1-4eec-aa9c-7b592d2bafed" />
+<a href="https://github.com/adam-weber/light-keyboard" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Keyboard" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/adam-weber_keyboard/hero.png" /></a>
+
+### [Type](https://github.com/KEZO555/Type) ([KEZ0555](https://github.com/KEZ0555/))
+
+Minimal black-and-white keyboard for the Light Phone - English + Hebrew, dictionary, autocorrect, and voice dictation
+
+<a href="https://github.com/KEZO555/Type" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Type" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZ0555_type/hero.png" /></a>
