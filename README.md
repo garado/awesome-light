@@ -93,6 +93,12 @@ A distraction-free Markdown notes tool for the Light Phone III.
 
 <a href="https://github.com/zacksimpson/composer-tool" target="_blank" rel="noopener"><img alt="Composer" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/zacksimpson_composer/hero.png" /></a>
 
+### [Lists](https://github.com/cmg-ops/LP3-Lists) ([cmg-ops](https://github.com/cmg-ops))
+
+A nested list app for the Light Phone III — lists inside lists as deep as you want, with checklists, A/B/C priority sorting, and built-in spellcheck.
+
+<a href="https://github.com/cmg-ops/LP3-Lists" target="_blank" rel="noopener"><img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/3e56d515-c264-423c-97aa-50844edfb538" /></a>
+
 ### [Luminous Strategies](https://github.com/ak-nattyb/luminous-strategies) ([ak-nattyb](https://github.com/ak-nattyb/))
 
 An app that lets you choose a card from Brian Eno's Oblique Strategies to inspire your creatvity.
@@ -125,6 +131,12 @@ A simple, distraction-free Bible reading app for the Light Phone III.
 
 <a href="https://github.com/greghare/light-bible" target="_blank" rel="noopener"><img alt="Bible" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/greghare_bible/hero.png" /></a>
 
+
+### [Bible](https://github.com/cmg-ops/LP3-Bible) ([cmg-ops](https://github.com/cmg-ops))
+
+An offline Bible app for the Light Phone III — downloadable translations, bookmarks, saved verses, and full-text search.
+
+<a href="https://github.com/cmg-ops/LP3-Bible" target="_blank" rel="noopener"><img alt="Bible" src="https://github.com/user-attachments/assets/1a907f36-e0ed-4e82-94c1-8f6c41e9a606" /></a>
 ### [Dictionary](https://github.com/garado/dictionary) ([garado](https://github.com/garado))
 
 A simple offline dictionary app for the Light Phone III.
@@ -178,6 +190,13 @@ A personal GLP-1 injection and weight tracker for the Light Phone III.
 An AeroPress recipe guide for the Light Phone III.
 
 <a href="https://github.com/KEZO555/Ritual" target="_blank" rel="noopener"><img alt="Ritual" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZ0555_ritual/hero.png" /></a>
+
+### [StopWatch](https://github.com/cmg-ops/LP3-StopWatch) ([cmg-ops](https://github.com/cmg-ops))
+
+A stopwatch for the Light Phone III with laps, best/slowest lap tracking, and a saved history of past sessions.
+
+<a href="https://github.com/cmg-ops/LP3-StopWatch" target="_blank" rel="noopener"><img width="2572" height="1048" alt="image" src="https://github.com/user-attachments/assets/371dd1f8-a1bb-4737-a106-29db1cb1ab7d" />
+</a>
 
 ### [Strings](https://github.com/garado/strings) ([garado](https://github.com/garado))
 
