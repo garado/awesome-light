@@ -576,7 +576,9 @@ button { font-family: inherit; }
 }
 
 .modal-media-item {
-  height: 26rem;
+  max-height: 26rem;
+  height: auto;
+  max-width: 100%;
   width: auto;
   flex: 0 0 auto;
   object-fit: contain;
