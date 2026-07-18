@@ -5,7 +5,7 @@ repo: "https://github.com/KEZO555/Type"
 download: "https://github.com/KEZO555/Type/releases"
 author: "KEZ0555"
 author_url: "https://github.com/KEZ0555/"
-category: "Utility"
+category: "Keyboard"
 images:
     - A.png
     - B.png
