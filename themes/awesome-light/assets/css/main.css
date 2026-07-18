@@ -94,6 +94,12 @@ button { font-family: inherit; }
   top: var(--page-pad-y);
   max-height: calc(100vh - (var(--page-pad-y) * 2));
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar-top {
