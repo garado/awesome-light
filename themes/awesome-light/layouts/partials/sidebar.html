@@ -99,7 +99,7 @@
   <a class="sidebar-footer-link" href="https://github.com/garado/awesome-light" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
 </aside>
 <button class="sidebar-mobile-toggle" id="sidebar-mobile-toggle" aria-label="Toggle menu">
-  <span></span><span></span><span></span>
+  <span class="sidebar-mobile-toggle-label">Show Options</span>
 </button>
 <div class="modal-overlay" id="about-overlay" aria-hidden="true">
   <button class="modal-close" id="about-close" aria-label="Close">&times;</button>
@@ -108,5 +108,8 @@
     <div class="modal-body">
       {{ .Site.Home.Content }}
     </div>
+  </div>
+  <div class="modal-mobile-bar modal-mobile-bar--solo">
+    <button class="modal-mobile-close" id="about-mobile-close">Close</button>
   </div>
 </div>

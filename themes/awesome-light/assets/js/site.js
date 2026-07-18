@@ -20,6 +20,7 @@
   const aboutToggle = document.getElementById("about-toggle");
   const aboutOverlay = document.getElementById("about-overlay");
   const aboutClose = document.getElementById("about-close");
+  const aboutMobileClose = document.getElementById("about-mobile-close");
   if (aboutToggle && aboutOverlay) {
     const openAbout = () => {
       aboutOverlay.classList.add("open");
@@ -33,6 +34,7 @@
     };
     aboutToggle.addEventListener("click", openAbout);
     if (aboutClose) aboutClose.addEventListener("click", closeAbout);
+    if (aboutMobileClose) aboutMobileClose.addEventListener("click", closeAbout);
     aboutOverlay.addEventListener("click", (e) => {
       if (e.target === aboutOverlay) closeAbout();
     });
@@ -46,10 +48,17 @@
   /* ---------------------------------------------------------------- */
   const sidebar = document.getElementById("sidebar");
   const mobileToggle = document.getElementById("sidebar-mobile-toggle");
+  const mobileToggleLabel = mobileToggle ? mobileToggle.querySelector(".sidebar-mobile-toggle-label") : null;
+
+  const setMobileToggleLabel = (isOpen) => {
+    if (mobileToggleLabel) mobileToggleLabel.textContent = isOpen ? "Hide Options" : "Show Options";
+  };
+
   if (sidebar && mobileToggle) {
     mobileToggle.addEventListener("click", () => {
       sidebar.classList.toggle("open");
       mobileToggle.classList.toggle("open");
+      setMobileToggleLabel(sidebar.classList.contains("open"));
     });
   }
 
@@ -147,13 +156,6 @@
     if (statusEl) statusEl.classList.toggle("sidebar-status--active", hasActiveFilter);
   };
 
-  const closeMobileSidebar = () => {
-    if (sidebar && sidebar.classList.contains("open")) {
-      sidebar.classList.remove("open");
-      if (mobileToggle) mobileToggle.classList.remove("open");
-    }
-  };
-
   // Wires up a button-group filter (category, stack): clicking a button
   // marks it active, updates state via onChange, and re-filters. Returns a
   // `select(value)` function so other UI (e.g. the modal's category link)
@@ -166,7 +168,6 @@
       });
       onChange(val);
       applyFilters();
-      closeMobileSidebar();
     };
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => select(btn.dataset[datasetKey] || ""));
@@ -218,6 +219,9 @@
   const closeBtn = document.getElementById("modal-close");
   const prevBtn = document.getElementById("modal-prev");
   const nextBtn = document.getElementById("modal-next");
+  const mobileCloseBtn = document.getElementById("modal-mobile-close");
+  const mobilePrevBtn = document.getElementById("modal-mobile-prev");
+  const mobileNextBtn = document.getElementById("modal-mobile-next");
 
   const homePath = window.location.pathname;
   let currentIndex = -1;
@@ -310,13 +314,15 @@
     });
   });
 
+  const goPrev = () => { if (currentIndex !== -1) openAt(step(currentIndex, -1)); };
+  const goNext = () => { if (currentIndex !== -1) openAt(step(currentIndex, 1)); };
+
   if (closeBtn) closeBtn.addEventListener("click", closeToHome);
-  if (prevBtn) prevBtn.addEventListener("click", () => {
-    if (currentIndex !== -1) openAt(step(currentIndex, -1));
-  });
-  if (nextBtn) nextBtn.addEventListener("click", () => {
-    if (currentIndex !== -1) openAt(step(currentIndex, 1));
-  });
+  if (prevBtn) prevBtn.addEventListener("click", goPrev);
+  if (nextBtn) nextBtn.addEventListener("click", goNext);
+  if (mobileCloseBtn) mobileCloseBtn.addEventListener("click", closeToHome);
+  if (mobilePrevBtn) mobilePrevBtn.addEventListener("click", goPrev);
+  if (mobileNextBtn) mobileNextBtn.addEventListener("click", goNext);
 
   if (overlay) {
     overlay.addEventListener("click", (e) => {
