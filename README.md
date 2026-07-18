@@ -1,10 +1,8 @@
 # awesome-light
-A list of community-developed apps and tools for the Light Phone. Feel free to open a PR and add things!
 
-> [!NOTE]
-> This branch is for this list's corresponding website: [awesome-light.garado.dev](https://awesome-light.garado.dev/)
->
-> It is still a work in progress. Contributions should still be made to the README in `main`, and I'll maintain them both in parallel for now.
+A list of community-developed apps and tools for the Light Phone.
+
+This list is also available as a website: [awesome-light.garado.dev](https://awesome-light.garado.dev)
 
 ## Table of Contents
 
