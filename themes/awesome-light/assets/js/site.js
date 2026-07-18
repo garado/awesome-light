@@ -66,6 +66,8 @@
   const badgeButtons = Array.from(document.querySelectorAll("#badge-bar .sidebar-cat"));
   const searchInput = document.getElementById("app-search");
   const resetBtn = document.getElementById("sidebar-reset");
+  const countEl = document.getElementById("sidebar-count");
+  const statusEl = document.querySelector(".sidebar-status");
 
   /* ---------------------------------------------------------------- */
   /* View toggle: grid / list                                          */
@@ -140,10 +142,9 @@
       if (show) visible++;
     });
     if (emptyMsg) emptyMsg.hidden = visible !== 0;
-    if (resetBtn) {
-      const hasActiveFilter = !!(activeCategory || activeStack || activeBadge || activeQuery);
-      resetBtn.classList.toggle("sidebar-reset--active", hasActiveFilter);
-    }
+    const hasActiveFilter = !!(activeCategory || activeStack || activeBadge || activeQuery);
+    if (countEl) countEl.textContent = `showing ${visible} of ${cards.length}`;
+    if (statusEl) statusEl.classList.toggle("sidebar-status--active", hasActiveFilter);
   };
 
   const closeMobileSidebar = () => {

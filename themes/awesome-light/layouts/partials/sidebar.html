@@ -36,6 +36,11 @@
       </button>
     </div>
   </div>
+  <div class="sidebar-status">
+    <span class="sidebar-count" id="sidebar-count">showing {{ len $apps }} of {{ len $apps }}</span>
+    <span class="sidebar-status-sep">/</span>
+    <button class="sidebar-reset" id="sidebar-reset" type="button">reset filters</button>
+  </div>
   <div class="sidebar-toggles">
     <div class="sidebar-view" id="view-bar">
       <span class="sidebar-view-label">view</span>
@@ -91,7 +96,6 @@
       </button>
     </nav>
   </div>
-  <button class="sidebar-reset" id="sidebar-reset" type="button">reset filters</button>
   <a class="sidebar-footer-link" href="https://github.com/garado/awesome-light" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
 </aside>
 <button class="sidebar-mobile-toggle" id="sidebar-mobile-toggle" aria-label="Toggle menu">
