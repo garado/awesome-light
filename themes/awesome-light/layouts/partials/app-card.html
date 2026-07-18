@@ -4,6 +4,7 @@
 */}}
 {{ $page := . }}
 {{ $images := slice }}
+{{ $thumbImages := slice }}
 {{ range $page.Params.images | default slice }}
   {{ $img := "" }}
   {{ if hasPrefix . "http" }}
@@ -17,6 +18,12 @@
       {{ $out = .Resize "1200x" }}
     {{ end }}
     {{ $images = $images | append $out.RelPermalink }}
+
+    {{ $thumbOut := . }}
+    {{ if gt .Width 700 }}
+      {{ $thumbOut = .Resize "700x" }}
+    {{ end }}
+    {{ $thumbImages = $thumbImages | append $thumbOut.RelPermalink }}
   {{ end }}
 {{ end }}
 
@@ -49,8 +56,8 @@
      data-videos="{{ delimit $videos "|" }}"
      data-content-id="app-{{ $page.File.UniqueID }}">
   <div class="app-card-thumb">
-    {{ if $images }}
-      {{ range $images }}<img src="{{ . }}" class="app-card-thumb-img" alt="{{ $page.Title }}" loading="lazy">{{ end }}
+    {{ if $thumbImages }}
+      {{ range $thumbImages }}<img src="{{ . }}" class="app-card-thumb-img" alt="{{ $page.Title }}" loading="lazy">{{ end }}
     {{ else if $videos }}
       {{ range $videos }}<video src="{{ . }}" class="app-card-thumb-img" muted preload="metadata"></video>{{ end }}
     {{ else }}
