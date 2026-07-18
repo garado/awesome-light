@@ -162,8 +162,6 @@
   function drawImageFrame(img, pos) {
     const pad = 14;
 
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(pos.x - pad, pos.y - pad, pos.w + pad * 2, pos.h + pad * 2);
     ctx.drawImage(img.el, pos.x, pos.y, pos.w, pos.h);
 
     if (img.caption) {
