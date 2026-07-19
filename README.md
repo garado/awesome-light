@@ -119,11 +119,23 @@ A minimal, LightOS-inspired video game tracker for the Light Phone III — a str
 
 <a href="https://github.com/Alexis-NM/light-backlog" target="_blank" rel="noopener"><img alt="Backlog" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/alexis-nm_backlog/hero.png" /></a>
 
+### [Bible](https://github.com/cmg-ops/LP3-Bible) ([cmg-ops](https://github.com/cmg-ops))
+
+An offline Bible app for the Light Phone III - downloadable translations, bookmarks, saved verses, and full-text search.
+
+<a href="https://github.com/cmg-ops/LP3-Bible" target="_blank" rel="noopener"><img alt="Bible" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/cmg-ops_bible/A.png" /></a>
+
 ### [Bible](https://github.com/greghare/light-bible) ([greghare](https://github.com/greghare/))
 
 A simple, distraction-free Bible reading app for the Light Phone III.
 
 <a href="https://github.com/greghare/light-bible" target="_blank" rel="noopener"><img alt="Bible" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/greghare_bible/hero.png" /></a>
+
+### [Botany](https://github.com/greghare/light-botany) ([greghare](https://github.com/greghare/))
+
+A plant identification tool for the Light Phone III.
+
+<a href="https://github.com/greghare/light-botany" target="_blank" rel="noopener"><img alt="Botany" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/greghare_botany/hero.png" /></a>
 
 ### [Dictionary](https://github.com/garado/dictionary) ([garado](https://github.com/garado))
 
@@ -136,6 +148,12 @@ A simple offline dictionary app for the Light Phone III.
 A fork of GPSLogger by mendhak, redesigned to be Light.
 
 <a href="https://github.com/garado/light-gpslogger" target="_blank" rel="noopener"><img alt="Light GPSLogger" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/garado_light-gpslogger/hero.png" /></a>
+
+### [Lists](https://github.com/cmg-ops/LP3-Lists) ([cmg-ops](https://github.com/cmg-ops))
+
+A nested list app for the Light Phone III - lists inside lists as deep as you want, with checklists, A/B/C priority sorting, and built-in spellcheck.
+
+<a href="https://github.com/cmg-ops/LP3-Lists" target="_blank" rel="noopener"><img alt="Lists" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/cmg-ops_lists/A.png" /></a>
 
 ### [MediLight](https://github.com/ruditimmermans/LightMedication) ([ruditimmermans](https://github.com/ruditimmermans/))
 
@@ -173,11 +191,17 @@ A personal GLP-1 injection and weight tracker for the Light Phone III.
 
 <a href="https://github.com/jabberbox/pokey" target="_blank" rel="noopener"><img alt="Pokey" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/jabberbox_pokey/hero.png" /></a>
 
-### [Ritual](https://github.com/KEZO555/Ritual) ([KEZ0555](https://github.com/KEZ0555/))
+### [Ritual](https://github.com/KEZO555/Ritual) ([KEZO555](https://github.com/KEZO555/))
 
 An AeroPress recipe guide for the Light Phone III.
 
-<a href="https://github.com/KEZO555/Ritual" target="_blank" rel="noopener"><img alt="Ritual" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZ0555_ritual/hero.png" /></a>
+<a href="https://github.com/KEZO555/Ritual" target="_blank" rel="noopener"><img alt="Ritual" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZO555_ritual/hero.png" /></a>
+
+### [StopWatch](https://github.com/cmg-ops/LP3-StopWatch) ([cmg-ops](https://github.com/cmg-ops))
+
+A stopwatch for the Light Phone III with laps, best/slowest lap tracking, and a saved history of past sessions.
+
+<a href="https://github.com/cmg-ops/LP3-StopWatch" target="_blank" rel="noopener"><img alt="StopWatch" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/cmg-ops_stopwatch/A.png" /></a>
 
 ### [Strings](https://github.com/garado/strings) ([garado](https://github.com/garado))
 
@@ -239,8 +263,8 @@ A clone of the Light Phone 3's built-in keyboard, for a unified look across apps
 
 <a href="https://github.com/adam-weber/light-keyboard" target="_blank" rel="noopener"><img alt="Keyboard" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/adam-weber_keyboard/hero.png" /></a>
 
-### [Type](https://github.com/KEZO555/Type) ([KEZ0555](https://github.com/KEZ0555/))
+### [Type](https://github.com/KEZO555/Type) ([KEZO555](https://github.com/KEZO555/))
 
 Minimal black-and-white keyboard for the Light Phone - English + Hebrew, dictionary, autocorrect, and voice dictation
 
-<a href="https://github.com/KEZO555/Type" target="_blank" rel="noopener"><img alt="Type" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZ0555_type/hero.png" /></a>
+<a href="https://github.com/KEZO555/Type" target="_blank" rel="noopener"><img alt="Type" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZO555_type/hero.png" /></a>
