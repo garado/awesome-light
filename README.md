@@ -137,6 +137,13 @@ A simple, distraction-free Bible reading app for the Light Phone III.
 An offline Bible app for the Light Phone III — downloadable translations, bookmarks, saved verses, and full-text search.
 
 <a href="https://github.com/cmg-ops/LP3-Bible" target="_blank" rel="noopener"><img alt="Bible" src="https://github.com/user-attachments/assets/1a907f36-e0ed-4e82-94c1-8f6c41e9a606" /></a>
+
+### [Botany](https://github.com/greghare/light-botany) ([greghare](https://github.com/greghare/))
+
+A plant identification tool for the Light Phone III.
+
+<a href="https://github.com/greghare/light-botany" target="_blank" rel="noopener"><img alt="Botany" src="https://github.com/user-attachments/assets/e0c16422-036a-466e-bf43-726c02385a51" /></a>
+
 ### [Dictionary](https://github.com/garado/dictionary) ([garado](https://github.com/garado))
 
 A simple offline dictionary app for the Light Phone III.
