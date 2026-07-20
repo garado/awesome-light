@@ -585,6 +585,11 @@ button { font-family: inherit; }
   object-fit: contain;
   background: var(--bg-sunken);
   border: 1px solid var(--fg);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.modal-media-item.is-loaded {
+  opacity: 1;
 }
 
 .modal-content {

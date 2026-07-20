@@ -255,8 +255,39 @@
     return "";
   };
 
+  const preloadCard = (card) => {
+    if (!card) return;
+    (card.dataset.images || "").split("|").filter(Boolean).forEach((entry) => {
+      const src = entry.split(",")[0];
+      if (src) new Image().src = src;
+    });
+  };
+
+  const preloadNeighbors = (i) => {
+    if (i < 0) return;
+    preloadCard(cards[step(i, -1)]);
+    preloadCard(cards[step(i, 1)]);
+  };
+
+  const revealOnLoad = () => {
+    modalMedia.querySelectorAll(".modal-media-item").forEach((el) => {
+      const loadedEvent = el.tagName === "VIDEO" ? "loadeddata" : "load";
+      if (el.complete || el.readyState >= 2) {
+        // Already cached (e.g. preloaded neighbor) — show instantly, no fade.
+        el.style.transition = "none";
+        el.classList.add("is-loaded");
+        el.offsetHeight;
+        el.style.transition = "";
+      } else {
+        el.addEventListener(loadedEvent, () => el.classList.add("is-loaded"), { once: true });
+        el.addEventListener("error", () => el.classList.add("is-loaded"), { once: true });
+      }
+    });
+  };
+
   const openModal = (card) => {
     modalMedia.innerHTML = mediaFor(card);
+    revealOnLoad();
     modalTitle.innerHTML = titleStar(card) + (card.dataset.title ? escapeHtml(card.dataset.title) : "");
 
     const tmpl = document.getElementById(card.dataset.contentId);
@@ -287,6 +318,7 @@
     currentIndex = i;
     const card = cards[i];
     openModal(card);
+    preloadNeighbors(i);
     const url = card.dataset.permalink;
     if (replaceOnly) {
       history.replaceState({ modal: true }, "", url);
@@ -342,7 +374,7 @@
   window.addEventListener("popstate", (e) => {
     if (e.state && e.state.modal) {
       const found = cards.findIndex((c) => c.dataset.permalink === window.location.pathname);
-      if (found !== -1) { currentIndex = found; openModal(cards[found]); }
+      if (found !== -1) { currentIndex = found; openModal(cards[found]); preloadNeighbors(found); }
     } else {
       closeModal();
     }
@@ -360,6 +392,7 @@
       currentIndex = found;
       if (stored) history.replaceState({ modal: true }, "", path);
       openModal(cards[found]);
+      preloadNeighbors(found);
     }
   })();
 })();
