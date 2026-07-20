@@ -1,6 +1,6 @@
 ---
 title: "Molly Light"
-date_added: 2026-07-18
+date_added: 2026-07-19
 repo: "https://github.com/jabberbox/molly-light"
 download: "https://github.com/jabberbox/molly-light/releases"
 author: "jabberbox"

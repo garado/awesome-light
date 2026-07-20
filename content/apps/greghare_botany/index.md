@@ -1,6 +1,6 @@
 ---
 title: "Botany"
-date_added: 2026-07-17
+date_added: 2026-07-19
 repo: "https://github.com/greghare/light-botany"
 download: "https://github.com/greghare/light-botany/releases"
 author: "greghare"
