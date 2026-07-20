@@ -201,7 +201,7 @@ A personal GLP-1 injection and weight tracker for the Light Phone III.
 
 <a href="https://github.com/jabberbox/pokey" target="_blank" rel="noopener"><img alt="Pokey" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/jabberbox_pokey/hero.png" /></a>
 
-### [Ritual](https://github.com/KEZO555/Ritual) ([KEZ0555](https://github.com/KEZ0555/))
+### [Ritual](https://github.com/KEZO555/Ritual) ([KEZO555](https://github.com/KEZO555/))
 
 An AeroPress recipe guide for the Light Phone III.
 
@@ -274,8 +274,8 @@ A clone of the Light Phone 3's built-in keyboard, for a unified look across apps
 
 <a href="https://github.com/adam-weber/light-keyboard" target="_blank" rel="noopener"><img alt="Keyboard" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/adam-weber_keyboard/hero.png" /></a>
 
-### [Type](https://github.com/KEZO555/Type) ([KEZ0555](https://github.com/KEZ0555/))
+### [Type](https://github.com/KEZO555/Type) ([KEZO555](https://github.com/KEZO555/))
 
 Minimal black-and-white keyboard for the Light Phone - English + Hebrew, dictionary, autocorrect, and voice dictation
 
-<a href="https://github.com/KEZO555/Type" target="_blank" rel="noopener"><img alt="Type" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZ0555_type/hero.png" /></a>
+<a href="https://github.com/KEZO555/Type" target="_blank" rel="noopener"><img alt="Type" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZO555_type/hero.png" /></a>
