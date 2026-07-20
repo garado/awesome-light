@@ -15,4 +15,4 @@ images:
 description: "A minimal reskin of Molly, inspired by the Light Phone III."
 ---
 
-A minimal reskin of Molly, inspired by the Light Phone III.
+A minimal reskin of Molly (a hardened, open-source fork of Signal), inspired by the Light Phone III.
