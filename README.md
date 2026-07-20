@@ -205,7 +205,7 @@ A personal GLP-1 injection and weight tracker for the Light Phone III.
 
 An AeroPress recipe guide for the Light Phone III.
 
-<a href="https://github.com/KEZO555/Ritual" target="_blank" rel="noopener"><img alt="Ritual" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZ0555_ritual/hero.png" /></a>
+<a href="https://github.com/KEZO555/Ritual" target="_blank" rel="noopener"><img alt="Ritual" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/KEZO555_ritual/hero.png" /></a>
 
 ### [StopWatch](https://github.com/cmg-ops/LP3-StopWatch) ([cmg-ops](https://github.com/cmg-ops))
 
