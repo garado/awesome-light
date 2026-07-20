@@ -6,6 +6,7 @@ download: "https://github.com/zacksimpson/composer-tool/releases"
 author: "zacksimpson"
 author_url: "https://github.com/zacksimpson/"
 category: "Productivity"
+editor_pick: true
 images:
   - A.jpg
   - B.jpg

@@ -2,6 +2,7 @@
 title: "Bible"
 date_added: 2026-07-18
 repo: "https://github.com/cmg-ops/LP3-Bible"
+download: "https://github.com/cmg-ops/LP3-Bible/releases"
 author: "cmg-ops"
 author_url: "https://github.com/cmg-ops"
 category: "Utility"

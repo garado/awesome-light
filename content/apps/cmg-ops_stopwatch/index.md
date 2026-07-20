@@ -2,6 +2,7 @@
 title: "StopWatch"
 date_added: 2026-07-18
 repo: "https://github.com/cmg-ops/LP3-StopWatch"
+download: "https://github.com/cmg-ops/LP3-StopWatch/releases"
 author: "cmg-ops"
 author_url: "https://github.com/cmg-ops"
 category: "Utility"
