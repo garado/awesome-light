@@ -9,6 +9,7 @@ This list is also available as a website: [awesome-light.garado.dev](https://awe
 - [Links](#links)
 - [General](#general)
 - [Launchers](#launchers)
+- [Communication](#communication)
 - [Music/Audio](#musicaudio)
 - [Photos](#photos)
 - [Productivity](#productivity)
@@ -38,6 +39,14 @@ Community-maintained Python API and CLI/TUI for managing music, notes, podcasts,
 A minimal launcher for the Light Phone III.
 
 <a href="https://github.com/vandamd/luma" target="_blank" rel="noopener"><img alt="Luma" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_luma/hero.png" /></a>
+
+## Communication
+
+### [Molly Light](https://github.com/jabberbox/molly-light) ([jabberbox](https://github.com/jabberbox))
+
+A minimal reskin of Molly (harded, open-source Signal fork), inspired by the Light Phone III.
+
+<a href="https://github.com/jabberbox/molly-light" target="_blank" rel="noopener"><img width="2572" height="781" alt="molly-light" src="https://github.com/user-attachments/assets/aae5c03d-a278-40f2-8703-74d176b9b44c" /></a>
 
 ## Music/Audio
 
