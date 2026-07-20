@@ -339,7 +339,7 @@ button { font-family: inherit; touch-action: manipulation; }
   aspect-ratio: 1080 / 1240;
   overflow: hidden;
   background: var(--bg-sunken);
-  border: 1px solid #fff;
+  border: 1px solid var(--fg);
 }
 
 .app-card-thumb-img {
@@ -495,7 +495,7 @@ button { font-family: inherit; touch-action: manipulation; }
   height: 16rem;
   object-fit: contain;
   flex: 0 0 auto;
-  border: 1px solid #fff;
+  border: 1px solid var(--fg);
 }
 
 .app-grid-empty {
