@@ -80,6 +80,13 @@ A minimal music app for the Light Phone 3.
 
 <a href="https://github.com/dryane/light-music" target="_blank" rel="noopener"><img alt="Tunes" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/dryane_tunes/hero.png" /></a>
 
+### [Bard](https://github.com/sjkornelsen/bard) ([sjkornelsen](https://github.com/sjkornelsen))
+
+A simple audiobook player for local, library, and RSS listening.
+
+<a href="https://github.com/sjkornelsen/bard" target="_blank" rel="noopener"><img alt="Bard" src="https://github.com/user-attachments/assets/741e5d2b-0c50-4661-8496-52085e437b78" /></a>
+
+
 ## Photos
 
 ### [Zero](https://github.com/vandamd/zero) ([vandamd](https://github.com/vandamd/))
