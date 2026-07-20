@@ -33,7 +33,7 @@ body {
 }
 a { color: inherit; }
 img, video { max-width: 100%; display: block; }
-button { font-family: inherit; }
+button { font-family: inherit; touch-action: manipulation; }
 
 /* ------------------------------------------------------------------ */
 /* Theme                                                              */
@@ -303,7 +303,7 @@ button { font-family: inherit; }
   cursor: pointer;
 }
 .sidebar-mobile-toggle-label {
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--fg);
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -733,7 +733,7 @@ button { font-family: inherit; }
     background: none;
     border: none;
     color: var(--fg);
-    font-size: 0.85rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     cursor: pointer;
