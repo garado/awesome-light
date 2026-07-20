@@ -569,6 +569,7 @@ button { font-family: inherit; }
   -ms-overflow-style: none;
 }
 .modal-media::-webkit-scrollbar { display: none; }
+.modal-media:empty { height: 0; }
 
 .modal-media-row {
   display: flex;
