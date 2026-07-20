@@ -51,7 +51,7 @@
      data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
      data-light-approved="{{ if $page.Params.light_approved }}true{{ else }}false{{ end }}"
      data-editor-pick="{{ if $page.Params.editor_pick }}true{{ else }}false{{ end }}"
-     data-search="{{ lower (printf "%s %s %s" $page.Title ($page.Params.author | default "") $page.Plain) }}"
+     data-search="{{ lower (printf "%s %s %s %s" $page.Title ($page.Params.author | default "") ($page.Params.category | default "") $page.Plain) }}"
      data-images="{{ delimit $images "|" }}"
      data-videos="{{ delimit $videos "|" }}"
      data-content-id="app-{{ $page.File.UniqueID }}">
