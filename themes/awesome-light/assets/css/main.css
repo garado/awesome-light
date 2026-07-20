@@ -440,7 +440,7 @@ button { font-family: inherit; }
 }
 
 
-/* List view — title, description, then a horizontal image carousel */
+/* List view - title, description, then a horizontal image carousel */
 .app-grid--list {
   display: flex;
   flex-direction: column;

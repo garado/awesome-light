@@ -73,14 +73,14 @@
   const imfEl    = document.querySelector('.imf');
 
   let images    = []; // {el, name, caption}
-  let layout    = []; // {x, y, w, h} — parallel to images[], computed
+  let layout    = []; // {x, y, w, h} - parallel to images[], computed
   let dragIndex = null;
   let hoverIndex = null;
   let scale     = 1;
 
-  // ── Scale ─────────────────────────────────────────────────────
+  // -- Scale -----------------------------------------------------
   // Canvas keeps its real pixel buffer at W×canvas.height (so exports stay
-  // full resolution) — only its on-screen CSS size shrinks to fit.
+  // full resolution) - only its on-screen CSS size shrinks to fit.
   function updateScale() {
     const imfStyle = getComputedStyle(imfEl);
     const paddingX = parseFloat(imfStyle.paddingLeft) + parseFloat(imfStyle.paddingRight);
@@ -97,7 +97,7 @@
 
   window.addEventListener('resize', () => { updateScale(); render(); });
 
-  // ── Render ────────────────────────────────────────────────────
+  // -- Render ----------------------------------------------------
   function render() {
     dimsEl.textContent = W + '×' + canvas.height;
     ctx.fillStyle = BG;
@@ -173,7 +173,7 @@
     }
   }
 
-  // ── Compute layout — canvas height is derived from content ────
+  // -- Compute layout - canvas height is derived from content ----
   function computeLayout() {
     layout = [];
     if (!images.length) { canvas.height = 1048; return; }
@@ -201,7 +201,7 @@
     const row1Aspect = rows[0].reduce((s, img) => s + img.el.naturalWidth / img.el.naturalHeight, 0);
     const imgH       = Math.min(MAX_IMG_H, (availW - GAP_X * (rows[0].length - 1)) / row1Aspect);
 
-    // Row Y positions — extra gap after rows with captions
+    // Row Y positions - extra gap after rows with captions
     const rowYs = [PAD_TOP];
     for (let r = 1; r < numRows; r++) {
       const prevHasCaptions = rows[r - 1].some(img => img.caption);
@@ -230,7 +230,7 @@
     });
   }
 
-  // ── IndexedDB persistence ─────────────────────────────────────
+  // -- IndexedDB persistence -------------------------------------
   const DB = (() => {
     let _db;
     const open = () => new Promise((res, rej) => {
@@ -281,7 +281,7 @@
     }
   }
 
-  // ── Load files (shared by upload, drop, paste) ───────────────
+  // -- Load files (shared by upload, drop, paste) ---------------
   function loadFiles(files) {
     const imgFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
     let pending = imgFiles.length;
@@ -304,13 +304,13 @@
 
   function reflow() { computeLayout(); updateScale(); updateChips(); render(); }
 
-  // ── Upload ────────────────────────────────────────────────────
+  // -- Upload ----------------------------------------------------
   uploadEl.addEventListener('change', () => {
     loadFiles(uploadEl.files);
     uploadEl.value = '';
   });
 
-  // ── Drag and drop ─────────────────────────────────────────────
+  // -- Drag and drop ---------------------------------------------
   canvas.addEventListener('dragover', e => {
     e.preventDefault();
     canvas.classList.add('imf-drop-active');
@@ -324,7 +324,7 @@
     loadFiles(e.dataTransfer.files);
   });
 
-  // ── Paste ─────────────────────────────────────────────────────
+  // -- Paste -----------------------------------------------------
   document.addEventListener('paste', e => {
     const items = Array.from(e.clipboardData.items).filter(i => i.kind === 'file' && i.type.startsWith('image/'));
     if (!items.length) return;
@@ -362,7 +362,7 @@
     });
   }
 
-  // ── Drag to reorder ───────────────────────────────────────────
+  // -- Drag to reorder -------------------------------------------
   function toCanvas(e) {
     const r = canvas.getBoundingClientRect();
     return { x: (e.clientX - r.left) / scale, y: (e.clientY - r.top) / scale };
@@ -405,7 +405,7 @@
 
   window.addEventListener('mouseup', () => { dragIndex = null; canvas.style.cursor = 'default'; });
 
-  // ── Export ────────────────────────────────────────────────────
+  // -- Export ----------------------------------------------------
   document.getElementById('imf-export').addEventListener('click', () => {
     render();
     const a    = document.createElement('a');
@@ -414,12 +414,12 @@
     a.click();
   });
 
-  // ── Controls ──────────────────────────────────────────────────
+  // -- Controls --------------------------------------------------
   [titleEl, iconEl].forEach(el => el.addEventListener('input', () => { render(); scheduleSave(); }));
   descEl.addEventListener('input', () => { computeLayout(); updateScale(); render(); scheduleSave(); });
   document.getElementById('imf-per-row').addEventListener('input', () => { computeLayout(); updateScale(); render(); scheduleSave(); });
 
-  // ── Init ──────────────────────────────────────────────────────
+  // -- Init ------------------------------------------------------
   document.fonts.ready.then(() => { updateScale(); render(); restoreState(); });
 })();
 </script>

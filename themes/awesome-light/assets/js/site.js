@@ -273,7 +273,7 @@
     modalMedia.querySelectorAll(".modal-media-item").forEach((el) => {
       const loadedEvent = el.tagName === "VIDEO" ? "loadeddata" : "load";
       if (el.complete || el.readyState >= 2) {
-        // Already cached (e.g. preloaded neighbor) — show instantly, no fade.
+        // if already cached (e.g. preloaded neighbor) - show instantly
         el.style.transition = "none";
         el.classList.add("is-loaded");
         el.offsetHeight;
