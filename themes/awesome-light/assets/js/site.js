@@ -230,7 +230,10 @@
     const images = (card.dataset.images || "").split("|").filter(Boolean);
     const videos = (card.dataset.videos || "").split("|").filter(Boolean);
 
-    const html = images.map((src) => `<img src="${src}" class="modal-media-item">`).join("") +
+    const html = images.map((entry) => {
+      const [src, width, height] = entry.split(",");
+      return `<img src="${src}" width="${width}" height="${height}" style="aspect-ratio:${width}/${height}" class="modal-media-item">`;
+    }).join("") +
       videos.map((src) => `<video src="${src}" class="modal-media-item" controls playsinline></video>`).join("");
 
     return html ? `<div class="modal-media-row">${html}</div>` : "";

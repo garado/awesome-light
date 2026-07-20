@@ -17,7 +17,7 @@
     {{ if gt .Width 1200 }}
       {{ $out = .Resize "1200x" }}
     {{ end }}
-    {{ $images = $images | append $out.RelPermalink }}
+    {{ $images = $images | append (printf "%s,%d,%d" $out.RelPermalink $out.Width $out.Height) }}
 
     {{ $thumbOut := . }}
     {{ if gt .Width 700 }}
