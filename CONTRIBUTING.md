@@ -5,9 +5,9 @@ Thanks for contributing to the Light community! To ensure the quality of this li
 > [!NOTE]
 > Currently, content exists in both the README and on the [website](https://awesome-light.garado.dev).
 >
-> In the near future all content will live on the website, and the README will be cleared out. This is to reduce maintenance burden. This migration will happen after I've worked out final UI/UX bugs with the site (targeting 07/26/26).
+> In the near future all content will live on the website, and the README will be cleared out. This is to reduce maintenance burden. This migration will happen after I've worked out a few final details for the site (targeting 07/26/26).
 > 
-> Until then, contributions should be made only to the README, and I will handle updating the site content separately.
+> Until then, contributions should be made only to the README on `main`, and I will handle updating the site content separately.
 
 ## Community apps
 
