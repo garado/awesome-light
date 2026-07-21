@@ -11,3 +11,13 @@ enableRobotsTXT = true
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[security]
+  [security.funcs]
+    getenv = ["^GITHUB_TOKEN$"]
+  [security.http]
+    urls = ["^https://"]
+
+[caches]
+  [caches.getresource]
+    maxAge = "6h"

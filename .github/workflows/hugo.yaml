@@ -8,6 +8,10 @@ on:
 
   workflow_dispatch:
 
+  schedule:
+    # nightly rebuild to pick up latest release info from app repos
+    - cron: '0 9 * * *'
+
 permissions:
   contents: read
   pages: write
@@ -53,6 +57,7 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
           TZ: America/Los_Angeles
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           hugo \
             --gc \

@@ -40,13 +40,26 @@
 
 {{ $linkIcon := `<svg class="modal-meta-link-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>` }}
 
+{{ $releaseVersion := "" }}
+{{ $releaseDate := "" }}
+{{ with $page.Params.repo }}
+  {{ with partial "latest-release.html" . }}
+    {{ $parts := split . "|" }}
+    {{ $releaseVersion = index $parts 0 }}
+    {{ $releaseDate = index $parts 1 }}
+  {{ end }}
+{{ end }}
+
 <div class="app-card"
      tabindex="0"
      role="button"
      data-slug="{{ $page.File.ContentBaseName }}"
      data-permalink="{{ $page.RelPermalink }}"
      data-title="{{ $page.Title }}"
+     data-author="{{ $page.Params.author }}"
+     data-author-url="{{ $page.Params.author_url }}"
      data-date="{{ $page.Params.date_added }}"
+     data-updated="{{ $releaseDate }}"
      data-category="{{ $page.Params.category }}"
      data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
      data-light-approved="{{ if $page.Params.light_approved }}true{{ else }}false{{ end }}"
@@ -86,11 +99,6 @@
 <template id="app-{{ $page.File.UniqueID }}">
   <div class="modal-meta-row">
     {{ $first := true }}
-    {{ with $page.Params.author }}
-      {{ $first = false }}
-      <span class="modal-meta-label">author</span>
-      <span class="modal-meta-value">{{ if $page.Params.author_url }}<a href="{{ $page.Params.author_url }}" target="_blank" rel="noopener" class="modal-meta-link">{{ . }}</a>{{ else }}{{ . }}{{ end }}</span>
-    {{ end }}
     {{ with $page.Params.category }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
@@ -120,6 +128,12 @@
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
       <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">download</span>{{ $linkIcon | safeHTML }}</a>
+    {{ end }}
+    {{ with $releaseVersion }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <span class="modal-meta-label">latest release</span>
+      <span class="modal-meta-value">{{ . }}{{ with $releaseDate }} ({{ . }}){{ end }}</span>
     {{ end }}
   </div>
   <div class="modal-body">{{ $page.Content }}</div>

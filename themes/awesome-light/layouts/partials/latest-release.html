@@ -1,0 +1,26 @@
+{{/*
+  Fetches the latest stable GitHub release for a repo URL and returns
+  "vX.Y.Z|2026-07-20", or "" if the repo has no stable release / isn't on GitHub.
+  Expects: . = repo URL (e.g. "https://github.com/owner/name")
+*/}}
+{{ $repo := . }}
+{{ $out := "" }}
+{{ if hasPrefix $repo "https://github.com/" }}
+  {{ $slug := strings.TrimPrefix "https://github.com/" $repo }}
+  {{ $slug = strings.TrimSuffix "/" $slug }}
+  {{ $api := printf "https://api.github.com/repos/%s/releases/latest" $slug }}
+  {{ $opts := dict "headers" (dict "Accept" "application/vnd.github+json") }}
+  {{ with os.Getenv "GITHUB_TOKEN" }}
+    {{ $opts = dict "headers" (dict "Accept" "application/vnd.github+json" "Authorization" (printf "Bearer %s" .)) }}
+  {{ end }}
+  {{ $try := try (resources.GetRemote $api $opts) }}
+  {{ with $try.Value }}
+    {{ $data := . | transform.Unmarshal }}
+    {{ with $data.tag_name }}
+      {{ $date := "" }}
+      {{ with $data.published_at }}{{ $date = (time.AsTime .).Format "2006-01-02" }}{{ end }}
+      {{ $out = printf "%s|%s" . $date }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ return $out }}

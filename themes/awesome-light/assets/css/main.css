@@ -555,6 +555,14 @@ button { font-family: inherit; touch-action: manipulation; }
   margin-right: 0;
 }
 
+.modal-author {
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.modal-author a { color: var(--muted); text-decoration: none; }
+.modal-author a:hover { text-decoration: underline; }
+
 .modal-media {
   display: flex;
   flex-shrink: 0;

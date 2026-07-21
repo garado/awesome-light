@@ -113,6 +113,9 @@
       if (sortMode === "date") {
         return (b.dataset.date || "").localeCompare(a.dataset.date || "");
       }
+      if (sortMode === "updated") {
+        return (b.dataset.updated || "").localeCompare(a.dataset.updated || "");
+      }
       return (a.dataset.title || "").localeCompare(b.dataset.title || "", undefined, { sensitivity: "base" });
     });
     cards.forEach((card) => grid.appendChild(card));
@@ -215,6 +218,7 @@
   const overlay = document.getElementById("modal-overlay");
   const modalMedia = document.getElementById("modal-media");
   const modalTitle = document.getElementById("modal-title");
+  const modalAuthor = document.getElementById("modal-author");
   const modalContent = document.getElementById("modal-content");
   const closeBtn = document.getElementById("modal-close");
   const prevBtn = document.getElementById("modal-prev");
@@ -289,6 +293,17 @@
     modalMedia.innerHTML = mediaFor(card);
     revealOnLoad();
     modalTitle.innerHTML = titleStar(card) + (card.dataset.title ? escapeHtml(card.dataset.title) : "");
+
+    if (card.dataset.author) {
+      const author = escapeHtml(card.dataset.author);
+      modalAuthor.innerHTML = card.dataset.authorUrl
+        ? `<a href="${card.dataset.authorUrl}" target="_blank" rel="noopener">${author}</a>`
+        : author;
+      modalAuthor.hidden = false;
+    } else {
+      modalAuthor.innerHTML = "";
+      modalAuthor.hidden = true;
+    }
 
     const tmpl = document.getElementById(card.dataset.contentId);
     modalContent.innerHTML = tmpl ? tmpl.innerHTML : "";
