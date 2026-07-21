@@ -42,11 +42,13 @@
 
 {{ $releaseVersion := "" }}
 {{ $releaseDate := "" }}
+{{ $releaseURL := "" }}
 {{ with $page.Params.repo }}
   {{ with partial "latest-release.html" . }}
     {{ $parts := split . "|" }}
     {{ $releaseVersion = index $parts 0 }}
     {{ $releaseDate = index $parts 1 }}
+    {{ $releaseURL = index $parts 2 }}
   {{ end }}
 {{ end }}
 
@@ -133,7 +135,9 @@
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
       <span class="modal-meta-label">latest release</span>
-      <span class="modal-meta-value">{{ . }}{{ with $releaseDate }} ({{ . }}){{ end }}</span>
+      {{ $releaseLabel := . }}
+      {{ with $releaseDate }}{{ $releaseLabel = printf "%s (%s)" $releaseLabel (partial "relative-date.html" .) }}{{ end }}
+      <span class="modal-meta-value">{{ if $releaseURL }}<a class="modal-meta-link" href="{{ $releaseURL }}" target="_blank" rel="noopener" title="{{ $releaseDate }}">{{ $releaseLabel }}{{ $linkIcon | safeHTML }}</a>{{ else }}{{ $releaseLabel }}{{ end }}</span>
     {{ end }}
   </div>
   <div class="modal-body">{{ $page.Content }}</div>

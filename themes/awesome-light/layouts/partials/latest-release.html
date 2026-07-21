@@ -1,6 +1,7 @@
 {{/*
   Fetches the latest stable GitHub release for a repo URL and returns
-  "vX.Y.Z|2026-07-20", or "" if the repo has no stable release / isn't on GitHub.
+  "vX.Y.Z|2026-07-20|https://github.com/owner/name/releases/tag/vX.Y.Z",
+  or "" if the repo has no stable release / isn't on GitHub.
   Expects: . = repo URL (e.g. "https://github.com/owner/name")
 */}}
 {{ $repo := . }}
@@ -19,7 +20,7 @@
     {{ with $data.tag_name }}
       {{ $date := "" }}
       {{ with $data.published_at }}{{ $date = (time.AsTime .).Format "2006-01-02" }}{{ end }}
-      {{ $out = printf "%s|%s" . $date }}
+      {{ $out = printf "%s|%s|%s" . $date ($data.html_url | default "") }}
     {{ end }}
   {{ end }}
 {{ end }}
