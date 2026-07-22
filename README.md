@@ -261,6 +261,12 @@ An outdoor maps app for the Light Phone III.
 
 ## Entertainment
 
+### [Chess](https://github.com/anweaver23/light-sdk) ([anweaver23](https://github.com/anweaver23/))
+
+Correspondence chess for the Light Phone III.
+
+<a href="https://github.com/anweaver23/light-sdk" target="_blank" rel="noopener"><img width="2572" height="1062" alt="chess" src="https://github.com/user-attachments/assets/6f290b98-47a2-4435-8a36-a89ef1a5f94d" /></a>
+
 ### [Passatempo](https://github.com/tyshi00/Light-Games-Passatempo) ([tyshi00](https://github.com/tyshi00/))
 
 A small games tool for LightOS, built with the Light SDK.
