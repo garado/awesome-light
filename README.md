@@ -56,17 +56,22 @@ A Spotify client for the Light Phone III.
 
 <a href="https://github.com/vandamd/echo" target="_blank" rel="noopener"><img alt="Echo" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_echo/hero.png" /></a>
 
+### [Phono](https://github.com/jonathancaudill/phono) ([jonathancaudill](https://github.com/jonathancaudill))
+
+An independent, minimal Spotify/Tidal client for LightOS. Playback runs in-process via a patched fork of librespot (Rust). Metadata (search, library, albums, artists, playlists) uses the official Spotify Web API with your own developer-app credentials.
+
+> **How is this different from Echo?**
+> 
+> This works with TIDAL or Spotify, has a few extra features, less album art, and doesn't require the Spotify app to be installed if you go the Spotify route.
+
+<a href="https://github.com/jonathancaudill/phono" target="_blank" rel="noopener"><img width="2572" height="1048" alt="Phono" src="https://github.com/user-attachments/assets/5ca915dc-c244-4a4b-be1b-c74e8b830c32" />
+</a>
+
 ### [NTS Radio](https://github.com/vandamd/nts-radio) ([vandamd](https://github.com/vandamd/))
 
 An app to play NTS Radio Live shows and Infinite Mixtapes.
 
 <a href="https://github.com/vandamd/nts-radio" target="_blank" rel="noopener"><img alt="NTS Radio" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/vandamd_nts-radio/hero.png" /></a>
-
-### [Phono](https://github.com/jonathancaudill/phono) ([jonathancaudill](https://github.com/jonathancaudill))
-
-An independent, minimal Spotify client for LightOS. Playback runs in-process via a patched fork of librespot (Rust). Metadata (search, library, albums, artists, playlists) uses the official Spotify Web API with your own developer-app credentials.
-
-<a href="https://github.com/jonathancaudill/phono" target="_blank" rel="noopener"><img alt="Phono" src="https://raw.githubusercontent.com/garado/awesome-light/hugo/content/apps/jonathancaudill_phono/hero.png" /></a>
 
 ### [Reverb](https://github.com/vandamd/reverb) ([vandamd](https://github.com/vandamd/))
 
