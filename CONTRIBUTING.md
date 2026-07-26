@@ -10,10 +10,10 @@ Thanks for contributing to the Light community!
 
 ## Submission process
 
-All entries should go in `content/apps`. Create a new directory there.
-
+- All entries should go in `content/apps`. Create a new directory there.
 - The directory name format is `${author-name}_${app-name}`.
 - In that directory, create a new file `index.md`. Populate it in the format below. (Use existing entries as a reference.)
+- If you would like to preview your submission locally before submitting, refer to the "Building locally" section of the README.
 
 ### File content
 
