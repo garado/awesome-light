@@ -140,5 +140,11 @@
       <span class="modal-meta-value">{{ if $releaseURL }}<a class="modal-meta-link" href="{{ $releaseURL }}" target="_blank" rel="noopener" title="{{ $releaseDate }}">{{ $releaseLabel }}{{ $linkIcon | safeHTML }}</a>{{ else }}{{ $releaseLabel }}{{ end }}</span>
     {{ end }}
   </div>
-  <div class="modal-body">{{ $page.Content }}</div>
+  <div class="modal-body">
+    {{ if strings.TrimSpace $page.Plain }}
+      {{ $page.Content }}
+    {{ else }}
+      <p>{{ $page.Params.description }}</p>
+    {{ end }}
+  </div>
 </template>
