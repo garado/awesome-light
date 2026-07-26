@@ -1,20 +1,56 @@
 # Contributing to awesome-light
 
-Thanks for contributing to the Light community! To ensure the quality of this list, it is recommended to stick to these guidelines.
+Thanks for contributing to the Light community!
 
-> [!NOTE]
-> Currently, content exists in both the README and on the [website](https://awesome-light.garado.dev).
->
-> In the near future all content will live on the website, and the README will be cleared out. This is to reduce maintenance burden. This migration will happen after I've worked out a few final details for the site (targeting 07/26/26).
-> 
-> Until then, contributions should be made only to the README on `main`, and I will handle updating the site content separately.
+## Submission guidelines
 
-## Community apps
+1. **Apps should make an effort to match the Light aesthetic as closely as possible.** This doesn't mean just black-and-white. This means adhering to the design language as well.
 
-1. Apps should make an effort to match the Light aesthetic as closely as possible. **This doesn't mean just black-and-white. This means adhering to the design language as well.**
+2. **Apps should preferably match the Light ethos as closely as possible.** Everyone's definition of going Light is different so it's difficult to draw a line, but it's worth a reminder.
 
-2. Apps should preferably match the Light ethos as closely as possible.
-    - Everybody will understandably have different needs, so it is difficult to define the line, but it's worth a reminder.
+## Submission process
 
-3. Bonus points for formatting the image showcase for your submission in the same style as the other entries in the list!
-    - There is a [hero image formatter](https://awesome-light.garado.dev/hero-image-formatter) for creating these showcase images.
+All entries should go in `content/apps`. Create a new directory there.
+
+- The directory name format is `${author-name}_${app-name}`.
+- In that directory, create a new file `index.md`. Populate it in the format below. (Use existing entries as a reference.)
+
+### File content
+
+For YAML frontmatter fields:
+
+| Field | Description | Example |
+|---|---|---|
+| `title` | Name of your app | `"Light Keyboard"` |
+| `date_added` | Today's date, to enable sorting by recently added on the site | `2026-07-26` |
+| `repo` | Link to your repo | `"https://github.com/adam-weber/light-keyboard"` |
+| `download` | Link to your Releases page | `"https://github.com/adam-weber/light-keyboard/releases"` |
+| `author` | Your Github username | `"adam-weber"` |
+| `author_url` | Link to your Github profile | `"https://github.com/adam-weber"` |
+| `category` | One of: `Communication`, `Entertainment`, `General`, `Keyboard`, `Launchers`, `Music/Audio`, `Navigation`, `Photos`, `Productivity`, `Utility` | `"Keyboard"` |
+| `images` | Screenshots, in the order they should be displayed. The first image is used as the cover/thumbnail; try to pick one which will look best in the "Grid" view of the site. | `["A.png", "B.png", "C.png", "D.png"]` |
+| `description` | Short, one-sentence description of your app for the 'List' view of the site. | - |
+| `light_sdk` | Set to `true` if your app is built with the Light SDK. Set to `false` or omit this field otherwise. | `true` |
+
+The `editor_pick` field is present for some entries in awesome-light. **In your PR, it should be omitted**. This field is manually set by awesome-light maintainers.
+
+Below the frontmatter, you can optionally put a longer-form description with more screenshots, features, information etc. that will display in the popup for your app.
+
+### Empty template
+
+```yaml
+---
+title: 
+date_added: 
+repo: 
+download: 
+author: 
+author_url: 
+category: 
+light_sdk:
+images:
+  - 
+description: 
+---
+
+```
