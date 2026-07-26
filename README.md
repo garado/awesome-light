@@ -4,7 +4,9 @@ Source code for [awesome-light](https://awesome-light.garado.dev), a directory o
 
 ## Submitting your app
 
-To include your app, you can submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+To include your app, you can submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details. 
+
+If you're new to pull requests, here's [a guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to get you started.
 
 ## Curation
 - Most submissions that do not egregiously violate the Light design language or ethos will be accepted.
