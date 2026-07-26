@@ -28,7 +28,7 @@ For YAML frontmatter fields:
 | `author` | Your Github username | `"adam-weber"` |
 | `author_url` | Link to your Github profile | `"https://github.com/adam-weber"` |
 | `category` | One of: `Communication`, `Entertainment`, `General`, `Keyboard`, `Launchers`, `Music/Audio`, `Navigation`, `Photos`, `Productivity`, `Utility` | `"Keyboard"` |
-| `images` | Screenshots of your app, in the order they should be displayed. The first image is used as the cover/thumbnail; try to pick one which will look best in the "Grid" view of the site. | `- A.png`<br>`- B.png`<br>`- C.png` |
+| `images` | Screenshots of your app, in the order they should be displayed. The first image is used as the cover/thumbnail; try to pick one which will look best in the "Grid" view of the site.<br>Images can be added to this repo directly in your PR (preferred), or you can use external links here. | `- A.png`<br>`- B.png`<br>`- C.png` |
 | `description` | Short, one-sentence description of your app for the 'List' view of the site. | - |
 | `light_sdk` | Set to `true` if your app is built with the Light SDK. Set to `false` or omit this field otherwise. | `true` |
 
