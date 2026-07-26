@@ -2,6 +2,10 @@
 
 Source code for [awesome-light](https://awesome-light.garado.dev), a directory of community-developed apps and tools for the Light Phone.
 
+## Submitting your app
+
+To include your app, you can submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
 ## Curation
 - Most submissions that do not egregiously violate the Light design language or ethos will be accepted.
 - **Editor's Pick** - Personally curated by the maintainer ([@garado](https://github.com/garado)). Selections heavily emphasize stability and adherence to the Light design language, and moderately emphasize adherence to ethos.
