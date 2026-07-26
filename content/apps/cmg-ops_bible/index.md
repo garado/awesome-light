@@ -17,4 +17,3 @@ description: An offline Bible app for the Light Phone III - downloadable transla
 light_sdk: true
 ---
 
-An offline Bible app for the Light Phone III - downloadable translations, bookmarks, saved verses, and full-text search.

@@ -15,4 +15,3 @@ images:
 description: "A simple productivity task management tool designed for the Light Phone III."
 ---
 
-A simple productivity task management tool designed for the Light Phone III.

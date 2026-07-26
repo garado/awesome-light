@@ -15,4 +15,3 @@ images:
 description: "A local music player for the Light Phone III."
 ---
 
-A local music player for the Light Phone III.

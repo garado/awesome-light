@@ -15,4 +15,3 @@ images:
 description: "A simple audiobook player for local, library, and RSS listening."
 ---
 
-A simple audiobook player for local, library, and RSS listening.

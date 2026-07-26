@@ -14,4 +14,3 @@ images:
 description: "An app that lets you choose a card from Brian Eno's Oblique Strategies to inspire your creatvity."
 ---
 
-An app that lets you choose a card from Brian Eno's Oblique Strategies to inspire your creatvity.

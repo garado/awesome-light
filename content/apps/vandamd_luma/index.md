@@ -14,4 +14,3 @@ images:
 description: "A minimal launcher for the Light Phone III."
 ---
 
-A minimal launcher for the Light Phone III.

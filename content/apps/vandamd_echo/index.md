@@ -14,4 +14,3 @@ images:
 description: "A Spotify client for the Light Phone III."
 ---
 
-A Spotify client for the Light Phone III.

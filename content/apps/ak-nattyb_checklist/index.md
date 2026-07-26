@@ -15,4 +15,3 @@ images:
 description: "An app that adds a simple list with checkbox functionality for Light Phone/Luma users."
 ---
 
-An app that adds a simple list with checkbox functionality for Light Phone/Luma users.

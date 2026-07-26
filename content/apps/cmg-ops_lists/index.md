@@ -19,4 +19,3 @@ description: A nested list app for the Light Phone III - lists inside lists as d
 light_sdk: true
 ---
 
-A nested list app for the Light Phone III - lists inside lists as deep as you want, with checklists, A/B/C priority sorting, and built-in spellcheck.

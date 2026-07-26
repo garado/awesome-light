@@ -14,4 +14,3 @@ images:
 description: "A minimal tuner app for the Light Phone 3."
 ---
 
-A minimal tuner app for the Light Phone 3.

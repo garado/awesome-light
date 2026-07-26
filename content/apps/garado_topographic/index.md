@@ -15,4 +15,3 @@ images:
 description: "An outdoor maps app for the Light Phone III."
 ---
 
-An outdoor maps app for the Light Phone III.

@@ -14,4 +14,3 @@ images:
 description: "A minimal music app for the Light Phone 3."
 ---
 
-A minimal music app for the Light Phone 3.

@@ -7,4 +7,3 @@ category: "General"
 description: "Scaffold for building custom tools for the Light Phone III."
 ---
 
-Scaffold for building custom tools for the Light Phone III.

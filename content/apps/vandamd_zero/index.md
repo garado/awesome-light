@@ -14,4 +14,3 @@ images:
 description: "A simple camera app for the Light Phone III."
 ---
 
-A simple camera app for the Light Phone III.

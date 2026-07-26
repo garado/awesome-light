@@ -9,4 +9,3 @@ category: "General"
 description: "Community-maintained Python API and CLI/TUI for managing music, notes, podcasts, and tools on Light devices without the Light dashboard."
 ---
 
-Community-maintained Python API and CLI/TUI for managing music, notes, podcasts, and tools on Light devices without the Light dashboard.

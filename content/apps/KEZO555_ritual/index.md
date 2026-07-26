@@ -15,4 +15,3 @@ images:
 description: "An AeroPress recipe guide for the Light Phone III."
 ---
 
-An AeroPress recipe guide for the Light Phone III.

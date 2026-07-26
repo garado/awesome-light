@@ -15,4 +15,3 @@ images:
 description: "An app for the Light Phone III to store and scan various codes."
 ---
 
-An app for the Light Phone III to store and scan various codes.

@@ -14,4 +14,3 @@ images:
 description: "A simple offline dictionary app for the Light Phone III."
 ---
 
-A simple offline dictionary app for the Light Phone III.

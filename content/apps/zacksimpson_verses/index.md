@@ -16,4 +16,3 @@ light_sdk: true
 editor_pick: true
 ---
 
-A simple daily Bible verse tool for the Light Phone III.

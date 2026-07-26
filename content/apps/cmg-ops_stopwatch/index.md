@@ -15,4 +15,3 @@ description: A stopwatch for the Light Phone III with laps, best/slowest lap tra
 light_sdk: true
 ---
 
-A stopwatch for the Light Phone III with laps, best/slowest lap tracking, and a saved history of past sessions.

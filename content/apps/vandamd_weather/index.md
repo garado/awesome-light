@@ -15,4 +15,3 @@ images:
 description: "An app for the Light Phone III to check the weather."
 ---
 
-An app for the Light Phone III to check the weather.

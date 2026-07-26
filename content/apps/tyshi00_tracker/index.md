@@ -16,4 +16,3 @@ images:
 description: "A health tracker for the Light Phone III. Just a simple way to keep tabs on your water intake, sleep, movement, and more, without any distractions."
 ---
 
-A health tracker for the Light Phone III. Just a simple way to keep tabs on your water intake, sleep, movement, and more, without any distractions.

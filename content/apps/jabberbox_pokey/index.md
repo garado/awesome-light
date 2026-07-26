@@ -13,4 +13,3 @@ images:
 description: "A personal GLP-1 injection and weight tracker for the Light Phone III."
 ---
 
-A personal GLP-1 injection and weight tracker for the Light Phone III.

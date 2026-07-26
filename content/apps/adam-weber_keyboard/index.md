@@ -14,4 +14,3 @@ images:
 description: "A clone of the Light Phone 3's built-in keyboard, for a unified look across apps."
 ---
 
-A clone of the Light Phone 3's built-in keyboard, for a unified look across apps.

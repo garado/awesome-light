@@ -15,4 +15,3 @@ images:
 description: "A minimal metronome app for the Light Phone 3."
 ---
 
-A minimal metronome app for the Light Phone 3.
