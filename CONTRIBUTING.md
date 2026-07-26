@@ -53,4 +53,4 @@ For YAML frontmatter fields:
 
 The `editor_pick` field is present for some entries in awesome-light. **In your PR, it should be omitted**. This field is manually set by awesome-light maintainers.
 
-Below the frontmatter, you can optionally put a longer-form description with more screenshots, features, information etc. that will display in the popup for your app. If this is left blank, the popup will default to displaying your short description from the frontmatter.
+Below the frontmatter, you can optionally put a longer-form description with more screenshots, features, information etc. that will display in the popup for your app. Use this section to show off more cool stuff! If this is left blank, the popup will default to displaying your short description from the frontmatter.
