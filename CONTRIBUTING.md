@@ -8,7 +8,7 @@ Thanks for contributing to the Light community!
 
 2. **Apps should preferably match the Light ethos as closely as possible.** Everyone's definition of going Light is different so it's difficult to draw a line, but it's worth a reminder.
 
-## Submission process
+## Submission PR process
 
 - All entries should go in `content/apps`. Create a new directory there.
 - The directory name format is `${author-name}_${app-name}`.
