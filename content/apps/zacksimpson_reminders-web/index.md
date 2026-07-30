@@ -1,13 +1,13 @@
 ---
 title: "Reminders Web"
 date_added: 2026-07-30
-repo: https://github.com/zacksimpson/reminders-web
+repo: "https://github.com/zacksimpson/reminders-web"
 download: https://github.com/zacksimpson/reminders-web/releases/tag/v1.0.0
-author: zacksimpson
-author_url: https://github.com/zacksimpson
-category: Productivity
+author: "zacksimpson"
+author_url: "https://github.com/zacksimpson/"
+category: "Productivity"
 light_sdk: false
-images:
-  - 
-description: A desktop companion for the Reminders tool for the Light Phone III. Laid out as a responsive web app with feature parity and optional phone sync support.
+images: 
+  - hero.png
+description: "A desktop companion for the Reminders tool for the Light Phone III."
 ---
