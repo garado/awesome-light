@@ -60,10 +60,10 @@
   <div class="sidebar-section sidebar-section--spaced">
     <span class="sidebar-section-label">Curated</span>
     <nav class="sidebar-categories" id="badge-bar" aria-label="Curated">
-      <button class="sidebar-cat sidebar-cat--active" data-badge="">
+      <button class="sidebar-cat" data-badge="">
         <span class="sidebar-cat-name">All</span><span class="sidebar-cat-count">{{ len $apps }}</span>
       </button>
-      <button class="sidebar-cat" data-badge="pick">
+      <button class="sidebar-cat sidebar-cat--active" data-badge="pick">
         <span class="sidebar-cat-name">Editor's Pick</span><span class="sidebar-cat-count">{{ $pickCount }}</span>
       </button>
       <button class="sidebar-cat" data-badge="approved">

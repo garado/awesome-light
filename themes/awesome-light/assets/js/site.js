@@ -180,8 +180,15 @@
 
   const selectCategory = createFilterGroup(catButtons, "category", (v) => { activeCategory = v; });
   const selectStack = createFilterGroup(stackButtons, "stack", (v) => { activeStack = v; });
-  const selectBadge = createFilterGroup(badgeButtons, "badge", (v) => { activeBadge = v; });
+  const badgeKey = "awesome-light-badge";
+  const selectBadge = createFilterGroup(badgeButtons, "badge", (v) => {
+    activeBadge = v;
+    localStorage.setItem(badgeKey, v);
+  });
   const filterSelectors = { category: selectCategory, stack: selectStack, badge: selectBadge };
+
+  const savedBadge = localStorage.getItem(badgeKey);
+  selectBadge(savedBadge === null ? "pick" : savedBadge);
 
   const searchClear = document.getElementById("sidebar-search-clear");
   if (searchInput) {
