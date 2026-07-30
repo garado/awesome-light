@@ -11,3 +11,4 @@ images:
   - hero.png
 description: "A desktop companion for the Reminders tool for the Light Phone III."
 ---
+A desktop companion for the [Reminders tool](https://github.com/zacksimpson/reminders-tool) for the Light Phone III. Laid out as a responsive desktop web app with feature parity and optional phone sync support.
