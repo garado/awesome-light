@@ -2,7 +2,7 @@
 title: "Reminders Web"
 date_added: 2026-07-30
 repo: "https://github.com/zacksimpson/reminders-web"
-download: https://github.com/zacksimpson/reminders-web/releases/tag/v1.0.0
+download: https://github.com/zacksimpson/reminders-web/releases/
 author: "zacksimpson"
 author_url: "https://github.com/zacksimpson/"
 category: "Productivity"
