@@ -6,6 +6,7 @@ download: "https://github.com/jonathancaudill/phono/releases"
 author: "jonathancaudill"
 author_url: "https://github.com/jonathancaudill"
 category: "Music/Audio"
+editor_pick: true
 images:
   - A.png
 description: "An independent, minimal Spotify/Tidal client for LightOS."

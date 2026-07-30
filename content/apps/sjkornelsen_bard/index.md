@@ -7,6 +7,7 @@ author: "sjkornelsen"
 author_url: "https://github.com/sjkornelsen/"
 category: "Music/Audio"
 light_sdk: true
+editor_pick: true
 images:
     - player.jpg
     - settings.jpg
