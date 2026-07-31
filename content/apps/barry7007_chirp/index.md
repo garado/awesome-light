@@ -5,7 +5,7 @@ repo: "https://github.com/barry7007/LightBirdIdentifier"
 download: "https://github.com/barry7007/LightBirdIdentifier/releases"
 author: "barry7007"
 author_url: "https://github.com/barry7007"
-category: "General"
+category: "Utility"
 light_sdk: false
 images:
   - A.png
