@@ -10,7 +10,7 @@ If you're new to pull requests, here's [a guide](https://docs.github.com/en/pull
 
 ## Curation
 - Most submissions that do not egregiously violate the Light design language or ethos will be accepted.
-- **Editor's Pick** - Personally curated by the maintainer ([@garado](https://github.com/garado)). Selections heavily emphasize stability and adherence to the Light design language, and moderately emphasize adherence to ethos.
+- **Editor's Pick** - Personally curated by the maintainer ([@garado](https://github.com/garado)). Selections heavily emphasize stability and design, and moderately emphasize ethos and software quality (in particular, judicious use of AI assistance, if any).
     - No one person can decide what "going Light" means for everyone. This tier is a best-effort attempt at a useful signal rather than a definition of going Light or a verdict on an app's quality and value.
     - Editor's Pick selections must be thoroughly manually tested, so selections may lag behind submissions.
 - **Light Approved** - The highest bar. These tools have been blessed by Light.
