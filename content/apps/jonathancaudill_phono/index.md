@@ -9,6 +9,9 @@ category: "Music/Audio"
 editor_pick: true
 images:
   - A.png
+  - B.png
+  - C.png
+  - D.png
 description: "An independent, minimal Spotify/Tidal client for LightOS."
 ---
 
