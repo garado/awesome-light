@@ -6,6 +6,7 @@ download: "https://github.com/gi-os/Roll/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Photos"
+light_sdk: false
 images:
   - A.jpg
   - B.jpg

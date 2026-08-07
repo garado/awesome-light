@@ -6,6 +6,7 @@ download: "https://github.com/gi-os/BrightTip/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Utility"
+light_sdk: false
 images:
   - A.png
   - B.png
