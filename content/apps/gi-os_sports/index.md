@@ -1,8 +1,8 @@
 ---
 title: "Sports"
 date_added: 2026-08-06
-repo: "https://github.com/gi-os/LightSports"
-download: "https://github.com/gi-os/LightSports/releases"
+repo: "https://github.com/gi-os/BrightSports"
+download: "https://github.com/gi-os/BrightSports/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Utility"

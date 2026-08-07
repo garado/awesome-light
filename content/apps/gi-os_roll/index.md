@@ -1,8 +1,8 @@
 ---
 title: "Roll"
 date_added: 2026-08-06
-repo: "https://github.com/gi-os/LightCamera"
-download: "https://github.com/gi-os/LightCamera/releases"
+repo: "https://github.com/gi-os/Roll"
+download: "https://github.com/gi-os/Roll/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Photos"

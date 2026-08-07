@@ -1,8 +1,8 @@
 ---
 title: "Tip Calculator"
 date_added: 2026-08-06
-repo: "https://github.com/gi-os/LightTip"
-download: "https://github.com/gi-os/LightTip/releases"
+repo: "https://github.com/gi-os/BrightTip"
+download: "https://github.com/gi-os/BrightTip/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Utility"
