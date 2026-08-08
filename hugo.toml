@@ -5,6 +5,9 @@ theme = "awesome-light"
 
 enableRobotsTXT = true
 
+[outputs]
+  section = ["HTML", "JSON"]
+
 [params]
   description = "Community-developed apps and tools for the Light Phone."
   bg = "#464646"

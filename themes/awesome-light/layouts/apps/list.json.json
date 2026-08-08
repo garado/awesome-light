@@ -1,0 +1,64 @@
+{{- $apps := sort .Pages "Title" -}}
+{
+  "version": "1.0.0",
+  "generated_at": {{ now | time.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+  "apps": [
+{{- range $i, $page := $apps -}}
+  {{- if $i }},{{ end }}
+  {{- $images := slice -}}
+  {{- range $page.Params.images | default slice -}}
+    {{- $img := "" -}}
+    {{- if hasPrefix . "http" -}}
+      {{- with resources.GetRemote . }}{{ $img = . }}{{ end -}}
+    {{- else -}}
+      {{- $img = $page.Resources.GetMatch . -}}
+    {{- end -}}
+    {{- with $img }}{{ $images = $images | append .Permalink }}{{ end -}}
+  {{- end -}}
+  {{- $videos := slice -}}
+  {{- range $page.Params.videos | default slice -}}
+    {{- if hasPrefix . "http" -}}
+      {{- $videos = $videos | append . -}}
+    {{- else -}}
+      {{- with $page.Resources.GetMatch . }}{{ $videos = $videos | append .Permalink }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $releaseVersion := "" -}}
+  {{- $releaseDate := "" -}}
+  {{- $releaseURL := "" -}}
+  {{- with $page.Params.repo -}}
+    {{- with partial "latest-release.html" . -}}
+      {{- $parts := split . "|" -}}
+      {{- $releaseVersion = index $parts 0 -}}
+      {{- $releaseDate = index $parts 1 -}}
+      {{- $releaseURL = index $parts 2 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $badges := slice -}}
+  {{- if $page.Params.light_sdk }}{{ $badges = $badges | append "light_sdk" }}{{ end -}}
+  {{- if $page.Params.light_approved }}{{ $badges = $badges | append "light_approved" }}{{ end -}}
+  {{- if $page.Params.editor_pick }}{{ $badges = $badges | append "editor_pick" }}{{ end }}
+  {
+    "title": {{ $page.Title | jsonify }},
+    "slug": {{ $page.File.ContentBaseName | jsonify }},
+    "permalink": {{ $page.Permalink | jsonify }},
+    "author": {{ $page.Params.author | default "" | jsonify }},
+    "author_url": {{ $page.Params.author_url | default "" | jsonify }},
+    "date_added": {{ $page.Params.date_added | default "" | jsonify }},
+    "category": {{ $page.Params.category | default "" | jsonify }},
+    "description": {{ ($page.Params.description | default ($page.Summary | plainify)) | jsonify }},
+    "content": {{ $page.Plain | jsonify }},
+    "repo": {{ $page.Params.repo | default "" | jsonify }},
+    "download": {{ $page.Params.download | default "" | jsonify }},
+    "badges": {{ $badges | jsonify }},
+    "latest_release": {
+      "version": {{ $releaseVersion | jsonify }},
+      "date": {{ $releaseDate | jsonify }},
+      "url": {{ $releaseURL | jsonify }}
+    },
+    "images": {{ $images | jsonify }},
+    "videos": {{ $videos | jsonify }}
+  }
+{{- end }}
+  ]
+}
