@@ -1,8 +1,8 @@
 ---
 title: "LightNYCSubway"
 date_added: 2026-07-28
-repo: "https://github.com/gi-os/LightNYCSubway"
-download: "https://github.com/gi-os/LightNYCSubway/releases"
+repo: "https://github.com/gi-os/BrightTransit"
+download: "https://github.com/gi-os/BrightTransit/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Navigation"

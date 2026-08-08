@@ -1,8 +1,8 @@
 ---
 title: "LightSolitaire"
 date_added: 2026-07-28
-repo: "https://github.com/gi-os/LightSolitaire"
-download: "https://github.com/gi-os/LightSolitaire/releases"
+repo: "https://github.com/gi-os/BrightSolitaire"
+download: "https://github.com/gi-os/BrightSolitaire/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Entertainment"

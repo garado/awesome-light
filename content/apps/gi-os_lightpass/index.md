@@ -1,8 +1,8 @@
 ---
 title: "LightPass"
 date_added: 2026-07-28
-repo: "https://github.com/gi-os/LightPass"
-download: "https://github.com/gi-os/LightPass/releases"
+repo: "https://github.com/gi-os/BrightPasses"
+download: "https://github.com/gi-os/BrightPasses/releases"
 author: "gi-os"
 author_url: "https://github.com/gi-os"
 category: "Utility"
