@@ -8,8 +8,8 @@ author_url: "https://github.com/tyshi00"
 category: "Utility"
 light_sdk: true
 images:
- -world clocks home screen
- -world clocks split screen
- -world clocks location confirmation
+    - World clocks home screen.png
+    - World clocks split screen.png
+    - World clocks location confirmation.png
 description: "A lightweight time zone tracker for the Light Phone III. Save locations, compare times, etc."
 ---

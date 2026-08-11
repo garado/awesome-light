@@ -5,12 +5,12 @@ repo: "https://github.com/tyshi00/Aventura"
 download: "https://github.com/tyshi00/Aventura/releases"
 author: "tyshi00"
 author_url: "https://github.com/tyshi00"
-category: "Lifestyle"
+category: "Productivity"
 light_sdk: true
 images:
- -aventura daily
- -aventura monthly
- aventura progress screen
+  - Aventura daily.png
+  - Aventura monthly.png
+  - Aventura Progress Screen.png
 description: "Offline quests for the Light Phone III. Daily, weekly, and monthly challenges to get you out and doing things; ported from the Soto app."
 ---
 
