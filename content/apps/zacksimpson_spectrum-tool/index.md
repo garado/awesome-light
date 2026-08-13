@@ -8,7 +8,6 @@ author_url: "https://github.com/zacksimpson/"
 category: "Music/Audio"
 light_sdk: false
 images: 
-  - hero.png
   - A.png
   - B.png
 description: "A real-time audio spectrum analyzer and decibel meter for the Light Phone III."
