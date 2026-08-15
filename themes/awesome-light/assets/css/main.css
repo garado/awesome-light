@@ -781,7 +781,7 @@ button { font-family: inherit; touch-action: manipulation; }
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 1rem;
+  gap: 3rem;
   flex-shrink: 0;
 }
 
@@ -791,11 +791,94 @@ button { font-family: inherit; touch-action: manipulation; }
   gap: 0.3rem;
 }
 
+.imf-controls-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.imf-text-toggle {
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 0.3rem 0.1rem;
+  margin: 0;
+  color: var(--fg);
+  font: inherit;
+  font-family: "Akkurat", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  text-align: left;
+  cursor: pointer;
+}
+
+.imf-controls-group--center {
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  padding: 1rem 0;
+}
+
 .imf-field label {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
+}
+
+.imf-field-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.imf-field-input-row .imf-toggle {
+  flex-shrink: 0;
+}
+
+.imf-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--muted);
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.imf-toggle:hover {
+  border-color: var(--fg);
+}
+
+.imf-toggle:checked {
+  background: var(--fg);
+  border-color: var(--fg);
+}
+
+.imf-toggle:checked::before,
+.imf-toggle:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 13px;
+  height: 2px;
+  background: var(--bg);
+  border-radius: 1px;
+}
+
+.imf-toggle:checked::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.imf-toggle:checked::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .imf-field .sidebar-search,
@@ -900,6 +983,7 @@ label.imf-btn--primary {
 .imf-chip-del:hover { opacity: 1; color: var(--fg); }
 
 #imf-canvas {
+  margin-top: 1rem;
   display: block;
   border-radius: 6px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.3);
@@ -914,8 +998,6 @@ label.imf-btn--primary {
 .imf-hint {
   font-size: 1rem;
   color: var(--muted);
-  padding: 0.35rem 0 0;
-  margin-bottom: -0.5rem;
   flex-shrink: 0;
   text-align: center;
 }
