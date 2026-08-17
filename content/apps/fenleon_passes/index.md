@@ -15,4 +15,14 @@ images:
 description: "A code wallet for the Light Phone III — store and display barcodes, scanned or typed."
 ---
 
-A code wallet for the Light Phone III. Scan a barcode with the camera or type a code by hand; stack several codes under one name and the barcode panel cycles through them. Typed codes show their text beneath the barcode.
+# Passes
+
+A minimalist code wallet built with the Light Phone SDK. This tool keeps boarding passes, library cards, gym memberships, and loyalty numbers ready on the device — fully offline, always at hand.
+
+## Features
+- **Scan a Code**: Capture codes straight from the camera — QR, Aztec, PDF417, Data Matrix, Code 128, and EAN/UPC.
+- **Type a Code**: Enter a code manually on the LP3 keyboard when there's nothing to scan.
+- **Code Stacking**: Group several codes under one name and swipe between them on a single pass.
+- **Pass Details**: Attach issuer, dates, times, location, and notes to any pass.
+- **Offline & Private**: Passes live only on the device — no account, no cloud, no sync.
+- **Minimalist Aesthetic**: Pure monochrome design following the Light Phone III design language.

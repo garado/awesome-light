@@ -15,4 +15,15 @@ images:
 description: "A calm messaging tool for the Light Phone III — one place for WhatsApp, Instagram, and other chat networks, via end-to-end-encrypted Matrix."
 ---
 
-Chats brings your existing chat networks into one calm place: WhatsApp, Instagram, and other Matrix-connected networks, all end-to-end-encrypted. No account juggling — conversations sync in the background through a companion service, with notifications and voice notes. Designed to be checked a few times a day, not carried around.
+# Chats
+
+WhatsApp, Instagram, and your other chats on your Light Phone III. Chats is a real LightOS tool: a thin interface built on the Light SDK design system, launched from the LightOS toolbox, with a companion app hosting the persistent encrypted connection, storage, and notifications — so messages keep arriving even after the tool closes.
+
+## Features
+- **One Inbox**: WhatsApp, Instagram, and other networks in a single chat list, with a network selector (All / WhatsApp / Instagram) so you can focus on one at a time.
+- **End-to-End Encryption**: Every conversation is encrypted end to end — Chats runs on Matrix, with simple emoji-based device verification and recovery-key login.
+- **Background Sync**: A companion app hosts the connection, so messages keep arriving and notifying even when the tool is closed.
+- **Instant Notifications**: One calm notification per room; a push channel wakes the sync the moment a message arrives, so delivery is instant.
+- **Voice Notes & Photos**: Record, send, and play voice notes (Opus, roughly half the size of the earlier AAC), and attach photos via the system photo picker.
+- **Battery-Conscious Sync**: With the screen off, sync stretches to a slow idle cadence — and a Settings toggle pauses sync entirely when you don't need it.
+- **Minimalist Aesthetic**: A quiet, text-first interface inspired by the philosophy of Light OS.
