@@ -17,7 +17,7 @@ description: "A calm messaging tool for the Light Phone III — one place for Wh
 
 # Chats
 
-WhatsApp, Instagram, and your other chats on your Light Phone III. Chats is a real LightOS tool: a thin interface built on the Light SDK design system, launched from the LightOS toolbox, with a companion app hosting the persistent encrypted connection, storage, and notifications — so messages keep arriving even after the tool closes.
+Chats brings WhatsApp, Instagram, and your other chats to your Light Phone III, built with the Light Phone SDK.
 
 ## Features
 - **One Inbox**: WhatsApp, Instagram, and other networks in a single chat list, with a network selector (All / WhatsApp / Instagram) so you can focus on one at a time.
