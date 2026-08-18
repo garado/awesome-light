@@ -6,14 +6,14 @@ author: "CJFData"
 author_url: "https://github.com/CJFData/"
 category: "Navigation"
 images:
-    - 0.jpg
-    - a.jpg
-    - b.jpg
-    - c.jpg
-    - d.jpg
-    - e.jpg
-    - f.jpg
-    - g.jpg
+    - 0.png
+    - a.png
+    - b.png
+    - c.png
+    - d.png
+    - e.png
+    - f.png
+    - g.png
 description: "A Light Phone III companion tool to directions for additional public transit information."
 light_sdk: true
 ---
