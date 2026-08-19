@@ -33,16 +33,23 @@ jobs:
 
             const name = field("App name");
             const repoUrl = field("Repository URL");
+            const downloadUrl = field("Download / Releases URL");
             const author = field("Your GitHub username");
+            const category = field("Category");
             const description = field("Description");
-            const screenshotUrl = field("Screenshot URL");
+            const screenshots = field("Screenshots")
+              .split("\n")
+              .map((s) => s.trim())
+              .filter(Boolean);
+            const lightSdk = field("Built with the Light SDK?") === "Yes";
 
             const missing = [];
             if (!name) missing.push("App name");
             if (!repoUrl) missing.push("Repository URL");
             if (!author) missing.push("Your GitHub username");
+            if (!category) missing.push("Category");
             if (!description) missing.push("Description");
-            if (!screenshotUrl) missing.push("Screenshot URL");
+            if (screenshots.length === 0) missing.push("Screenshots");
 
             if (missing.length) {
               await github.rest.issues.createComment({
@@ -54,36 +61,54 @@ jobs:
               return;
             }
 
-            const entry = [
-              `### [${name}](${repoUrl}) ([${author}](https://github.com/${author}))`,
-              "",
-              description,
-              "",
-              `<img width="2572" height="1048" alt="image" src="${screenshotUrl}" />`,
-              "",
-            ].join("\n");
+            const slug = name
+              .toLowerCase()
+              .trim()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "");
+            const dirName = `${author}_${slug}`;
+            const entryPath = `content/apps/${dirName}/index.md`;
 
-            const readmePath = "README.md";
-            const { data: file } = await github.rest.repos.getContent({
+            const { data: existing } = await github.rest.repos.getContent({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              path: readmePath,
+              path: "content/apps",
               ref: "main",
-            });
+            }).catch(() => ({ data: [] }));
 
-            const current = Buffer.from(file.content, "base64").toString("utf8");
-
-            if (current.includes(`](${repoUrl})`)) {
+            if (Array.isArray(existing) && existing.some((e) => e.name === dirName)) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: `It looks like [${name}](${repoUrl}) is already on the list. If this is a mistake, let us know!`,
+                body: `It looks like **${name}** by **${author}** is already on the list (\`${dirName}\`). If this is a mistake, let us know!`,
               });
               return;
             }
 
-            const updated = current.trimEnd() + "\n\n" + entry.trimEnd() + "\n";
+            const yamlStr = (s) => JSON.stringify(s);
+            const dateAdded = new Date().toISOString().slice(0, 10);
+
+            const frontmatterLines = [
+              "---",
+              `title: ${yamlStr(name)}`,
+              `date_added: ${dateAdded}`,
+              `repo: ${yamlStr(repoUrl)}`,
+              `download: ${yamlStr(downloadUrl)}`,
+              `author: ${yamlStr(author)}`,
+              `author_url: ${yamlStr(`https://github.com/${author}`)}`,
+              `category: ${yamlStr(category)}`,
+            ];
+            if (lightSdk) frontmatterLines.push("light_sdk: true");
+            frontmatterLines.push(
+              "images:",
+              ...screenshots.map((url) => `  - ${yamlStr(url)}`),
+              `description: ${yamlStr(description)}`,
+              "---",
+              "",
+            );
+
+            const content = frontmatterLines.join("\n");
 
             const branch = `submission/issue-${context.issue.number}`;
             const { data: mainRef } = await github.rest.git.getRef({
@@ -99,20 +124,20 @@ jobs:
               sha: mainRef.object.sha,
             }).catch(() => {}); // branch may already exist on re-edit
 
-            const { data: branchRef } = await github.rest.repos.getContent({
+            const existingFile = await github.rest.repos.getContent({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              path: readmePath,
+              path: entryPath,
               ref: branch,
-            });
+            }).catch(() => null);
 
             await github.rest.repos.createOrUpdateFileContents({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              path: readmePath,
+              path: entryPath,
               message: `Add ${name} to the list`,
-              content: Buffer.from(updated).toString("base64"),
-              sha: branchRef.sha,
+              content: Buffer.from(content).toString("base64"),
+              sha: existingFile ? existingFile.data.sha : undefined,
               branch,
             });
 
