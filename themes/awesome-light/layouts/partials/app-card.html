@@ -14,14 +14,14 @@
   {{ end }}
   {{ with $img }}
     {{ $out := . }}
-    {{ if gt .Width 1200 }}
-      {{ $out = .Resize "1200x" }}
+    {{ if gt .Width 1800 }}
+      {{ $out = .Resize "1800x" }}
     {{ end }}
     {{ $images = $images | append (printf "%s,%d,%d" $out.RelPermalink $out.Width $out.Height) }}
 
     {{ $thumbOut := . }}
-    {{ if gt .Width 700 }}
-      {{ $thumbOut = .Resize "700x" }}
+    {{ if gt .Width 900 }}
+      {{ $thumbOut = .Resize "900x" }}
     {{ end }}
     {{ $thumbImages = $thumbImages | append $thumbOut.RelPermalink }}
   {{ end }}

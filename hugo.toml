@@ -18,6 +18,9 @@ enableRobotsTXT = true
 [markup.goldmark.renderer]
   unsafe = true
 
+[imaging]
+  resampleFilter = "Lanczos"
+
 [security]
   [security.funcs]
     getenv = ["^GITHUB_TOKEN$"]
