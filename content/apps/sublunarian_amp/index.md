@@ -12,6 +12,7 @@ images:
   - B.png
   - C.png
 description: "A music player for your own library — Navidrome, Subsonic, Plex, Jellyfin, or files on the phone."
+editor_pick: true
 ---
 
 A music player for your own library — Navidrome, Subsonic, Plex, Jellyfin, or files on the phone.
