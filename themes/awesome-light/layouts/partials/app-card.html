@@ -78,7 +78,6 @@
     {{ else }}
       <span class="app-card-fallback">{{ substr $page.Title 0 1 }}</span>
     {{ end }}
-    {{ if $page.Params.light_sdk }}<span class="app-card-badge" title="Built with the Light SDK">SDK</span>{{ end }}
     {{ if $page.Params.light_approved }}
     <div class="app-card-badge-stack">
       <span class="app-card-badge app-card-badge--approved" title="Light Approved">Light Approved</span>
