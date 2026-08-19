@@ -7,7 +7,7 @@ author: "ruditimmermans"
 author_url: "https://github.com/ruditimmermans"
 category: "Reading & Reference"
 images:
-  - "A.png"
   - "B.png"
+  - "A.png"
 description: "A PDF viewer tool that helps you read your PDF files on your Light Phone 3."
 ---
