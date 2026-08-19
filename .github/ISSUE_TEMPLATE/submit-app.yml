@@ -22,10 +22,37 @@ body:
       required: true
 
   - type: input
+    id: download_url
+    attributes:
+      label: Download / Releases URL
+      description: Link to the app's Releases page (leave blank if there isn't one)
+      placeholder: https://github.com/username/app-name/releases
+    validations:
+      required: false
+
+  - type: input
     id: author_username
     attributes:
       label: Your GitHub username
       placeholder: vandamd
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Communication
+        - Entertainment
+        - General
+        - Keyboard
+        - Launchers
+        - Music/Audio
+        - Navigation
+        - Photos
+        - Productivity
+        - Utility
     validations:
       required: true
 
@@ -38,11 +65,24 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: screenshot_url
+  - type: textarea
+    id: screenshots
     attributes:
-      label: Screenshot URL
-      description: A direct image link (e.g. a GitHub user-attachments URL from dragging an image into a comment/issue on GitHub)
-      placeholder: https://github.com/user-attachments/assets/...
+      label: Screenshots
+      description: One direct image URL per line, in the order they should be displayed (the first is used as the cover/thumbnail). Drag images into this textbox on GitHub to get direct links.
+      placeholder: |
+        https://github.com/user-attachments/assets/...
+        https://github.com/user-attachments/assets/...
     validations:
       required: true
+
+  - type: dropdown
+    id: light_sdk
+    attributes:
+      label: Built with the Light SDK?
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: false
