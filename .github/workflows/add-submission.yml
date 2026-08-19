@@ -37,11 +37,27 @@ jobs:
             const author = field("Your GitHub username");
             const category = field("Category");
             const description = field("Description");
-            const screenshots = field("Screenshots")
+            const screenshotLines = field("Screenshots")
               .split("\n")
               .map((s) => s.trim())
               .filter(Boolean);
             const lightSdk = field("Built with the Light SDK?") === "Yes";
+
+            // Accept either a raw URL per line or markdown image syntax: ![alt](url)
+            function extractUrl(line) {
+              const md = line.match(/!\[[^\]]*\]\(([^)]+)\)/);
+              return (md ? md[1] : line).trim();
+            }
+
+            // gh "blob" view URLs point at an HTML page, not raw bytes
+            function toRawUrl(url) {
+              const m = url.match(
+                /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/
+              );
+              return m ? `https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}/${m[4]}` : url;
+            }
+
+            const screenshots = screenshotLines.map(extractUrl).map(toRawUrl);
 
             const missing = [];
             if (!name) missing.push("App name");
@@ -56,7 +72,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: `I couldn't parse this submission — missing or unreadable field(s): ${missing.join(", ")}. Please edit the issue using the submission form fields and I'll retry automatically.`,
+                body: `Couldn't parse this submission - missing or unreadable field(s): ${missing.join(", ")}. Please edit the issue using the submission form fields and it will retry automatically.`,
               });
               return;
             }
@@ -81,9 +97,53 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: `It looks like **${name}** by **${author}** is already on the list (\`${dirName}\`). If this is a mistake, let us know!`,
+                body: `It looks like **${name}** by **${author}** is already on the list (\`${dirName}\`). If this is a mistake, let me know!`,
               });
               return;
+            }
+
+            const branch = `submission/issue-${context.issue.number}`;
+            const { data: mainRef } = await github.rest.git.getRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "heads/main",
+            });
+
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/heads/${branch}`,
+              sha: mainRef.object.sha,
+            }).catch(() => {}); // branch may already exist on re-edit
+
+            // Try to download each screenshot into the repo, but fall back to linking the external URL if the download fails.
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const imageRefs = [];
+            const downloadFailures = [];
+
+            for (let i = 0; i < screenshots.length; i++) {
+              const url = screenshots[i];
+              try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const buf = Buffer.from(await res.arrayBuffer());
+                const ext = (url.split("?")[0].match(/\.[a-zA-Z0-9]+$/) || [".png"])[0].toLowerCase();
+                const filename = `${letters[i] || `img${i}`}${ext}`;
+
+                await github.rest.repos.createOrUpdateFileContents({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  path: `content/apps/${dirName}/${filename}`,
+                  message: `Add ${filename} for ${name}`,
+                  content: buf.toString("base64"),
+                  branch,
+                });
+
+                imageRefs.push(filename);
+              } catch (err) {
+                downloadFailures.push(url);
+                imageRefs.push(url);
+              }
             }
 
             const yamlStr = (s) => JSON.stringify(s);
@@ -102,27 +162,13 @@ jobs:
             if (lightSdk) frontmatterLines.push("light_sdk: true");
             frontmatterLines.push(
               "images:",
-              ...screenshots.map((url) => `  - ${yamlStr(url)}`),
+              ...imageRefs.map((ref) => `  - ${yamlStr(ref)}`),
               `description: ${yamlStr(description)}`,
               "---",
               "",
             );
 
             const content = frontmatterLines.join("\n");
-
-            const branch = `submission/issue-${context.issue.number}`;
-            const { data: mainRef } = await github.rest.git.getRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: "heads/main",
-            });
-
-            await github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: `refs/heads/${branch}`,
-              sha: mainRef.object.sha,
-            }).catch(() => {}); // branch may already exist on re-edit
 
             const existingFile = await github.rest.repos.getContent({
               owner: context.repo.owner,
@@ -149,20 +195,24 @@ jobs:
             });
 
             if (existingPrs.data.length === 0) {
+              const failureNote = downloadFailures.length
+                ? `\n\nNote: couldn't download ${downloadFailures.length} screenshot(s), so they are linked externally instead of committed:\n${downloadFailures.map((u) => `- ${u}`).join("\n")}`
+                : "";
+
               const { data: pr } = await github.rest.pulls.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: `Add ${name}`,
                 head: branch,
                 base: "main",
-                body: `Adds **${name}** to the list.\n\nCloses #${context.issue.number}`,
+                body: `Adds **${name}** to the list.\n\nCloses #${context.issue.number}${failureNote}`,
               });
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: `Thanks for the submission! I opened #${pr.number} — a maintainer will review it shortly.`,
+                body: `Thanks for the submission! Opened #${pr.number} - a maintainer will review it shortly.${failureNote}`,
               });
             } else {
               await github.rest.issues.createComment({
