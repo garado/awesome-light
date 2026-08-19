@@ -1,0 +1,149 @@
+name: Add submission
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  open-pr:
+    if: contains(github.event.issue.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse issue and open PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || "";
+
+            // Issue forms render each field as "### Label\n\nvalue"
+            function field(label) {
+              const re = new RegExp(`### ${label}\\s*\\n\\s*([^\\n]*(?:\\n(?!### )[^\\n]*)*)`, "i");
+              const match = body.match(re);
+              if (!match) return "";
+              const value = match[1].trim();
+              return value === "_No response_" ? "" : value;
+            }
+
+            const name = field("App name");
+            const repoUrl = field("Repository URL");
+            const author = field("Your GitHub username");
+            const description = field("Description");
+            const screenshotUrl = field("Screenshot URL");
+
+            const missing = [];
+            if (!name) missing.push("App name");
+            if (!repoUrl) missing.push("Repository URL");
+            if (!author) missing.push("Your GitHub username");
+            if (!description) missing.push("Description");
+            if (!screenshotUrl) missing.push("Screenshot URL");
+
+            if (missing.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `I couldn't parse this submission — missing or unreadable field(s): ${missing.join(", ")}. Please edit the issue using the submission form fields and I'll retry automatically.`,
+              });
+              return;
+            }
+
+            const entry = [
+              `### [${name}](${repoUrl}) ([${author}](https://github.com/${author}))`,
+              "",
+              description,
+              "",
+              `<img width="2572" height="1048" alt="image" src="${screenshotUrl}" />`,
+              "",
+            ].join("\n");
+
+            const readmePath = "README.md";
+            const { data: file } = await github.rest.repos.getContent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: readmePath,
+              ref: "main",
+            });
+
+            const current = Buffer.from(file.content, "base64").toString("utf8");
+
+            if (current.includes(`](${repoUrl})`)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `It looks like [${name}](${repoUrl}) is already on the list. If this is a mistake, let us know!`,
+              });
+              return;
+            }
+
+            const updated = current.trimEnd() + "\n\n" + entry.trimEnd() + "\n";
+
+            const branch = `submission/issue-${context.issue.number}`;
+            const { data: mainRef } = await github.rest.git.getRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "heads/main",
+            });
+
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/heads/${branch}`,
+              sha: mainRef.object.sha,
+            }).catch(() => {}); // branch may already exist on re-edit
+
+            const { data: branchRef } = await github.rest.repos.getContent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: readmePath,
+              ref: branch,
+            });
+
+            await github.rest.repos.createOrUpdateFileContents({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: readmePath,
+              message: `Add ${name} to the list`,
+              content: Buffer.from(updated).toString("base64"),
+              sha: branchRef.sha,
+              branch,
+            });
+
+            const existingPrs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              state: "open",
+            });
+
+            if (existingPrs.data.length === 0) {
+              const { data: pr } = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Add ${name}`,
+                head: branch,
+                base: "main",
+                body: `Adds **${name}** to the list.\n\nCloses #${context.issue.number}`,
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `Thanks for the submission! I opened #${pr.number} — a maintainer will review it shortly.`,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `Updated #${existingPrs.data[0].number} with your latest edits.`,
+              });
+            }

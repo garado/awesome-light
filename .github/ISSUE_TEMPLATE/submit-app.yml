@@ -1,0 +1,48 @@
+name: Submit an app
+description: Submit your Light Phone app or tool to be added to the list.
+title: "[Submission]: "
+labels: ["submission"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: App name
+      description: The name of your app
+      placeholder: Luma
+    validations:
+      required: true
+
+  - type: input
+    id: repo_url
+    attributes:
+      label: Repository URL
+      description: Link to the app's GitHub repository
+      placeholder: https://github.com/username/app-name
+    validations:
+      required: true
+
+  - type: input
+    id: author_username
+    attributes:
+      label: Your GitHub username
+      placeholder: vandamd
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: One or two sentences describing the app
+      placeholder: A minimal launcher for the Light Phone III.
+    validations:
+      required: true
+
+  - type: input
+    id: screenshot_url
+    attributes:
+      label: Screenshot URL
+      description: A direct image link (e.g. a GitHub user-attachments URL from dragging an image into a comment/issue on GitHub)
+      placeholder: https://github.com/user-attachments/assets/...
+    validations:
+      required: true
