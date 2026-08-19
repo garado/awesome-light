@@ -7,10 +7,10 @@ author: "garado"
 author_url: "https://github.com/garado"
 category: "Utility"
 images:
-  - "A.png"
-  - "B.png"
-  - "C.png"
-  - "D.png"
+  - "https://raw.githubusercontent.com/zachattack323/LightRSS/main/docs/screenshots/inbox.png"
+  - "https://raw.githubusercontent.com/zachattack323/LightRSS/main/docs/screenshots/reader.png"
+  - "https://raw.githubusercontent.com/zachattack323/LightRSS/main/docs/screenshots/subscriptions.png"
+  - "https://raw.githubusercontent.com/zachattack323/LightRSS/main/docs/screenshots/add-feed.png"
 description: "A quiet, full-featured RSS and Atom reader."
 ---
 
