@@ -34,7 +34,8 @@ jobs:
             const name = field("App name");
             const repoUrl = field("Repository URL").replace(/\/+$/, "");
             const downloadUrl = repoUrl ? `${repoUrl}/releases` : "";
-            const author = context.payload.issue.user.login;
+            // derived from the repo, not submitter
+            const author = (repoUrl.match(/^https:\/\/github\.com\/([^/]+)\//) || [])[1] || "";
             const category = field("Category");
             const description = field("Short description");
             const longDescription = field("Long description");
@@ -108,40 +109,44 @@ jobs:
               repo: context.repo.repo,
               ref: "heads/main",
             });
-
-            await github.rest.git.createRef({
+            const { data: baseCommit } = await github.rest.git.getCommit({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: `refs/heads/${branch}`,
-              sha: mainRef.object.sha,
-            }).catch(() => {}); // branch may already exist on re-edit
+              commit_sha: mainRef.object.sha,
+            });
 
-            // Try to download each screenshot into the repo, but fall back to linking the external URL if the download fails.
+            // download each screenshot, falling back to linking the external URL if it fails.
+            // also commit everything at once
             const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const imageRefs = [];
             const downloadFailures = [];
+            const treeEntries = [];
 
             for (let i = 0; i < screenshots.length; i++) {
               const url = screenshots[i];
               try {
-                const res = await fetch(url);
+                const res = await fetch(url, { headers: { "User-Agent": "awesome-light-submission-bot" } });
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const buf = Buffer.from(await res.arrayBuffer());
                 const ext = (url.split("?")[0].match(/\.[a-zA-Z0-9]+$/) || [".png"])[0].toLowerCase();
                 const filename = `${letters[i] || `img${i}`}${ext}`;
 
-                await github.rest.repos.createOrUpdateFileContents({
+                const { data: blob } = await github.rest.git.createBlob({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  path: `content/apps/${dirName}/${filename}`,
-                  message: `Add ${filename} for ${name}`,
                   content: buf.toString("base64"),
-                  branch,
+                  encoding: "base64",
                 });
 
+                treeEntries.push({
+                  path: `content/apps/${dirName}/${filename}`,
+                  mode: "100644",
+                  type: "blob",
+                  sha: blob.sha,
+                });
                 imageRefs.push(filename);
               } catch (err) {
-                downloadFailures.push(url);
+                downloadFailures.push(`${url} (${err.message})`);
                 imageRefs.push(url);
               }
             }
@@ -170,22 +175,48 @@ jobs:
 
             const content = frontmatterLines.join("\n") + (longDescription ? `\n${longDescription}\n` : "");
 
-            const existingFile = await github.rest.repos.getContent({
+            const { data: indexBlob } = await github.rest.git.createBlob({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              path: entryPath,
-              ref: branch,
-            }).catch(() => null);
-
-            await github.rest.repos.createOrUpdateFileContents({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              path: entryPath,
-              message: `Add ${name} to the list`,
               content: Buffer.from(content).toString("base64"),
-              sha: existingFile ? existingFile.data.sha : undefined,
-              branch,
+              encoding: "base64",
             });
+            treeEntries.push({
+              path: entryPath,
+              mode: "100644",
+              type: "blob",
+              sha: indexBlob.sha,
+            });
+
+            const { data: newTree } = await github.rest.git.createTree({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              base_tree: baseCommit.tree.sha,
+              tree: treeEntries,
+            });
+
+            const { data: newCommit } = await github.rest.git.createCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              message: `Add ${name} to the list`,
+              tree: newTree.sha,
+              parents: [mainRef.object.sha],
+            });
+
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/heads/${branch}`,
+              sha: newCommit.sha,
+            }).catch(() =>
+              github.rest.git.updateRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${branch}`,
+                sha: newCommit.sha,
+                force: true,
+              })
+            ); // branch may already exist on re-edit
 
             const existingPrs = await github.rest.pulls.list({
               owner: context.repo.owner,
