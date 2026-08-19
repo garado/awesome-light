@@ -5,7 +5,7 @@ repo: "https://github.com/jabberbox/pokey"
 download: "https://github.com/jabberbox/pokey/releases"
 author: "jabberbox"
 author_url: "https://github.com/jabberbox"
-category: "Utility"
+category: "Health & Wellness"
 images:
     - A.png
     - B.png

@@ -27,14 +27,16 @@ body:
       label: Category
       options:
         - Communication
+        - Companion Tools
         - Entertainment
-        - General
+        - Health & Wellness
         - Keyboard
         - Launchers
         - Music/Audio
         - Navigation
         - Photos
         - Productivity
+        - Reading & Reference
         - Utility
     validations:
       required: true

@@ -5,7 +5,7 @@ repo: "https://github.com/ruditimmermans/LightMedication"
 download: "https://github.com/ruditimmermans/LightMedication/releases"
 author: "ruditimmermans"
 author_url: "https://github.com/ruditimmermans/"
-category: "Utility"
+category: "Health & Wellness"
 images:
     - A.png
     - B.png

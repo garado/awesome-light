@@ -5,7 +5,7 @@ repo: "https://github.com/greghare/light-botany"
 download: "https://github.com/greghare/light-botany/releases"
 author: "greghare"
 author_url: "https://github.com/greghare"
-category: "Utility"
+category: "Reading & Reference"
 images:
   - B.png
   - A.png

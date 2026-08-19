@@ -5,7 +5,7 @@ repo: "https://github.com/Alexis-NM/light-backlog"
 download: "https://github.com/Alexis-NM/light-backlog/releases"
 author: "Alexis-NM"
 author_url: "https://github.com/Alexis-NM"
-category: "Utility"
+category: "Entertainment"
 images:
   - A.png
   - B.png

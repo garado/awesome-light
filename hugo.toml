@@ -8,6 +8,9 @@ enableRobotsTXT = true
 [outputs]
   section = ["HTML", "JSON"]
 
+[frontmatter]
+  date = ["date_added", "date", ":default"]
+
 [params]
   description = "Community-developed apps and tools for the Light Phone."
   bg = "#464646"

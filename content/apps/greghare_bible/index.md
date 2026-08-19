@@ -5,7 +5,7 @@ repo: "https://github.com/greghare/light-bible"
 download: "https://github.com/greghare/light-bible/releases"
 author: "greghare"
 author_url: "https://github.com/greghare/"
-category: "Utility"
+category: "Reading & Reference"
 images:
   - A.png
   - B.png

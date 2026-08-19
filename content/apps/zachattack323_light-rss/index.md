@@ -5,7 +5,7 @@ repo: "https://github.com/zachattack323/LightRSS"
 download: "https://github.com/zachattack323/LightRSS/releases"
 author: "zachattack323"
 author_url: "https://github.com/zachattack323"
-category: "Utility"
+category: "Reading & Reference"
 images:
   - "A.png"
   - "B.png"
