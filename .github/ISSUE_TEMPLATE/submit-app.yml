@@ -1,6 +1,6 @@
 name: Submit an app
 description: Submit your Light Phone app or tool to be added to the list.
-title: "[Submission]: "
+title: ""
 labels: ["submission"]
 body:
   - type: input
