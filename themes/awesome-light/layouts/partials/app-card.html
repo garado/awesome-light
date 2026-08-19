@@ -1,0 +1,150 @@
+{{/*
+  Renders one grid tile + its hidden <template> with modal content.
+  Expects: . = the app page (content/apps/<slug>/index.md)
+*/}}
+{{ $page := . }}
+{{ $images := slice }}
+{{ $thumbImages := slice }}
+{{ range $page.Params.images | default slice }}
+  {{ $img := "" }}
+  {{ if hasPrefix . "http" }}
+    {{ with resources.GetRemote . }}{{ $img = . }}{{ end }}
+  {{ else }}
+    {{ $img = $page.Resources.GetMatch . }}
+  {{ end }}
+  {{ with $img }}
+    {{ $out := . }}
+    {{ if gt .Width 1200 }}
+      {{ $out = .Resize "1200x" }}
+    {{ end }}
+    {{ $images = $images | append (printf "%s,%d,%d" $out.RelPermalink $out.Width $out.Height) }}
+
+    {{ $thumbOut := . }}
+    {{ if gt .Width 700 }}
+      {{ $thumbOut = .Resize "700x" }}
+    {{ end }}
+    {{ $thumbImages = $thumbImages | append $thumbOut.RelPermalink }}
+  {{ end }}
+{{ end }}
+
+{{ $videos := slice }}
+{{ range $page.Params.videos | default slice }}
+  {{ if hasPrefix . "http" }}
+    {{ $videos = $videos | append . }}
+  {{ else }}
+    {{ with $page.Resources.GetMatch . }}
+      {{ $videos = $videos | append .RelPermalink }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $linkIcon := `<svg class="modal-meta-link-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>` }}
+
+{{ $releaseVersion := "" }}
+{{ $releaseDate := "" }}
+{{ $releaseURL := "" }}
+{{ with $page.Params.repo }}
+  {{ with partial "latest-release.html" . }}
+    {{ $parts := split . "|" }}
+    {{ $releaseVersion = index $parts 0 }}
+    {{ $releaseDate = index $parts 1 }}
+    {{ $releaseURL = index $parts 2 }}
+  {{ end }}
+{{ end }}
+
+<div class="app-card"
+     tabindex="0"
+     role="button"
+     data-slug="{{ $page.File.ContentBaseName }}"
+     data-permalink="{{ $page.RelPermalink }}"
+     data-title="{{ $page.Title }}"
+     data-author="{{ $page.Params.author }}"
+     data-author-url="{{ $page.Params.author_url }}"
+     data-date="{{ $page.Params.date_added }}"
+     data-updated="{{ $releaseDate }}"
+     data-category="{{ $page.Params.category }}"
+     data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
+     data-light-approved="{{ if $page.Params.light_approved }}true{{ else }}false{{ end }}"
+     data-editor-pick="{{ if $page.Params.editor_pick }}true{{ else }}false{{ end }}"
+     data-search="{{ lower (printf "%s %s %s %s %s" $page.Title ($page.Params.author | default "") ($page.Params.category | default "") ($page.Params.description | default "") $page.Plain) }}"
+     data-images="{{ delimit $images "|" }}"
+     data-videos="{{ delimit $videos "|" }}"
+     data-content-id="app-{{ $page.File.UniqueID }}">
+  <div class="app-card-thumb">
+    {{ if $thumbImages }}
+      {{ range $thumbImages }}<img src="{{ . }}" class="app-card-thumb-img" alt="{{ $page.Title }}" loading="lazy">{{ end }}
+    {{ else if $videos }}
+      {{ range $videos }}<video src="{{ . }}" class="app-card-thumb-img" muted preload="metadata"></video>{{ end }}
+    {{ else }}
+      <span class="app-card-fallback">{{ substr $page.Title 0 1 }}</span>
+    {{ end }}
+    {{ if $page.Params.light_sdk }}<span class="app-card-badge" title="Built with the Light SDK">SDK</span>{{ end }}
+    {{ if $page.Params.light_approved }}
+    <div class="app-card-badge-stack">
+      <span class="app-card-badge app-card-badge--approved" title="Light Approved">Light Approved</span>
+    </div>
+    {{ end }}
+  </div>
+  <div class="app-card-info">
+    <div class="app-card-title-row">
+      {{ if $page.Params.light_approved }}<span class="app-card-star app-card-star--filled" title="Light Approved">&#9733;</span>
+      {{ else if $page.Params.editor_pick }}<span class="app-card-star app-card-star--hollow" title="Editor's Pick">&#9734;</span>{{ end }}
+      <span class="app-card-title">{{ $page.Title }}</span>
+      {{ with $page.Params.author }}<span class="app-card-author">{{ . }}</span>{{ end }}
+    </div>
+    <div class="app-card-meta">
+      {{ with $page.Params.category }}<span class="app-card-category">{{ . }}</span>{{ end }}
+    </div>
+    <p class="app-card-summary">{{ $page.Params.description | default ($page.Summary | plainify) }}</p>
+  </div>
+</div>
+<template id="app-{{ $page.File.UniqueID }}">
+  <div class="modal-meta-row">
+    {{ $first := true }}
+    {{ with $page.Params.category }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <span class="modal-meta-label">categories</span>
+      <a href="#" class="modal-meta-value modal-meta-value--lower modal-meta-link modal-filter-link" data-filter-type="category" data-filter-value="{{ . | lower }}">{{ . }}</a>
+    {{ end }}
+    {{ if $page.Params.light_sdk }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a href="#" class="modal-meta-value modal-meta-link modal-filter-link" data-filter-type="stack" data-filter-value="sdk">made with light sdk</a>
+    {{ end }}
+    {{ if $page.Params.light_approved }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a href="#" class="modal-meta-value modal-meta-link modal-filter-link" data-filter-type="badge" data-filter-value="approved">light approved</a>
+    {{ else if $page.Params.editor_pick }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a href="#" class="modal-meta-value modal-meta-link modal-filter-link" data-filter-type="badge" data-filter-value="pick">editor's pick</a>
+    {{ end }}
+    {{ with $page.Params.repo }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">source</span>{{ $linkIcon | safeHTML }}</a>
+    {{ end }}
+    {{ with $page.Params.download }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">download</span>{{ $linkIcon | safeHTML }}</a>
+    {{ end }}
+    {{ with $releaseVersion }}
+      {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
+      {{ $first = false }}
+      <span class="modal-meta-label">latest release</span>
+      {{ $releaseLabel := . }}
+      {{ with $releaseDate }}{{ $releaseLabel = printf "%s (%s)" $releaseLabel (partial "relative-date.html" .) }}{{ end }}
+      <span class="modal-meta-value">{{ if $releaseURL }}<a class="modal-meta-link" href="{{ $releaseURL }}" target="_blank" rel="noopener" title="{{ $releaseDate }}">{{ $releaseLabel }}{{ $linkIcon | safeHTML }}</a>{{ else }}{{ $releaseLabel }}{{ end }}</span>
+    {{ end }}
+  </div>
+  <div class="modal-body">
+    {{ if strings.TrimSpace $page.Plain }}
+      {{ $page.Content }}
+    {{ else }}
+      <p>{{ $page.Params.description }}</p>
+    {{ end }}
+  </div>
+</template>

@@ -1,0 +1,23 @@
+{{/*
+  Formats a "YYYY-MM-DD" date string as a coarse relative age string
+  (1-day granularity): "< 1d ago", "3d ago", "3w ago", "4m ago", "2y ago".
+  Expects: . = date string
+*/}}
+{{ $days := 0 }}
+{{ with . }}
+  {{ $then := time.AsTime . }}
+  {{ $days = div (sub now.Unix $then.Unix) 86400 }}
+{{ end }}
+{{ $out := "" }}
+{{ if lt $days 1 }}
+  {{ $out = "< 1d ago" }}
+{{ else if lt $days 7 }}
+  {{ $out = printf "%dd ago" $days }}
+{{ else if lt $days 30 }}
+  {{ $out = printf "%dw ago" (div $days 7) }}
+{{ else if lt $days 365 }}
+  {{ $out = printf "%dmo ago" (div $days 30) }}
+{{ else }}
+  {{ $out = printf "%dy ago" (div $days 365) }}
+{{ end }}
+{{ return $out }}

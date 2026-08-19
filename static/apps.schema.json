@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://awesome-light.garado.dev/apps.schema.json",
+  "title": "awesome-light apps export",
+  "description": "Schema for /apps/index.json",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["version", "generated_at", "apps"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semver of this export's shape. Bump on breaking changes to existing fields; adding new fields does not require a bump."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp of when this export was built."
+    },
+    "apps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "title",
+          "slug",
+          "permalink",
+          "author",
+          "author_url",
+          "date_added",
+          "category",
+          "description",
+          "content",
+          "repo",
+          "download",
+          "badges",
+          "latest_release",
+          "images",
+          "videos"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "App name."
+          },
+          "slug": {
+            "type": "string",
+            "description": "Content directory basename, e.g. \"garado_strings\"."
+          },
+          "permalink": {
+            "type": "string",
+            "format": "uri",
+            "description": "Absolute URL of the app's page."
+          },
+          "author": {
+            "type": "string",
+            "description": "Author display name. Empty string if unset."
+          },
+          "author_url": {
+            "type": "string",
+            "description": "Link to the author's profile/site. Empty string if unset."
+          },
+          "date_added": {
+            "type": "string",
+            "description": "Date the app was added, as written in front matter (YYYY-MM-DD). Empty string if unset."
+          },
+          "category": {
+            "type": "string",
+            "description": "App category, e.g. \"Utility\". Empty string if unset."
+          },
+          "description": {
+            "type": "string",
+            "description": "Short summary: front-matter description, or an auto-generated summary of the content if omitted."
+          },
+          "content": {
+            "type": "string",
+            "description": "Full plain-text body of the app's page (front matter stripped, markdown rendered to plain text)."
+          },
+          "repo": {
+            "type": "string",
+            "description": "Source repository URL. Empty string if unset."
+          },
+          "download": {
+            "type": "string",
+            "description": "Download/releases URL. Empty string if unset."
+          },
+          "badges": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Badge/flag identifiers that apply to this app, e.g. \"light_sdk\", \"light_approved\", \"editor_pick\". New badge types may appear here over time without a schema change; unrecognized values should be ignored, not treated as errors."
+          },
+          "latest_release": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["version", "date", "url"],
+            "description": "Latest GitHub release info, derived from `repo`. All fields are empty strings if no repo is set or no release was found.",
+            "properties": {
+              "version": {
+                "type": "string",
+                "description": "Release tag/version, e.g. \"v1.2.1\"."
+              },
+              "date": {
+                "type": "string",
+                "description": "Release date (YYYY-MM-DD)."
+              },
+              "url": {
+                "type": "string",
+                "description": "Link to the release on GitHub."
+              }
+            }
+          },
+          "images": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri" },
+            "description": "Absolute URLs of the app's screenshots, in front-matter order."
+          },
+          "videos": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri" },
+            "description": "Absolute URLs of the app's video clips, in front-matter order."
+          }
+        }
+      }
+    }
+  }
+}

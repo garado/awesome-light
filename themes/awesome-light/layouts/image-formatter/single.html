@@ -1,0 +1,70 @@
+{{ define "main" }}
+{{ $imfJS := resources.Get "js/image-formatter.js" | minify | fingerprint }}
+
+<div class="imf">
+  <h1 class="imf-page-title">Hero Image Formatter</h1>
+  <div class="imf-controls">
+    <div class="imf-field">
+      <label>Header</label>
+      <button type="button" id="imf-show-header" class="imf-text-toggle">Visible</button>
+    </div>
+    <div class="imf-field">
+      <label for="imf-title">Title</label>
+      <div class="imf-field-input-row">
+        <input type="checkbox" class="imf-toggle" id="imf-show-title" checked title="Show title" />
+        <div class="sidebar-search" style="width: 24ch">
+          <input type="text" id="imf-title" class="sidebar-search-input" value="My App" />
+        </div>
+      </div>
+    </div>
+    <div class="imf-field">
+      <label for="imf-icon">Icon text</label>
+      <div class="imf-field-input-row">
+        <input type="checkbox" class="imf-toggle" id="imf-show-icon" checked title="Show icon" />
+        <div class="sidebar-search" style="width: 5ch">
+          <input type="text" id="imf-icon" class="sidebar-search-input" value="A" maxlength="3" />
+        </div>
+      </div>
+    </div>
+    <div class="imf-field">
+      <label for="imf-desc">Description</label>
+      <div class="imf-field-input-row">
+        <input type="checkbox" class="imf-toggle" id="imf-show-desc" checked title="Show description" />
+        <div class="sidebar-search" style="width: 42ch">
+          <input type="text" id="imf-desc" class="sidebar-search-input" placeholder="optional" />
+        </div>
+      </div>
+    </div>
+    <div class="imf-field">
+      <label for="imf-per-row">Per row</label>
+      <div class="sidebar-search" style="width: 5ch">
+        <input type="number" id="imf-per-row" class="sidebar-search-input" value="4" min="1" max="10" />
+      </div>
+    </div>
+  </div>
+
+  <div class="imf-chips" id="imf-chips"></div>
+
+  <canvas id="imf-canvas"></canvas>
+
+  <div class="imf-controls-group imf-controls-group--center">
+    <label class="imf-btn imf-btn--primary" for="imf-upload" style="cursor:pointer">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Upload images
+    </label>
+    <input type="file" id="imf-upload" multiple accept="image/*" style="display:none" />
+    <button class="imf-btn imf-btn--primary" id="imf-export">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Export PNG
+    </button>
+  </div>
+
+  <p class="imf-hint">Drag images to reposition &middot; Drag-and-drop, paste, or click "Upload Images" to add &middot; <span id="imf-dims">2572&times;1048</span></p>
+
+  <p class="imf-footer">
+    awesome-light (<a href="/" target="_blank" rel="noopener">site</a>/<a href="https://github.com/garado/awesome-light" target="_blank" rel="noopener">github</a>)
+  </p>
+</div>
+
+<script src="{{ $imfJS.RelPermalink }}"></script>
+{{ end }}
