@@ -32,11 +32,12 @@ jobs:
             }
 
             const name = field("App name");
-            const repoUrl = field("Repository URL");
-            const downloadUrl = field("Download / Releases URL");
-            const author = field("Your GitHub username");
+            const repoUrl = field("Repository URL").replace(/\/+$/, "");
+            const downloadUrl = repoUrl ? `${repoUrl}/releases` : "";
+            const author = context.payload.issue.user.login;
             const category = field("Category");
-            const description = field("Description");
+            const description = field("Short description");
+            const longDescription = field("Long description");
             const screenshotLines = field("Screenshots")
               .split("\n")
               .map((s) => s.trim())
@@ -62,9 +63,8 @@ jobs:
             const missing = [];
             if (!name) missing.push("App name");
             if (!repoUrl) missing.push("Repository URL");
-            if (!author) missing.push("Your GitHub username");
             if (!category) missing.push("Category");
-            if (!description) missing.push("Description");
+            if (!description) missing.push("Short description");
             if (screenshots.length === 0) missing.push("Screenshots");
 
             if (missing.length) {
@@ -168,7 +168,7 @@ jobs:
               "",
             );
 
-            const content = frontmatterLines.join("\n");
+            const content = frontmatterLines.join("\n") + (longDescription ? `\n${longDescription}\n` : "");
 
             const existingFile = await github.rest.repos.getContent({
               owner: context.repo.owner,

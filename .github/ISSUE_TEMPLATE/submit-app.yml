@@ -21,23 +21,6 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: download_url
-    attributes:
-      label: Download / Releases URL
-      description: Link to the app's Releases page (leave blank if there isn't one)
-      placeholder: https://github.com/username/app-name/releases
-    validations:
-      required: false
-
-  - type: input
-    id: author_username
-    attributes:
-      label: Your GitHub username
-      placeholder: vandamd
-    validations:
-      required: true
-
   - type: dropdown
     id: category
     attributes:
@@ -59,11 +42,20 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Description
-      description: One or two sentences describing the app
+      label: Short description
+      description: One sentence describing the app, shown in the list view
       placeholder: A minimal launcher for the Light Phone III.
     validations:
       required: true
+
+  - type: textarea
+    id: long_description
+    attributes:
+      label: Long description
+      description: Optional longer description with more details, features, etc. Shown in the app's popup. Leave blank to just reuse the short description there.
+      placeholder: Luma replaces the stock launcher with...
+    validations:
+      required: false
 
   - type: textarea
     id: screenshots
