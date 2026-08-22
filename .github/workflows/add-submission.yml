@@ -54,7 +54,9 @@ jobs:
             const screenshotLines = field("Screenshots")
               .split("\n")
               .map((s) => s.trim())
-              .filter(Boolean);
+              .filter(Boolean)
+              // ignore the <details>/<summary> wrapper we add below, in case this body was already collapsed
+              .filter((s) => !/^<\/?details>$/i.test(s) && !/^<summary>/i.test(s));
             const lightSdk = field("Built with the Light SDK?") === "Yes";
 
             if (name) {
@@ -65,6 +67,27 @@ jobs:
                   repo: context.repo.repo,
                   issue_number: context.issue.number,
                   title: desiredTitle,
+                });
+              }
+            }
+
+            // collapse the (often huge) Screenshots section of the issue body into a <details> block
+            {
+              const screenshotsSectionRe = /### Screenshots\s*\n\s*([^\n]*(?:\n(?!### )[^\n]*)*)/i;
+              const screenshotsMatch = body.match(screenshotsSectionRe);
+              if (screenshotsMatch && !screenshotsMatch[1].trim().startsWith("<details>")) {
+                const rawScreenshots = screenshotsMatch[1].trim();
+                const wrapped = `### Screenshots\n\n<details>\n<summary>Show screenshots</summary>\n\n${rawScreenshots}\n\n</details>`;
+                const newBody =
+                  body.slice(0, screenshotsMatch.index) +
+                  wrapped +
+                  body.slice(screenshotsMatch.index + screenshotsMatch[0].length);
+
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: newBody,
                 });
               }
             }

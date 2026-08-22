@@ -41,6 +41,17 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: light_sdk
+    attributes:
+      label: Built with the Light SDK?
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: false
+
   - type: textarea
     id: description
     attributes:
@@ -63,20 +74,9 @@ body:
     id: screenshots
     attributes:
       label: Screenshots
-      description: One direct image URL per line, in the order they should be displayed (the first is used as the cover/thumbnail). Drag images into this textbox on GitHub to get direct links.
+      description: Add showcase images for your app, in the order they should be displayed (the first is used as the cover/thumbnail). Input direct image URLs or drag images into this textbox. A bot will parse this for image links, download them, and include the images directly in the PR.
       placeholder: |
         https://github.com/user-attachments/assets/...
         https://github.com/user-attachments/assets/...
     validations:
       required: true
-
-  - type: dropdown
-    id: light_sdk
-    attributes:
-      label: Built with the Light SDK?
-      options:
-        - "No"
-        - "Yes"
-      default: 0
-    validations:
-      required: false
