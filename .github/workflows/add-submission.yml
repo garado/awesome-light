@@ -170,6 +170,12 @@ jobs:
               try {
                 const res = await fetch(url, { headers: { "User-Agent": "awesome-light-submission-bot" } });
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+                const contentType = res.headers.get("content-type") || "";
+                if (!contentType.startsWith("image/")) {
+                  throw new Error(`expected an image, got content-type "${contentType.split(";")[0]}"`);
+                }
+
                 const buf = Buffer.from(await res.arrayBuffer());
                 const ext = (url.split("?")[0].match(/\.[a-zA-Z0-9]+$/) || [".png"])[0].toLowerCase();
                 const filename = `${letters[i] || `img${i}`}${ext}`;
@@ -189,7 +195,9 @@ jobs:
                 });
                 imageRefs.push(filename);
               } catch (err) {
-                downloadFailures.push(`${url} (${err.message})`);
+                // keep comments/PR bodies readable even if a failure carries a huge or malformed message
+                const reason = String(err.message || err).replace(/\s+/g, " ").trim().slice(0, 150);
+                downloadFailures.push(`${url} (${reason})`);
                 imageRefs.push(url);
               }
             }
