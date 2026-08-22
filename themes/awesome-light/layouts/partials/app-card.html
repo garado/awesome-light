@@ -126,7 +126,7 @@
       {{ $first = false }}
       <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">source</span>{{ $linkIcon | safeHTML }}</a>
     {{ end }}
-    {{ if eq $page.File.ContentBaseName "greghare_botany" }}
+    {{ if ne $page.Params.category "Companion Tools" }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
       <a class="modal-meta-value modal-meta-link has-tooltip" href="lpm://install-repo?url={{ $page.Params.repo | urlquery }}" aria-label="Opens this tool in Light Phone Manager to install over USB." data-tooltip="Opens this tool in Light Phone Manager to install over USB."><span class="modal-meta-link-text">install with Light Phone Manager</span></a>
