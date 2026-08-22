@@ -128,7 +128,7 @@
     {{ if eq $page.File.ContentBaseName "greghare_botany" }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
-      <a class="modal-meta-value modal-meta-link" href="slack://install-repo?url={{ $page.Params.repo | urlquery }}"><span class="modal-meta-link-text">install with Light Phone Manager</span>{{ $linkIcon | safeHTML }}</a>
+      <a class="modal-meta-value modal-meta-link" href="lpm://install-repo?url={{ $page.Params.repo | urlquery }}"><span class="modal-meta-link-text">install with Light Phone Manager</span>{{ $linkIcon | safeHTML }}</a>
     {{ end }}
     {{ with $releaseVersion }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
