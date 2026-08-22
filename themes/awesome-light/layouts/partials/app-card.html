@@ -129,7 +129,7 @@
     {{ if eq $page.File.ContentBaseName "greghare_botany" }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
-      <a class="modal-meta-value modal-meta-link" href="lpm://install-repo?url={{ $page.Params.repo | urlquery }}" title="Opens this tool in Light Phone Manager to install over USB."><span class="modal-meta-link-text">install with Light Phone Manager</span></a>
+      <a class="modal-meta-value modal-meta-link" href="lpm://install-repo?url={{ $page.Params.repo | urlquery }}" title="If available, this opens Light Phone Manager to install this tool over USB."><span class="modal-meta-link-text">install with Light Phone Manager</span></a>
       <a class="modal-meta-link" href="/apps/greghare_light-phone-manager/" title="What is Light Phone Manager?">{{ $helpIcon | safeHTML }}</a>
     {{ end }}
     {{ with $releaseVersion }}
