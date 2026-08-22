@@ -1,5 +1,5 @@
 ---
-title: "Unofficial Light Phone API/CLI/TUI"
+title: "Light Phone API/CLI/TUI"
 date_added: 2026-05-08
 repo: "https://github.com/garado/light"
 download: "https://github.com/garado/light/releases"
@@ -23,9 +23,10 @@ This was made by reverse-engineering the cloud API powering the official web das
     - **Smarter uploads.** Auto-detect pre-existing duplicate tracks when uploading and choose to skip or overwrite.
     - **Sort tracks alphabetically by title.** The official dashboard only support sorting by artist.
     - **Regex search support.** Target tracks to delete with a regex filter for its title, artist, or album metadata, and optionally drop into an interactive picker to narrow the selection even further.
-    - TUI: Vim binds. Reorder tracks individually or in visual block mode, and bulk-edit metadata.
+    - **Bulk edit track metadata** with interactive selection support.
+    - TUI: Vim binds. Work with tracks individually or in visual block mode.
 - Notes
-    - **Add new notes from the command line.** Specify its content from stdin or read it from file.
+    - **Add new notes from the command line.** Specify its content inline or read it from file.
     - **Bulk download all notes.**
     - TUI: Vim binds. Copy text notes to clipboard, play/pause audio notes inline, and edit text notes in `$EDITOR`.
 

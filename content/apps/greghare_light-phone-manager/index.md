@@ -11,15 +11,15 @@ images:
   - "B.png"
   - "C.png"
   - "D.png"
-description: "A cross-platform desktop tool for managing your Light Phone III."
+description: "A community-built cross-platform desktop tool for managing your Light Phone III."
 ---
 
-A cross-platform desktop tool for managing your Light Phone III.
+A community-built cross-platform desktop tool for managing your Light Phone III.
 
 ## Features
 
 - Manage installed apps
-    - **Install / update / uninstall** apps over USB. Install via a `github.com/author/tool` URL to automatically fetch updates.
+    - **Install / update / uninstall** apps over USB. Install via a Github URL to automatically fetch updates.
     - **Update all** installed tools that have a newer release in one click.
     - **Drag-and-drop** an `.apk` anywhere on the window to sideload it.
     - Tools already on the phone (sideloaded before you started using this tool) are auto-discovered and listed under the "On Device" category.

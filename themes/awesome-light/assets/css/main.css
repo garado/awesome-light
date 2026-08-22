@@ -633,6 +633,31 @@ button { font-family: inherit; touch-action: manipulation; }
 
 .modal-meta-sep { color: var(--fg); margin: 0 0.2rem; }
 
+.has-tooltip { position: relative; }
+.has-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-raised);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s;
+  z-index: 20;
+}
+.has-tooltip:hover::after,
+.has-tooltip:focus-visible::after {
+  opacity: 1;
+}
+
 .modal-body { font-size: 1rem; color: var(--fg); }
 .modal-body p { margin: 0 0 0.75rem; }
 .modal-body blockquote {
