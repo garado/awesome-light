@@ -26,6 +26,12 @@ jobs:
               return;
             }
 
+            // avoid re-triggering ourselves when we rename the issue title below
+            if (context.payload.sender && context.payload.sender.login === "github-actions[bot]") {
+              core.setOutput("proceed", "false");
+              return;
+            }
+
             const body = context.payload.issue.body || "";
 
             // Issue forms render each field as "### Label\n\nvalue"
@@ -50,6 +56,18 @@ jobs:
               .map((s) => s.trim())
               .filter(Boolean);
             const lightSdk = field("Built with the Light SDK?") === "Yes";
+
+            if (name) {
+              const desiredTitle = `[Submission]: Add ${name}`;
+              if (context.payload.issue.title !== desiredTitle) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  title: desiredTitle,
+                });
+              }
+            }
 
             const missing = [];
             if (!name) missing.push("App name");
