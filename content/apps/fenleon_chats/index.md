@@ -15,8 +15,6 @@ images:
 description: "A calm messaging tool for the Light Phone III — one place for WhatsApp, Instagram, and other chat networks, via end-to-end-encrypted Matrix."
 ---
 
-# Chats
-
 Chats brings WhatsApp, Instagram, and your other chats to your Light Phone III, built with the Light Phone SDK.
 
 ## Features

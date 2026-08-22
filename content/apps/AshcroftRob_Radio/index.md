@@ -18,8 +18,6 @@ images:
 description: "A minimal, high-contrast radio streaming application for discovering and playing online stations globally."
 ---
 
-# Radio
-
 A minimal, high-contrast radio streaming application built with the Light Phone SDK. This tool allows users to discover, play, and curate their favorite online radio stations.
 
 ## Features

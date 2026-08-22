@@ -15,8 +15,6 @@ images:
 description: "A code wallet for the Light Phone III — store and display barcodes, scanned or typed."
 ---
 
-# Passes
-
 A minimalist code wallet built with the Light Phone SDK. This tool keeps boarding passes, library cards, gym memberships, and loyalty numbers ready on the device — fully offline, always at hand.
 
 ## Features

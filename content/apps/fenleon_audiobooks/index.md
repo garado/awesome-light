@@ -15,8 +15,6 @@ images:
 description: "A minimalist audiobook player for the Light Phone III."
 ---
 
-# Audiobooks
-
 A minimalist audiobook player built with the Light Phone SDK. This tool lets users listen to their own audiobook library on the device and pick up exactly where they left off.
 
 ## Features
