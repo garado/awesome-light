@@ -250,11 +250,38 @@ jobs:
               state: "open",
             });
 
-            if (existingPrs.data.length === 0) {
-              const failureNote = downloadFailures.length
-                ? `\n\nNote: couldn't download ${downloadFailures.length} screenshot(s), so they are linked externally instead of committed:\n${downloadFailures.map((u) => `- ${u}`).join("\n")}`
-                : "";
+            const commentMarker = "<!-- awesome-light-submission-bot -->";
 
+            async function upsertBotComment(body) {
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+              const prior = comments.find((c) => c.body && c.body.startsWith(commentMarker));
+
+              if (prior) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: prior.id,
+                  body: `${commentMarker}\n${body}`,
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: `${commentMarker}\n${body}`,
+                });
+              }
+            }
+
+            const failureNote = downloadFailures.length
+              ? `\n\n<details>\n<summary>Couldn't download ${downloadFailures.length} screenshot(s), so they are linked externally instead of committed</summary>\n\n${downloadFailures.map((u) => `- ${u}`).join("\n")}\n\n</details>`
+              : "";
+
+            if (existingPrs.data.length === 0) {
               const { data: pr } = await github.rest.pulls.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -264,17 +291,7 @@ jobs:
                 body: `Adds **${name}** to the list.\n\nCloses #${context.issue.number}${failureNote}`,
               });
 
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body: `Thanks for the submission! Opened #${pr.number} - a maintainer will review it shortly.${failureNote}`,
-              });
+              await upsertBotComment(`Thanks for the submission! Opened #${pr.number} - a maintainer will review it shortly.${failureNote}`);
             } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body: `Updated #${existingPrs.data[0].number} with your latest edits.`,
-              });
+              await upsertBotComment(`Thanks for the submission! Opened #${existingPrs.data[0].number} - a maintainer will review it shortly. Updated with your latest edits.${failureNote}`);
             }
