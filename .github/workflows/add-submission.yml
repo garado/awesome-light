@@ -15,12 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Parse issue and open PR
+      - name: Parse issue fields
+        id: extract
         uses: actions/github-script@v7
         with:
           script: |
             const labels = (context.payload.issue.labels || []).map((l) => l.name);
-            if (!labels.includes("submission")) return;
+            if (!labels.includes("submission")) {
+              core.setOutput("proceed", "false");
+              return;
+            }
 
             const body = context.payload.issue.body || "";
 
@@ -47,38 +51,57 @@ jobs:
               .filter(Boolean);
             const lightSdk = field("Built with the Light SDK?") === "Yes";
 
-            // Accept either a raw URL per line or markdown image syntax: ![alt](url)
-            function extractUrl(line) {
-              const md = line.match(/!\[[^\]]*\]\(([^)]+)\)/);
-              return (md ? md[1] : line).trim();
-            }
-
-            // gh "blob" view URLs point at an HTML page, not raw bytes
-            function toRawUrl(url) {
-              const m = url.match(
-                /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/
-              );
-              return m ? `https://raw.githubusercontent.com/${m[1]}/${m[2]}/${m[3]}/${m[4]}` : url;
-            }
-
-            const screenshots = screenshotLines.map(extractUrl).map(toRawUrl);
-
             const missing = [];
             if (!name) missing.push("App name");
             if (!repoUrl) missing.push("Repository URL");
             if (!category) missing.push("Category");
             if (!description) missing.push("Short description");
-            if (screenshots.length === 0) missing.push("Screenshots");
+            if (screenshotLines.length === 0) missing.push("Screenshots");
 
             if (missing.length) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: `Couldn't parse this submission - missing or unreadable field(s): ${missing.join(", ")}. Please edit the issue using the submission form fields and it will retry automatically.`,
+                body: `Couldn't parse this submission - missing or unreadable field(s): ${missing.join(", ")}. Please edit the issue and it will retry automatically.`,
               });
+              core.setOutput("proceed", "false");
               return;
             }
+
+            require("fs").writeFileSync("submission.json", JSON.stringify({
+              name,
+              repoUrl,
+              downloadUrl,
+              author,
+              category,
+              description,
+              longDescription,
+              screenshotLines,
+              lightSdk,
+            }));
+            core.setOutput("proceed", "true");
+
+      - name: Resolve screenshot URLs
+        if: steps.extract.outputs.proceed == 'true'
+        run: python3 .github/scripts/resolve_screenshots.py
+
+      - name: Open or update PR
+        if: steps.extract.outputs.proceed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {
+              name,
+              repoUrl,
+              downloadUrl,
+              author,
+              category,
+              description,
+              longDescription,
+              lightSdk,
+              screenshots,
+            } = JSON.parse(require("fs").readFileSync("submission.json", "utf8"));
 
             const slug = name
               .toLowerCase()
