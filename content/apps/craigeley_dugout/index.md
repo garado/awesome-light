@@ -7,8 +7,8 @@ author: "craigeley"
 author_url: "https://github.com/craigeley"
 category: "Utility"
 images:
-  - "A.png"
   - "B.png"
+  - "A.png"
   - "C.png"
 description: "MLB scores, box scores, and standings for the Light Phone III."
 ---
