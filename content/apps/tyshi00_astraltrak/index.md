@@ -11,4 +11,5 @@ images:
   - "B.png"
   - "C.png"
 description: "A celestial almanac of sorts for the Light Phone III."
+light_sdk: true
 ---
