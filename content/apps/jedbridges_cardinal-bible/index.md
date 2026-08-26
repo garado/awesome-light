@@ -12,6 +12,7 @@ images:
   - "C.png"
   - "D.png"
 description: "An offline Bible reader with word-level highlighting."
+light_sdk: true
 ---
 
 Three public-domain translations bundled — King James, World English Bible and
