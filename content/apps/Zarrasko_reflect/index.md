@@ -10,5 +10,5 @@ light_sdk: true
 images:
   - "A.png"
   - "B.png"
-description: "Daily journaling prompts for the LPIII. 5 unique prompts per day. Prompts change at 12a"
+description: "Daily journaling prompts for the LPIII. 5 unique prompts per day. Prompts change at 12AM."
 ---
