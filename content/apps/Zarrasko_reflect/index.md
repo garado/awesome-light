@@ -6,6 +6,7 @@ download: "https://github.com/Zarrasko/reflect/releases"
 author: "Zarrasko"
 author_url: "https://github.com/Zarrasko"
 category: "Health & Wellness"
+light_sdk: true
 images:
   - "A.png"
   - "B.png"
