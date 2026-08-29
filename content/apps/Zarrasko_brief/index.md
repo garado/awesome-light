@@ -6,6 +6,7 @@ download: "https://github.com/Zarrasko/brief/releases"
 author: "Zarrasko"
 author_url: "https://github.com/Zarrasko"
 category: "Reading & Reference"
+light_sdk: true
 images:
   - "A.png"
   - "B.png"
