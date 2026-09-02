@@ -6,6 +6,7 @@ download: "https://github.com/tyshi00/NFC-Reader/releases"
 author: "tyshi00"
 author_url: "https://github.com/tyshi00"
 category: "Utility"
+light_sdk: true
 images:
   - "A.png"
   - "B.png"
