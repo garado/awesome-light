@@ -151,6 +151,14 @@ button { font-family: inherit; touch-action: manipulation; }
 .sidebar-search-clear[hidden] { display: none; }
 .sidebar-search-clear:hover { color: var(--fg); }
 
+.sidebar-site-title {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--fg);
+  text-decoration: none;
+}
+.sidebar-site-title:hover { color: var(--muted); }
+
 /* Modding-guide sidebar: live search results */
 .sidebar-search-results {
   display: flex;
