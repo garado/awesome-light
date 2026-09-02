@@ -63,6 +63,83 @@
   }
 
   /* ---------------------------------------------------------------- */
+  /* Content-page search box: hand the query off to the home grid     */
+  /* ---------------------------------------------------------------- */
+  const pageSearch = document.getElementById("page-search");
+  if (pageSearch) {
+    const goSearch = () => {
+      const q = pageSearch.value.trim();
+      if (q) sessionStorage.setItem("appSearch", q);
+      window.location.href = "/";
+    };
+    pageSearch.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); goSearch(); }
+    });
+    const pageSearchClear = document.getElementById("page-search-clear");
+    if (pageSearchClear) {
+      pageSearch.addEventListener("input", () => {
+        pageSearchClear.hidden = !pageSearch.value;
+      });
+      pageSearchClear.addEventListener("click", () => {
+        pageSearch.value = "";
+        pageSearchClear.hidden = true;
+        pageSearch.focus();
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Document outline: scrollspy for the modding-guide sidebar         */
+  /* ---------------------------------------------------------------- */
+  const tocLinks = Array.from(document.querySelectorAll(".sidebar-toc-link"));
+  if (tocLinks.length) {
+    const entries = tocLinks
+      .map((link) => {
+        const id = decodeURIComponent((link.hash || "").slice(1));
+        const el = id && document.getElementById(id);
+        return el ? { id, el, link } : null;
+      })
+      .filter(Boolean);
+
+    if (entries.length) {
+      let activeId = null;
+      const setActive = (id) => {
+        if (id === activeId) return;
+        activeId = id;
+        entries.forEach(({ link }) => link.classList.remove("sidebar-toc-link--active"));
+        const match = entries.find((e) => e.id === id);
+        if (match) {
+          match.link.classList.add("sidebar-toc-link--active");
+          match.link.scrollIntoView({ block: "nearest" });
+        }
+      };
+
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const cutoff = window.scrollY + 120;
+        let current = entries[0].id;
+        for (const e of entries) {
+          if (e.el.getBoundingClientRect().top + window.scrollY <= cutoff) current = e.id;
+        }
+        setActive(current);
+      };
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+        },
+        { passive: true }
+      );
+      update();
+    }
+  }
+
+  /* ---------------------------------------------------------------- */
   /* Grid: category filter + search                                   */
   /* ---------------------------------------------------------------- */
   const grid = document.getElementById("app-grid");
@@ -198,6 +275,15 @@
       applyFilters();
     };
     searchInput.addEventListener("input", runSearch);
+
+    const carried = sessionStorage.getItem("appSearch");
+    if (carried) {
+      sessionStorage.removeItem("appSearch");
+      selectBadge("");
+      searchInput.value = carried;
+      runSearch();
+    }
+
     if (searchClear) {
       searchClear.addEventListener("click", () => {
         searchInput.value = "";

@@ -48,6 +48,9 @@ button { font-family: inherit; touch-action: manipulation; }
   --border: rgba(255, 255, 255, 0.14);
   --border-strong: rgba(255, 255, 255, 0.3);
   --scrim: rgba(0, 0, 0, 0.86);
+  --callout-note: var(--muted);
+  --callout-warning: #e0a800;
+  --callout-danger: #e86a6a;
 }
 
 [data-theme="light"] {
@@ -59,6 +62,9 @@ button { font-family: inherit; touch-action: manipulation; }
   --border: rgba(0, 0, 0, 0.13);
   --border-strong: rgba(0, 0, 0, 0.3);
   --scrim: rgba(20, 20, 20, 0.7);
+  --callout-note: var(--muted);
+  --callout-warning: #b07a00;
+  --callout-danger: #c53030;
 }
 
 .icon-moon { display: none; }
@@ -1036,3 +1042,215 @@ label.imf-btn--primary {
 
 .imf-footer a { color: var(--fg); text-decoration: none; }
 .imf-footer a:hover { text-decoration: underline; }
+
+/* ------------------------------------------------------------------ */
+/* Content pages (Resources / guides)                                 */
+/* ------------------------------------------------------------------ */
+/* nav list reuses .sidebar-cat, but as links rather than buttons */
+a.sidebar-cat { text-decoration: none; }
+a.sidebar-cat:hover { color: var(--muted); }
+
+.page-prose {
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+.page-prose > :first-child { margin-top: 0; }
+.page-prose h1 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0 0 1.25rem;
+}
+.page-prose h2 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 2.25rem 0 0.75rem;
+}
+.page-prose h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 1.75rem 0 0.5rem;
+  color: var(--muted);
+}
+.page-prose p,
+.page-prose ul,
+.page-prose ol { margin: 0 0 1rem; }
+.page-prose ul,
+.page-prose ol { padding-left: 1.25rem; }
+.page-prose li { margin: 0.25rem 0; }
+.page-prose a { text-underline-offset: 0.2em; }
+.page-prose img {
+  margin: 1.25rem 0;
+  border: 1px solid var(--border);
+}
+.page-prose code {
+  font-family: "Akkurat Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+  background: var(--bg-raised);
+  padding: 0.1em 0.35em;
+}
+.page-prose pre {
+  background: var(--bg-sunken);
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0 0 1rem;
+}
+.page-prose pre code { background: none; padding: 0; }
+.page-prose blockquote {
+  margin: 0 0 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-strong);
+  color: var(--muted);
+}
+.page-prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.page-children {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+.page-children li {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border);
+}
+.page-children-summary {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Document outline (modding guide left sidebar)                       */
+/* ------------------------------------------------------------------ */
+.sidebar-back {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.sidebar-back:hover { color: var(--fg); }
+
+.sidebar-toc { display: flex; flex-direction: column; }
+.sidebar-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.sidebar-toc-list .sidebar-toc-list {
+  padding-left: 0.7rem;
+  margin: 0.15rem 0;
+  border-left: 1px solid var(--border);
+}
+.sidebar-toc-link {
+  display: block;
+  padding: 0.22rem 0.1rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--muted);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+.sidebar-toc-link:hover { color: var(--fg); }
+.sidebar-toc-link--active {
+  color: var(--fg);
+  text-decoration: underline;
+}
+/* the chapter you are currently on (top-level, expanded) */
+.sidebar-toc-link--current { color: var(--fg); }
+
+/* prev / next chapter links at the foot of the content */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.chapter-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-width: 45%;
+  text-decoration: none;
+}
+.chapter-nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+.chapter-nav-dir {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.chapter-nav-title { color: var(--fg); }
+.chapter-nav-link:hover .chapter-nav-title { text-decoration: underline; }
+
+/* ------------------------------------------------------------------ */
+/* Figures with captions (resources / guides)                         */
+/* ------------------------------------------------------------------ */
+.page-figure {
+  margin: 1.75rem 0;
+  text-align: center;
+}
+.page-figure img {
+  display: inline-block;
+  margin: 0;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+}
+.page-figure figcaption {
+  margin: 0.6rem auto 0;
+  max-width: 38rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------------ */
+/* Callouts (GitHub-style alerts in /resources/ content)              */
+/* ------------------------------------------------------------------ */
+.callout {
+  margin: 1.5rem 0;
+  padding: 0.85rem 1rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--callout-accent, var(--muted));
+}
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--callout-accent, var(--fg));
+}
+.callout-title svg { flex-shrink: 0; }
+.callout-body > :first-child { margin-top: 0; }
+.callout-body > :last-child { margin-bottom: 0; }
+
+.callout--note      { --callout-accent: var(--callout-note); }
+.callout--tip       { --callout-accent: var(--callout-note); }
+.callout--important  { --callout-accent: var(--callout-note); }
+.callout--warning   { --callout-accent: var(--callout-warning); }
+.callout--caution   { --callout-accent: var(--callout-danger); }
+
+/* ------------------------------------------------------------------ */
+/* {{< center >}} shortcode                                           */
+/* ------------------------------------------------------------------ */
+.align-center { text-align: center; margin: 1rem 0; }
+.align-center > :first-child { margin-top: 0; }
+.align-center > :last-child { margin-bottom: 0; }
+.align-center img,
+.align-center table,
+.align-center .page-figure { margin-left: auto; margin-right: auto; }

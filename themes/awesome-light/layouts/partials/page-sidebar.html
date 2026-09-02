@@ -1,0 +1,62 @@
+{{/*
+  Left sidebar for content pages (Resources, guides, &c.).
+
+  Same chrome as partials/sidebar.html - about + theme toggle on top,
+  mobile toggle, about modal - but the body is a plain nav list of the
+  section's pages instead of search/filter controls.
+
+  Expects: . = the current page
+*/}}
+{{ $current := . }}
+{{ $section := .FirstSection }}
+{{ $pages := where $section.Pages "Params.hidden" "!=" true }}
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <div class="sidebar-search">
+      <svg class="sidebar-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="page-search" class="sidebar-search-input" placeholder="search apps&hellip;" aria-label="Search apps">
+      <button class="sidebar-search-clear" id="page-search-clear" aria-label="Clear search" hidden>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="sidebar-icons">
+      <button class="about-toggle" id="about-toggle" aria-label="About this site">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="sidebar-section sidebar-section--spaced">
+    <span class="sidebar-section-label">{{ $section.Title }}</span>
+    <nav class="sidebar-categories" aria-label="{{ $section.Title }}">
+      <a class="sidebar-cat{{ if eq $current $section }} sidebar-cat--active{{ end }}" href="{{ $section.RelPermalink }}">
+        <span class="sidebar-cat-name">Overview</span>
+      </a>
+      {{ range $pages }}
+      <a class="sidebar-cat{{ if or (eq $current .) ($current.IsDescendant .) }} sidebar-cat--active{{ end }}" href="{{ .RelPermalink }}">
+        <span class="sidebar-cat-name">{{ .Title }}</span>
+      </a>
+      {{ end }}
+    </nav>
+  </div>
+  <a class="sidebar-footer-link" href="https://github.com/garado/awesome-light" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
+</aside>
+<button class="sidebar-mobile-toggle" id="sidebar-mobile-toggle" aria-label="Toggle menu">
+  <span class="sidebar-mobile-toggle-label">Show Options</span>
+</button>
+<div class="modal-overlay" id="about-overlay" aria-hidden="true">
+  <button class="modal-close" id="about-close" aria-label="Close">&times;</button>
+  <div class="modal about-modal" role="dialog" aria-modal="true">
+    <h2 class="modal-title">About</h2>
+    <div class="modal-body">
+      {{ .Site.Home.Content }}
+    </div>
+  </div>
+  <div class="modal-mobile-bar modal-mobile-bar--solo">
+    <button class="modal-mobile-close" id="about-mobile-close">Close</button>
+  </div>
+</div>

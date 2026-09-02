@@ -5,9 +5,6 @@ theme = "awesome-light"
 
 enableRobotsTXT = true
 
-[outputs]
-  section = ["HTML", "JSON"]
-
 [frontmatter]
   date = ["date_added", "date", ":default"]
 

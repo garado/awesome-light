@@ -1,0 +1,32 @@
+{{/*
+  Layout for the modding guide: the section landing (_index.md) and
+  every chapter page bundle under it. Selected via `layout: modding-guide`
+  (set on the section and cascaded to its children).
+*/}}
+{{ define "main" }}
+<div class="site">
+  {{ partial "doc-sidebar.html" . }}
+
+  <main class="content">
+    <article class="page-prose">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+
+      {{ if .IsSection }}
+        {{ with sort .Pages "File.Path" }}
+        <ul class="page-children">
+          {{ range . }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{ with .Params.summary }}<span class="page-children-summary">{{ . }}</span>{{ end }}
+          </li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      {{ else }}
+        {{ partial "chapter-nav.html" . }}
+      {{ end }}
+    </article>
+  </main>
+</div>
+{{ end }}

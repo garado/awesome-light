@@ -1,0 +1,18 @@
+{{/*
+  Renders a page's in-page heading outline for the doc sidebar.
+
+  .Fragments.Headings can hand back a synthetic root (Level 0, no title)
+  or a single H1 that just mirrors the page title; either way we want the
+  outline to start at the real subsections, so peel those off first.
+  Expects: . = a page
+*/}}
+{{ $heads := .Fragments.Headings }}
+{{ range seq 4 }}
+  {{ if eq (len $heads) 1 }}
+    {{ $h := index $heads 0 }}
+    {{ if or (not $h.Title) (eq $h.Level 1) }}
+      {{ $heads = $h.Headings }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ with $heads }}{{ partial "toc-list.html" . }}{{ end }}

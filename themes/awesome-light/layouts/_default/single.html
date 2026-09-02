@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="site">
+  {{ partial "page-sidebar.html" . }}
+
+  <main class="content">
+    <article class="page-prose">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+    </article>
+  </main>
+</div>
+{{ end }}

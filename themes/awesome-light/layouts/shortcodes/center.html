@@ -1,0 +1,13 @@
+{{- /*
+  Center a block of content.
+
+      {{< center >}}
+      Some **markdown** that should be centered.
+      {{< /center >}}
+
+  Optional: {{< center width="32rem" >}} to also constrain the width.
+*/ -}}
+{{- $width := .Get "width" | default (.Get 0) -}}
+<div class="align-center"{{ with $width }} style="max-width:{{ . }};margin-left:auto;margin-right:auto"{{ end }}>
+{{ .Inner | .Page.RenderString (dict "display" "block") }}
+</div>

@@ -1,0 +1,30 @@
+{{- /*
+  Image render hook for /resources/ pages.
+  Renders every markdown image as a centered <figure> with the alt text
+  as a <figcaption> underneath. Relative paths (./assets/foo.png) are
+  resolved against the page's bundle resources.
+*/ -}}
+{{- $dest := .Destination -}}
+{{- if not $dest -}}
+  {{- /* malformed image (e.g. `![WARNING]` with no target) - emit the text only */ -}}
+  {{ .PlainText }}
+{{- else -}}
+{{- $src := $dest -}}
+{{- $remote := or (hasPrefix $dest "http://") (hasPrefix $dest "https://") (hasPrefix $dest "//") -}}
+{{- if and (not $remote) (not (hasPrefix $dest "/")) -}}
+  {{- $name := strings.TrimPrefix "./" $dest -}}
+  {{- with .Page.Resources.GetMatch $name -}}
+    {{- $src = .RelPermalink -}}
+  {{- else -}}
+    {{- with .Page.Resources.GetMatch (printf "**/%s" (path.Base $name)) -}}
+      {{- $src = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<figure class="page-figure">
+  <img src="{{ $src }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy">
+  {{- with .Text }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>
+{{- end -}}

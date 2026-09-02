@@ -1,0 +1,18 @@
+{{/*
+  Recursive renderer for a heading tree.
+  Expects: . = a slice of headings (page.Fragments.Headings or .Headings)
+  Headings with no id/text are skipped but their children are kept.
+*/}}
+<ul class="sidebar-toc-list">
+  {{ range . }}
+  {{ $title := .Title | plainify | strings.TrimSpace }}
+  {{ if and .ID $title }}
+  <li>
+    <a class="sidebar-toc-link" href="#{{ .ID }}">{{ $title }}</a>
+    {{ with .Headings }}{{ partial "toc-list.html" . }}{{ end }}
+  </li>
+  {{ else }}
+    {{ with .Headings }}<li>{{ partial "toc-list.html" . }}</li>{{ end }}
+  {{ end }}
+  {{ end }}
+</ul>
