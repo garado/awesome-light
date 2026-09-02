@@ -12,18 +12,7 @@
       <h1>{{ .Title }}</h1>
       {{ .Content }}
 
-      {{ if .IsSection }}
-        {{ with sort .Pages "File.Path" }}
-        <ul class="page-children">
-          {{ range . }}
-          <li>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            {{ with .Params.summary }}<span class="page-children-summary">{{ . }}</span>{{ end }}
-          </li>
-          {{ end }}
-        </ul>
-        {{ end }}
-      {{ else }}
+      {{ if not .IsSection }}
         {{ partial "chapter-nav.html" . }}
       {{ end }}
     </article>

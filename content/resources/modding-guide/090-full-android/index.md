@@ -7,10 +7,10 @@ I will always emphasize the use of Full Android mode in terms of customisation, 
 
 For Full Android, you will want to follow the guide in this order:
 
-1. How to Access the Android Layer
-2. Developer Options (Android and / or LightOS)
-3. Setting Up Android
-4. Key Mapper
+1. [How to Access the Android Layer](/resources/modding-guide/how-to-access-the-android-layer/)
+2. [Developer Options](/resources/modding-guide/developer-options/) (Android and / or LightOS)
+3. [Setting Up Android](/resources/modding-guide/setting-up-android/)
+4. [Key Mapper](/resources/modding-guide/key-maps-and-macros/#key-mapper)
 
 Everything else in this guide is meant for you to tailor to your own use, and trying out launchers, applications, keyboards, etc. is encouraged to all users. I can give some recommendations, but there is so many apps, key maps and macros that can all be customised to your own preferences.
 
@@ -21,7 +21,7 @@ Before starting, I want to stress the importance of following this section's dir
 >
 > **IF you do not understand the more advanced parts of this guide, do NOT attempt them. If you do not have an understanding of what you are doing, you are far more likely to break something.**
 >
-> Additionally, per this comment from Joe Hollier via Reddit, Light deems use of the Android layer that results in a bricking or breaking the device as voiding the warranty of the phone. Know the risks involved and proceed with caution.
+> Additionally, per [this comment from Joe Hollier via Reddit](https://www.reddit.com/r/LightPhone/comments/1jxtw0j/comment/mpvx94e/), Light deems use of the Android layer that results in a bricking or breaking the device as voiding the warranty of the phone. Know the risks involved and proceed with caution.
 
 Once you understand the risks involved, we can get started.
 
@@ -37,10 +37,12 @@ For Hybrid Mode users, this is necessary for enabling Bluetooth pairing and addi
 
 ## Change Launcher
 
-If you haven't already, enable LightOS developer options. You can find instructions on how to do so **HERE**.
+If you haven't already, enable LightOS developer options. You can find instructions on how to do so **[HERE](/resources/modding-guide/developer-options/#lightos)**.
 
 > [!NOTE]
-> 'Change Launcher' is only able to be accessed through LightOS Developer Options. As of Firmware v.1.440000, access to LightOS Developer Options is no longer possible as the factory version is now reverted to v52x or higher. If you have already enabled LightOS Developer Options prior to Firmware v1.440000, you will still be able to access these settings.
+> 'Change Launcher' is only able to be accessed through LightOS Developer Options. As of [Firmware v.1.440000](https://support.thelightphone.com/hc/en-us/articles/360031105751-Software-Versions-Change-Log), access to LightOS Developer Options is no longer possible as the factory version is now reverted to v52x or higher. If you have already enabled LightOS Developer Options prior to Firmware v1.440000, you will still be able to access these settings.
+
+{{< steps >}}
 
 1. In LightOS settings, find and select developer options.
 
@@ -54,8 +56,10 @@ If you haven't already, enable LightOS developer options. You can find instructi
 3. You will then be prompted to change your default home app to the one of your choice.
 4. Once fully booted into Android, you should be able to see the status bar.
 5. Go ahead and change your other default apps to AOSP or any alternative applications you like as well as changing navigation if you wish.
-    a. You can click **HERE** to jump to 'Default Applications' if you are unsure of how to do so.
-    b. You can click **HERE** to jump to 'Gesture Navigation', if you are unsure of how to change navigation settings.
+    a. You can click **[HERE](/resources/modding-guide/setting-up-android/#default-applications)** to jump to 'Default Applications' if you are unsure of how to do so.
+    b. You can click **[HERE](/resources/modding-guide/setting-up-android/#gesture-navigation)** to jump to 'Gesture Navigation', if you are unsure of how to change navigation settings.
+
+{{< /steps >}}
 
 ## ADB
 
@@ -63,7 +67,7 @@ What you will need:
 
 - Light Phone III
 - Computer with adb OR Shizuku/aShell installed
-    - To set up adb, you can click **HERE** for SDK adb or **HERE** for Shizuku/aShell
+    - To set up adb, you can click **[HERE](#adb-via-android-sdk)** for SDK adb or **[HERE](#adb-via-shizukuashell)** for Shizuku/aShell
 
 Running the following command will list all global settings, which should include `light_mode`:
 
@@ -76,6 +80,8 @@ Running the following command will list all global settings, which should includ
 We're looking for the following global setting:
 
 ![The `settings list global` output with `light_mode=0` highlighted.](./assets/p113-2.png)
+
+{{< steps >}}
 
 1. Run the following command in adb:
 
@@ -105,14 +111,16 @@ We're looking for the following global setting:
 
     a. This will reboot the phone.
 
+{{< /steps >}}
+
 # Disabling LightOS
 
 What you will need:
 
 - Light Phone III
 - Computer with adb OR Shizuku/aShell installed
-    - For adb: You can download Android SDK **HERE** either as part of SDK manager or as the standalone Android SDK Platform Tools package.
-    - For Shizuku/aShell: You can find the installation process and use **HERE** in the modding guide.
+    - For adb: You can download Android SDK **[HERE](https://developer.android.com/tools/adb)** either as part of SDK manager or as the standalone Android SDK Platform Tools package.
+    - For Shizuku/aShell: You can find the installation process and use **[HERE](#adb-via-shizukuashell)** in the modding guide.
 - Reliable USB connection
     - If using adb on a computer, I recommend using the braided Light Phone USB-C cable that came with your phone if you have a USB-C data port or a simple USB-C to USB-A cable.
 
@@ -124,9 +132,15 @@ What you will need:
 - Computer with adb
 - Reliable USB connection
 
+{{< steps >}}
+
 1. Connect your Light Phone III to your computer via USB.
 
+{{< /steps >}}
+
 ### On Android
+
+{{< steps start="2" >}}
 
 2. In the notification shade, you should have a notification showing the device is connected via USB.
 3. Tap the notification for more options.
@@ -168,9 +182,13 @@ Settings > System > 'Developer Options' > 'USB Debugging'
 
     ![The 'Allow USB debugging?' RSA key fingerprint dialog with 'ALLOW' highlighted.](./assets/p118-2.png)
 
+{{< /steps >}}
+
 ### On Computer
 
 I'm using the standalone SDK platform tools for Windows. If you are using the SDK manager or on Linux/Apple, your screen may be different but the adb commands are the same/similar.
+
+{{< steps start="11" >}}
 
 11. Unzip `platform-tools-latest-xxx.zip`
     a. I opted to unzip it to my C: drive under `/Program Files/`
@@ -242,6 +260,8 @@ If the device is not showing up, verify USB debugging is enabled and you allowed
 
     ![The LightOS 'App info' screen showing an 'Enable' button, meaning the app is disabled.](./assets/p122-2.png)
 
+{{< /steps >}}
+
 ## ADB via Shizuku/aShell
 
 Shizuku used in conjunction with aShell will allow you to run adb commands without the need for a computer. This is also used to run certain root/ADB hack commands for Key Mapper and MacroDroid.
@@ -251,15 +271,17 @@ Shizuku will act as the adb package and aShell will act as your terminal.
 What you will need:
 
 - Light Phone III
-- Shizuku (via Aurora) or via browser **HERE**.
-- aShell (via F-Droid) or via GitHub **HERE**.
+- Shizuku (via Aurora) or via browser **[HERE](https://shizuku.rikka.app/download/)**.
+- aShell (via F-Droid) or via GitHub **[HERE](https://github.com/DP-Hridayan/aShellYou)**.
 - Wi-Fi connection
 
 ### Shizuku
 
+{{< steps >}}
+
 1. Open Shizuku.
 2. We want to use the option 'Start via Wireless Debugging' for Android versions 11+
-    a. You can find the step-by-step guide **HERE** for pairing.
+    a. You can find the step-by-step guide **[HERE](https://shizuku.rikka.app/guide/setup/#start-via-wireless-debugging)** for pairing.
 
     ![The Shizuku app with 'Pairing' highlighted under 'Start via Wireless Debugging'.](./assets/p123.png)
 
@@ -269,7 +291,11 @@ What you will need:
 
     ![The Shizuku 'Starter' screen showing the wireless adb start log.](./assets/p124-2.png)
 
+{{< /steps >}}
+
 ### aShell
+
+{{< steps start="4" >}}
 
 4. Once Shizuku is running, open aShell.
 5. Find the tab that says 'Permissions required' and select 'Request Permission'.
@@ -322,6 +348,8 @@ What you will need:
 
     ![The LightOS 'App info' screen showing an 'Enable' button, meaning the app is disabled.](./assets/p128.png)
 
+{{< /steps >}}
+
 # Enabling LightOS
 
 Should you decide to enable LightOS at any point either for firmware updates or would like to go back to LightOS, you'll need to run the following commands:
@@ -348,6 +376,8 @@ Since LightOS Developer Options are not accessible as of November 2025, I manage
 
 Using the previous section for `light_mode`:
 
+{{< steps >}}
+
 1. Run the following command in adb:
 
     ```
@@ -365,5 +395,7 @@ Using the previous section for `light_mode`:
     a. Running any `get` command will output the current setting.
 
     ![PowerShell running the `put` and `get` commands for `light_mode`.](./assets/p129.png)
+
+{{< /steps >}}
 
 This will restore functionality within Full Android mode.

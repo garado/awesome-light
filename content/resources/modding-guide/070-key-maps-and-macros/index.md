@@ -11,6 +11,8 @@ This application is crucial in helping to restore button functionality while in 
 
 ## Installation
 
+{{< steps >}}
+
 1. Install Key Mapper (via Aurora or F-Droid).
 
     ![The Key Mapper store page with the 'Open' button.](./assets/p047-1.png)
@@ -54,6 +56,8 @@ This application is crucial in helping to restore button functionality while in 
 
     ![Key Mapper showing a green 'Running' indicator at the top.](./assets/p051-2.png)
 
+{{< /steps >}}
+
 ## Creating key maps
 
 There's an abundance of ways you can map your keys, especially since the Light Phone III comes with additional hardware. You have free will and customisation for this, so feel free to try out and modify different key maps to see which ones fit your use case the best. I'll also include the key maps to replicate LightOS's buttons, and I'll detail the key maps I currently run as well.
@@ -65,9 +69,11 @@ You can also organise your key maps via groups and sub-groups depending on how m
 In this section, I'll show you how to make a new key map, and while this will be for the flashlight button, it is applicable to any key maps you make. In LightOS, you use the scroll wheel button as a long press in order to activate the flashlight. When we access Android, we lose that functionality.
 
 > [!NOTE]
-> Make sure your display and font size are at the smallest possible, otherwise you will not be able to record triggers for key maps. If you skipped this step, click **HERE** to jump to the section explaining how to do so.
+> Make sure your display and font size are at the smallest possible, otherwise you will not be able to record triggers for key maps. If you skipped this step, click **[HERE](/resources/modding-guide/setting-up-android/#display-and-font-size)** to jump to the section explaining how to do so.
 
 **Creating key maps, re-creating LightOS flashlight button (example):**
+
+{{< steps >}}
 
 1. Create a new key map. You can find the '+' button to add a new key map at the bottom of the screen.
 
@@ -114,8 +120,12 @@ In this section, I'll show you how to make a new key map, and while this will be
 
     ![The 'Actions' tab showing 'Toggle flashlight' with 'Done' highlighted.](./assets/p057-1.png)
 
+{{< /steps >}}
+
 > [!NOTE]
 > Some actions may not work unless you grant Key Mapper access to modify system settings.
+
+{{< steps >}}
 
 1. Select 'Fix' on affected action.
 
@@ -129,6 +139,8 @@ In this section, I'll show you how to make a new key map, and while this will be
 
     ![The 'Modify system settings' screen with 'Allow modifying system settings' enabled.](./assets/p058-2.png)
 
+{{< /steps >}}
+
 ## Recreating LightOS button functionality
 
 In this section, I'll give you the key maps to recreate LightOS's button functionality.
@@ -137,7 +149,7 @@ In this section, I'll give you the key maps to recreate LightOS's button functio
 
 #### Flashlight
 
-Key map can be found **HERE**, used in the example on how to add a key map.
+Key map can be found in the **[example above](#creating-key-maps)** on how to add a key map.
 
 #### Increase display brightness
 
@@ -326,6 +338,8 @@ Also, if MacroDroid asks for any permissions, grant it access.
 
 ## Installation
 
+{{< steps >}}
+
 1. Install MacroDroid (via Aurora).
 
     ![The MacroDroid store page with the 'Install' button.](./assets/p064.png)
@@ -335,6 +349,8 @@ Also, if MacroDroid asks for any permissions, grant it access.
 4. You will get a prompt for MacroDroid to send notifications. Select 'Allow'.
 
     ![The 'Allow MacroDroid to send you notifications?' dialog with 'ALLOW' highlighted.](./assets/p065-1.png)
+
+{{< /steps >}}
 
 ## Introduction to MacroDroid
 
@@ -432,6 +448,8 @@ if LightOS = not in foreground:
 
 ##### Trigger
 
+{{< steps >}}
+
 1. Select 'Add Macro'.
 
     ![The MacroDroid home screen with 'Add Macro' highlighted.](./assets/p069-1.png)
@@ -455,7 +473,11 @@ if LightOS = not in foreground:
 
 7. Select 'Any Number' and press 'OK'.
 
+{{< /steps >}}
+
 ##### Actions
+
+{{< steps start="8" >}}
 
 8. In the 'Actions' box, select the '+' to add an action.
 
@@ -543,7 +565,11 @@ if LightOS = not in foreground:
 
     ![The 'Add Action' screen with 'Call Reject' highlighted under Phone.](./assets/p082-1.png)
 
+{{< /steps >}}
+
 ##### Constraints
+
+{{< steps start="32" >}}
 
 32. In the 'Constraints' box, select the '+' to add a constraint.
 
@@ -584,15 +610,19 @@ if LightOS = not in foreground:
 
     ![The macro with a name entered and the save button highlighted.](./assets/p087-1.png)
 
+{{< /steps >}}
+
 With the macro complete, you'll be able to accept calls and interact with the call in LightOS, or decline it, without needing to be in LightOS. Here is an example of the dialog box in use:
 
 ![The call-handling dialog box showing an unknown caller with DECLINE and ACCEPT buttons.](./assets/p087-2.png)
 
 #### Option 2: Immediate boot into LightOS
 
-This is another option that follows the original modding guide but shows you how to set it up. This will immediately boot you into LightOS if you're on the Android layer if you are receiving a call.
+This is another option that follows the [original modding guide](https://docs.google.com/document/d/1aDvuVqibzC8x0FpuHaJw5llYmERLgU8CwcEHg9hHZqc/edit?tab=t.0#heading=h.wb5q0wyzm1wb) but shows you how to set it up. This will immediately boot you into LightOS if you're on the Android layer if you are receiving a call.
 
 ##### Trigger
+
+{{< steps >}}
 
 1. Select 'Add Macro'.
 
@@ -617,7 +647,11 @@ This is another option that follows the original modding guide but shows you how
 
 7. Select 'Any Number' and press 'OK'.
 
+{{< /steps >}}
+
 ##### Actions
+
+{{< steps start="8" >}}
 
 8. In the 'Actions' box, select the '+' to add a new action.
 
@@ -637,6 +671,8 @@ This is another option that follows the original modding guide but shows you how
 
     ![The completed macro showing the 'Call Incoming' trigger and 'Launch Phone' action.](./assets/p093.png)
 
+{{< /steps >}}
+
 ### Notification handling
 
 Notification handling is another issue we run into. With `light_mode` active, Hybrid users will lose key missing UI elements such as call UI, notification pop-ups, etc. We want our notifications to appear for us with the option for them to also appear on LightOS so we don't miss anything important (i.e. WhatsApp messages).
@@ -650,6 +686,8 @@ For notification handling in Hybrid Mode, there are a few different ways you can
 For this version of notification handling, the goal is for MacroDroid to recognise a notification and display an overlay box for us to be able to see it. We should be able to clear it ourselves or have it disappear after a set time. We won't be able to open the app, but we should be able to see the notification and go from there.
 
 ##### Trigger
+
+{{< steps >}}
 
 1. Select 'Add macro'.
 
@@ -681,7 +719,11 @@ For this version of notification handling, the goal is for MacroDroid to recogni
 
     ![Two examples of the Triggers box: 'Any Content (All applications)' and 'Any Content (Signal, QUIK, Phone)'.](./assets/p097-2.png)
 
+{{< /steps >}}
+
 ##### Actions
+
+{{< steps start="8" >}}
 
 8. In the 'Actions' box, select the '+' to add an action.
 
@@ -743,6 +785,8 @@ For this version of notification handling, the goal is for MacroDroid to recogni
 
     ![The Actions box showing 'Overlay Bar', 'Wait 10 seconds' and 'Clear MacroDroid Dialog'.](./assets/p105-2.png)
 
+{{< /steps >}}
+
 Testing out the overlay:
 
 ![Two screenshots of the notification overlay bar in use.](./assets/p104-3.png)
@@ -750,6 +794,8 @@ Testing out the overlay:
 Now, we can add the constraints to make sure they appear in LightOS as well.
 
 ##### Constraints
+
+{{< steps start="23" >}}
 
 23. In the 'Constraints' box, select the '+' to add a constraint.
 
@@ -781,3 +827,5 @@ Now, we can add the constraints to make sure they appear in LightOS as well.
     ![The Constraints box with the logic gate set to 'OR' and both 'Not foreground' and 'App foreground' constraints for LightOS.](./assets/p109.png)
 
 31. Name and save your macro.
+
+{{< /steps >}}

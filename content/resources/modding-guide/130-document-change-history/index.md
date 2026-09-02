@@ -5,7 +5,7 @@ slug: document-change-history
 
 This page serves as a running section to document changes made to the document over time. Anyone can request to change the document, but it is imperative that all changes follow the same formatting and general layout of the original document. This is to ensure that no one's changes are identifiable. All approved changes MUST be documented on this page.
 
-This file is locked for editing unless a document change request (DCR) is submitted. If you wish to edit the document on your own, submit a DCR to sirbloodysabbath@protonmail.com. Eventually, I will implement a better DCR for this but for now, please use comments on Acrobat. No ETA for this at this time.
+This file is locked for editing unless a document change request (DCR) is submitted. If you wish to edit the document on your own, submit a DCR to [sirbloodysabbath@protonmail.com](mailto:sirbloodysabbath@protonmail.com). Eventually, I will implement a better DCR for this but for now, please use comments on Acrobat. No ETA for this at this time.
 
 All changes are denoted by bold or strikethrough font settings.
 

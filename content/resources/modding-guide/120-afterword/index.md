@@ -11,9 +11,9 @@ I hoped to address the vast majority of complaints, frequently asked questions a
 
 I extend my biggest thanks to the folks on Discord who have helped me compile this guide as well as working through some of the additional aspects of it.
 
-If you have any further questions, don't hesitate to reach out on Reddit or on Discord via the **#modding-and-hacking channel**. We're all working on this project together :)
+If you have any further questions, don't hesitate to reach out on [Reddit](https://www.reddit.com/r/ModifiedLightPhones/) or on [Discord](https://discord.gg/585rdZRHKD) via the **#modding-and-hacking channel**. We're all working on this project together :)
 
-If you would like to support me in my next projects including those for the Light Phone III, you can buy me a coffee!
+If you would like to support me in my next projects including those for the Light Phone III, you can [buy me a coffee](https://buymeacoffee.com/sirbloodysabbath)!
 
 Thank you again to everyone in the community for their love and support for this project I've been working on!
 

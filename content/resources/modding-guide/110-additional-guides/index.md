@@ -40,6 +40,8 @@ Running on T-Mobile's network exclusively did pose it's own share of problems. W
 Settings > Network & Internet > SIMs > [choose the SIM available for your carrier] > 'Preferred Network Type' > 'LTE/CDMA/EvDo/GSM/WCDMA'
 ```
 
+{{< steps >}}
+
 1. Navigate to Settings.
 2. Find and select 'Network & internet'.
 
@@ -67,9 +69,13 @@ Settings > Network & Internet > SIMs > [choose the SIM available for your carrie
 
     ![The 'Preferred network type' selection list with 'LTE/CDMA/EvDo/GSM/WCDMA' selected.](./assets/p145-2.png)
 
+{{< /steps >}}
+
 ### Optional
 
 If you wanted to select a specific network, for example in the case of roaming, you would do it here.
+
+{{< steps start="7" >}}
 
 7. Under your carrier's SIM settings, find 'Automatically Select Network' and disable it.
 
@@ -86,6 +92,8 @@ If you wanted to select a specific network, for example in the case of roaming, 
 10. At the bottom of your carrier's SIM settings screen, you'll also find 'Allow 2G'. Verify this is on. Emergency calling relies on a 2G network and in certain locations, that may be all you're able to connect to i.e. 2G or EDGE.
 
     ![The SIM settings screen with the 'Allow 2G' toggle highlighted.](./assets/p147-2.png)
+
+{{< /steps >}}
 
 # Battery optimisation
 
@@ -132,7 +140,7 @@ For fast charging, it's nice if you need it in a pinch but I would use it in mod
 
 This should go without saying: _the more you use your phone, the more battery life you will consume._
 
-The more you use the phone, the hotter the phone will get. As stated above, heat can cause premature degradation of the lithium-ion battery so we want to avoid that as much as possible. This can also include anything that is running in the background, even if you are not using the phone. You can find more information on lower-level Android processes **HERE**.
+The more you use the phone, the hotter the phone will get. As stated above, heat can cause premature degradation of the lithium-ion battery so we want to avoid that as much as possible. This can also include anything that is running in the background, even if you are not using the phone. You can find more information on lower-level Android processes **[HERE](/resources/modding-guide/technical-context/#android-layers)**.
 
 The Light Phone was designed to be used as little as possible. Regardless of whether you want full functionality of the phone or digital minimalist approach, you only have 1800mAH to use. That is a fraction compared to most modern smartphones that have nearly 3x that. Use it wisely.
 
@@ -267,6 +275,8 @@ You can disable DAVx⁵ via System Settings without adb if you wish, or you can 
 Settings > Apps > All Apps > DAVx⁵ > [Disable]
 ```
 
+{{< steps >}}
+
 1. Navigate to Settings.
 2. Find and select 'Apps'.
 
@@ -284,7 +294,11 @@ Settings > Apps > All Apps > DAVx⁵ > [Disable]
 
     ![The DAVx⁵ 'App info' screen with 'Disable' highlighted.](./assets/p155-2.png)
 
+{{< /steps >}}
+
 ## To reconfigure
+
+{{< steps >}}
 
 1. Navigate to DAVx⁵.
 2. Clear 'Scheduled synchronization' prompt.
@@ -315,13 +329,15 @@ Settings > Apps > All Apps > DAVx⁵ > [Disable]
 
     ![The DAVx⁵ 'Add account' screen.](./assets/p159-2.png)
 
-You can find the list of tested services **HERE** should you wish to set up syncing for Google or iCloud for example.
+{{< /steps >}}
 
-Click **HERE** for a link to the DAVx⁵ documentation.
+You can find the [list of tested services](https://www.davx5.com/tested-with/) should you wish to set up syncing for Google or iCloud for example.
+
+Click **[HERE](https://manual.davx5.com/index.html)** for a link to the DAVx⁵ documentation.
 
 # Light Phone II Root
 
-Now, I'm fully aware that this is a Light Phone III specific modding guide, but I wanted it to be included in this guide since some folks have a Light Phone II and may wish to mod theirs as well. Since a lot of the Android specific changes we make on the Light Phone III are applicable to the Light Phone II as well, it makes sense to include it. This is taken from a collection of posts from u/zeneval and u/No-Initiative-9079 via Reddit. For this, I'll be referencing the most recent guide **HERE**.
+Now, I'm fully aware that this is a Light Phone III specific modding guide, but I wanted it to be included in this guide since some folks have a Light Phone II and may wish to mod theirs as well. Since a lot of the Android specific changes we make on the Light Phone III are [applicable to the Light Phone II as well](https://www.reddit.com/r/LightPhone/comments/jqtfu4/comment/gcwqx8i/), it makes sense to include it. This is taken from a [collection of posts](https://www.crpntr.xyz/2025/09/installing-android-11-on-light-phone-2.html) from u/zeneval and u/No-Initiative-9079 via Reddit. For this, I'll be referencing the [most recent guide](https://www.reddit.com/r/ModifiedLightPhones/comments/1njvqdk/lp2_a11_guide/).
 
 Before starting, I want to stress the importance of following these directions to enable Full Android mode in order and understand the instructions fully. Re-iterating my warning from the preface:
 
@@ -330,7 +346,7 @@ Before starting, I want to stress the importance of following these directions t
 >
 > **IF you do not understand the more advanced parts of this guide, do NOT attempt them. If you do not have an understanding of what you are doing, you are far more likely to break something.**
 >
-> Additionally, per this comment from Joe Hollier via Reddit, Light deems use of the Android layer that results in a bricking or breaking the device as voiding the warranty of the phone. Know the risks involved and proceed with caution.
+> Additionally, per [this comment from Joe Hollier via Reddit](https://www.reddit.com/r/LightPhone/comments/1jxtw0j/comment/mpvx94e/), Light deems use of the Android layer that results in a bricking or breaking the device as voiding the warranty of the phone. Know the risks involved and proceed with caution.
 
 Once you understand the risks involved, we can get started.
 
@@ -339,7 +355,7 @@ What you will need:
 - Light Phone II
 - Computer with adb
 - Reliable USB connection
-- Files from the LP2 Modding Repository via GitHub **HERE**.
+- Files from the [LP2 Modding Repository via GitHub](https://github.com/dtingley11/LP2-Android-Script/tree/main).
 
 ## Android 11 installation
 
@@ -348,6 +364,8 @@ The Light Phone II uses Android 8.1 out of the box. It is known for its vulnerab
 The first thing you should absolutely do when rooting or flashing a phone is to dump the original flash as a backup so it can be restored if needed. Follow this guide carefully and in order.
 
 ### Dumping flash
+
+{{< steps >}}
 
 1. Power off the device.
 2. Hold VOLUME UP + POWER until the phone vibrates and then let go.
@@ -359,6 +377,8 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
 5. Once you're in fastboot and EDL mode, you can use Qualcomm Firehose / EDL tooling to pull down the flash.
     a. All Qualcomm devices support this type of tooling to program, dump and flash the chipsets.
 6. Dump the flash as your backup before continuing.
+
+{{< /steps >}}
 
 ### Step 1: Flash aboot and enable debugging
 
@@ -374,6 +394,8 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
 
 **Or**
 
+{{< steps >}}
+
 1. Power off the device.
 2. Hold VOLUME UP + POWER until the phone vibrates and then let go.
 3. Once you see 'no command':
@@ -382,9 +404,13 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
 4. Select 'Reboot to bootloader' to get into fastboot.
     a. Use the VOLUME keys to move in the menu and POWER to select.
 
+{{< /steps >}}
+
 **Flash aboot**
 
-1. Download aboot from the LP2 Modding Repository via GitHub **HERE**.
+{{< steps >}}
+
+1. Download aboot from the [LP2 Modding Repository via GitHub](https://github.com/dtingley11/LP2-Android-Script/tree/main).
 2. Flash it:
 
     ```
@@ -392,7 +418,11 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
     fastboot oem adb_enable 1
     ```
 
+{{< /steps >}}
+
 ### Step 2: Access debugging & service menu
+
+{{< steps >}}
 
 1. Open the Service Menu for additional settings:
 
@@ -419,10 +449,14 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
     ```
 
 5. Enable Developer Options.
-    a. You can find the complete guide **HERE** since it works regardless of which version of Android you are using.
+    a. You can find the [complete guide](/resources/modding-guide/developer-options/#android) since it works regardless of which version of Android you are using.
     b. In Developer Options, enable 'OEM unlocking'.
 
+{{< /steps >}}
+
 ### Step 3: Unlock bootloader
+
+{{< steps >}}
 
 1. Reboot to Fastboot Mode:
 
@@ -443,17 +477,25 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
     fastboot reboot
     ```
 
+{{< /steps >}}
+
 ### Step 4: Download required files
 
+{{< steps >}}
+
 1. Download the Android 11 system image:
-    a. Treble Experimentations AOSP 11 Image via GitHub
+    a. [Treble Experimentations AOSP 11 Image via GitHub](https://github.com/phhusson/treble_experimentations/releases?q=313&expanded=true)
         i. Recommended: `system-roar-arm-aonly-vanilla` OR `system-roar-arm-aonly-gogapps`
 2. Extract the file to obtain the .img file.
-    a. Windows: 7-Zip
-    b. MacOS: The Unarchiver
+    a. Windows: [7-Zip](https://www.7-zip.org/)
+    b. MacOS: [The Unarchiver](https://macpaw.com/the-unarchiver)
     c. Linux: Use `unxz`
 
+{{< /steps >}}
+
 ### Step 5: Flash Android 11 to the LP2
+
+{{< steps >}}
 
 1. Reboot to Fastboot Mode:
 
@@ -479,7 +521,11 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
     fastboot reboot
     ```
 
+{{< /steps >}}
+
 ### Step 6: Enable ADB and secure device
+
+{{< steps >}}
 
 1. Copy adb_keys from another device.
     a. Securizing will remove adb keys, this will copy your current keys from your computer to the device.
@@ -496,6 +542,8 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
     ```
     adb shell /system/bin/phh-securize.sh
     ```
+
+{{< /steps >}}
 
 ### Step 7: Continue set-up & customisation
 
@@ -533,7 +581,9 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
 
 No boot.img to list, will need to supply your own.
 
-1. Download Magisk via GitHub **HERE**.
+{{< steps >}}
+
+1. Download [Magisk via GitHub](https://github.com/topjohnwu/magisk/releases).
 2. Install Magisk:
 
     ```
@@ -562,7 +612,11 @@ No boot.img to list, will need to supply your own.
     fastboot reboot
     ```
 
+{{< /steps >}}
+
 ### Step 9: Fix Verizon APN issues (optional)
+
+{{< steps >}}
 
 1. Download VZFix.
     a. As of September 2025, there is no file available at the moment. u/No-Initiative-9079 will be adding all missing files including boot.img and VZFix to GitHub no ETA.
@@ -578,7 +632,11 @@ No boot.img to list, will need to supply your own.
     mount -o remount,ro /system
     ```
 
+{{< /steps >}}
+
 ### Step 10: Enable VoLTE and fix refresh rate
+
+{{< steps >}}
 
 1. Enable IMS and VoLTE:
 
@@ -599,6 +657,8 @@ No boot.img to list, will need to supply your own.
     adb shell settings put system peak_refresh_rate 2.0
     adb shell settings put system min_refresh_rate 2.0
     ```
+
+{{< /steps >}}
 
 ## Other useful settings
 
@@ -624,6 +684,6 @@ settings put global captive_portal_mode 1 && echo 0 >
 
 Some other references to modding the Light Phone II are below:
 
-- How to install stock Android 11 onto The Light Phone 2
-- Light Phone 2 Android || Android on E-Ink
-- Tutorial: Android for the Light Phone 2
+- [How to install stock Android 11 onto The Light Phone 2](https://www.youtube.com/watch?v=doJh23QmIQ0)
+- [Light Phone 2 Android || Android on E-Ink](https://www.youtube.com/watch?v=aOXGuFKQ0_E)
+- [Tutorial: Android for the Light Phone 2](https://www.youtube.com/watch?v=ngRuS9svSrE)

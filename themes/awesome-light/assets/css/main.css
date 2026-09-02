@@ -1281,9 +1281,12 @@ a.sidebar-cat:hover { color: var(--muted); }
 /* ------------------------------------------------------------------ */
 /* Steps shortcode (vertical numbered stepper)                        */
 /* ------------------------------------------------------------------ */
+.steps {
+  /* --steps-start is (first step number - 1); set by the shortcode's `start` */
+  counter-reset: step var(--steps-start, 0);
+}
 .steps > ol {
   list-style: none;
-  counter-reset: step;
   padding: 0;
   margin: 1.75rem 0;
 }

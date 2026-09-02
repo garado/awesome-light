@@ -8,7 +8,7 @@
   {{ $title := .Title | plainify | strings.TrimSpace }}
   {{ if and .ID $title }}
   <li>
-    <a class="sidebar-toc-link" href="#{{ .ID }}">{{ $title }}</a>
+    <a class="sidebar-toc-link" href="#{{ .ID }}">{{ $title | safeHTML }}</a>
     {{ with .Headings }}{{ partial "toc-list.html" . }}{{ end }}
   </li>
   {{ else }}

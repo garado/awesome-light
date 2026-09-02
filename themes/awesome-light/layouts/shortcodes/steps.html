@@ -11,11 +11,19 @@
       2. Then do that.
       {{< /steps >}}
 
+  Optional `start` continues the numbering from a given step (for a
+  procedure split across several {{< steps >}} blocks by subheadings):
+
+      {{< steps start="8" >}}
+      8. ...
+      {{< /steps >}}
+
   .Inner is rendered with the page's own render hooks so relative image
   paths and callouts keep working exactly as they do inline.
 
   Inspiration: https://book.alxs.dev/docs/content/shortcodes/steps/
 */ -}}
-<div class="steps">
+{{- $start := int (.Get "start" | default 1) -}}
+<div class="steps"{{ if gt $start 1 }} style="--steps-start: {{ sub $start 1 }}"{{ end }}>
 {{ .Inner | .Page.RenderString (dict "display" "block") }}
 </div>
