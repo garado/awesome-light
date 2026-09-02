@@ -35,4 +35,4 @@ This guide relies on the navigation pane to denote different sections. Any inden
 are sub-sections of the main section. Using Adobe Acrobat, you can find the navigation pane on
 the right side of the screen under Bookmarks:
 
-* If you wish to skip the technical jargon, you can click **[HERE.](#how-to-access-the-android-layer)**
+* If you wish to skip the technical jargon, you can click **[HERE.](how-to-access-the-android-layer)**
