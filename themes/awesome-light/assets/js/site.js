@@ -202,6 +202,93 @@
   }
 
   /* ---------------------------------------------------------------- */
+  /* Modding-guide sidebar: live search over the section JSON index    */
+  /* ---------------------------------------------------------------- */
+  const docSearch = document.getElementById("doc-search");
+  if (docSearch) {
+    const clearBtn = document.getElementById("doc-search-clear");
+    const resultsEl = document.getElementById("doc-search-results");
+    const contentsEl = document.getElementById("doc-contents");
+    let indexPromise = null;
+
+    const loadIndex = () => {
+      if (!indexPromise) {
+        indexPromise = fetch(docSearch.dataset.index)
+          .then((r) => (r.ok ? r.json() : []))
+          .catch(() => []);
+      }
+      return indexPromise;
+    };
+
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
+
+    const render = (rows) => {
+      resultsEl.innerHTML = rows.length
+        ? rows.map((r) =>
+            `<a class="sidebar-search-hit" href="${r.href}">` +
+            `<span class="sidebar-search-hit-title">${esc(r.title)}</span>` +
+            (r.section ? `<span class="sidebar-search-hit-sec">${esc(r.section)}</span>` : "") +
+            "</a>"
+          ).join("")
+        : '<p class="sidebar-search-empty">No matches.</p>';
+    };
+
+    const search = (raw) => {
+      const q = raw.trim().toLowerCase();
+      if (!q) {
+        resultsEl.hidden = true;
+        if (contentsEl) contentsEl.hidden = false;
+        return;
+      }
+      loadIndex().then((pages) => {
+        if (docSearch.value.trim().toLowerCase() !== q) return; // superseded
+        const hits = [];
+        const seen = new Set();
+        const add = (title, section, href, rank) => {
+          if (seen.has(href)) return;
+          seen.add(href);
+          hits.push({ title, section, href, rank });
+        };
+        pages.forEach((p) => {
+          if (p.title.toLowerCase().indexOf(q) !== -1) add(p.title, "", p.href, 0);
+          (p.headings || []).forEach((h) => {
+            if (h.title.toLowerCase().indexOf(q) !== -1) add(h.title, p.title, h.href, 1);
+          });
+          if (!seen.has(p.href) && (p.body || "").toLowerCase().indexOf(q) !== -1) {
+            add(p.title, "in text", p.href, 2);
+          }
+        });
+        hits.sort((a, b) => a.rank - b.rank);
+        render(hits.slice(0, 40));
+        resultsEl.hidden = false;
+        if (contentsEl) contentsEl.hidden = true;
+      });
+    };
+
+    let debounce;
+    docSearch.addEventListener("input", () => {
+      clearBtn.hidden = !docSearch.value;
+      clearTimeout(debounce);
+      debounce = setTimeout(() => search(docSearch.value), 110);
+    });
+    docSearch.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        docSearch.value = "";
+        clearBtn.hidden = true;
+        search("");
+      }
+    });
+    clearBtn.addEventListener("click", () => {
+      docSearch.value = "";
+      clearBtn.hidden = true;
+      search("");
+      docSearch.focus();
+    });
+  }
+
+  /* ---------------------------------------------------------------- */
   /* Grid: category filter + search                                   */
   /* ---------------------------------------------------------------- */
   const grid = document.getElementById("app-grid");

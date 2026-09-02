@@ -1,6 +1,9 @@
 ---
 title: "Light Phone III Hybrid/Full Android Modding Guide"
 layout: modding-guide
+outputs:
+  - HTML
+  - JSON
 cascade:
   layout: modding-guide
 ---
