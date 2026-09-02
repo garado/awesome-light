@@ -1215,6 +1215,70 @@ a.sidebar-cat:hover { color: var(--muted); }
 }
 
 /* ------------------------------------------------------------------ */
+/* Image lightbox (click a figure in /resources/ content to zoom)     */
+/* ------------------------------------------------------------------ */
+.page-figure img { cursor: zoom-in; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  visibility: hidden;
+}
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-figure {
+  margin: 0;
+  max-width: min(1100px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: zoom-out;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #000;
+}
+.lightbox-caption {
+  margin-top: 0.75rem;
+  max-width: 40rem;
+  color: #cfcfcf;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  text-align: center;
+}
+.lightbox-caption[hidden] { display: none; }
+.lightbox-close {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.lightbox-close:hover { opacity: 0.7; }
+
+/* ------------------------------------------------------------------ */
 /* Callouts (GitHub-style alerts in /resources/ content)              */
 /* ------------------------------------------------------------------ */
 .callout {

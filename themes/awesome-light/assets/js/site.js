@@ -140,6 +140,68 @@
   }
 
   /* ---------------------------------------------------------------- */
+  /* Image lightbox (`resources/` only)                               */
+  /* ---------------------------------------------------------------- */
+  const figureImgs = Array.from(document.querySelectorAll(".page-figure img"));
+  if (figureImgs.length) {
+    const box = document.createElement("div");
+    box.className = "lightbox";
+    box.id = "lightbox";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-hidden", "true");
+    box.innerHTML =
+      '<button class="lightbox-close" type="button" aria-label="Close image">×</button>' +
+      '<figure class="lightbox-figure">' +
+      '<img class="lightbox-img" alt="">' +
+      '<figcaption class="lightbox-caption"></figcaption>' +
+      "</figure>";
+    document.body.appendChild(box);
+
+    const boxImg = box.querySelector(".lightbox-img");
+    const boxCap = box.querySelector(".lightbox-caption");
+    const boxClose = box.querySelector(".lightbox-close");
+    let lastFocused = null;
+
+    const openLightbox = (img) => {
+      lastFocused = img;
+      boxImg.src = img.currentSrc || img.src;
+      boxImg.alt = img.alt || "";
+      const fig = img.closest(".page-figure");
+      const cap = fig && fig.querySelector("figcaption");
+      const text = (cap && cap.textContent.trim()) || img.alt || "";
+      boxCap.textContent = text;
+      boxCap.hidden = !text;
+      box.classList.add("open");
+      box.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      boxClose.focus();
+    };
+
+    const closeLightbox = () => {
+      box.classList.remove("open");
+      box.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      boxImg.removeAttribute("src");
+      if (lastFocused) lastFocused.focus();
+    };
+
+    figureImgs.forEach((img) => {
+      img.setAttribute("role", "button");
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("aria-label", "Expand image" + (img.alt ? ": " + img.alt : ""));
+      img.addEventListener("click", () => openLightbox(img));
+      img.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(img); }
+      });
+    });
+    box.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && box.classList.contains("open")) closeLightbox();
+    });
+  }
+
+  /* ---------------------------------------------------------------- */
   /* Grid: category filter + search                                   */
   /* ---------------------------------------------------------------- */
   const grid = document.getElementById("app-grid");
