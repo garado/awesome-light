@@ -1202,6 +1202,29 @@ a.sidebar-cat:hover { color: var(--muted); }
 .sidebar-toc-link--current { color: var(--fg); }
 
 /* prev / next chapter links at the foot of the content */
+.doc-page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.doc-page-footer-date,
+.doc-page-footer-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.doc-page-footer-edit {
+  color: var(--muted);
+  text-decoration: none;
+}
+.doc-page-footer-edit:hover { color: var(--fg); text-decoration: underline; }
+.doc-page-footer svg { flex-shrink: 0; }
+
 .chapter-nav {
   display: flex;
   justify-content: space-between;
