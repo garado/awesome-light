@@ -1,0 +1,21 @@
+{{- /*
+  Steps: wraps a markdown ordered list in a vertical numbered stepper
+  (badge + connecting line). Each top-level list item becomes a step.
+
+  Usage:
+
+      {{< steps >}}
+      1. First do this.
+
+         ![alt](./assets/one.png)
+      2. Then do that.
+      {{< /steps >}}
+
+  .Inner is rendered with the page's own render hooks so relative image
+  paths and callouts keep working exactly as they do inline.
+
+  Inspiration: https://book.alxs.dev/docs/content/shortcodes/steps/
+*/ -}}
+<div class="steps">
+{{ .Inner | .Page.RenderString (dict "display" "block") }}
+</div>

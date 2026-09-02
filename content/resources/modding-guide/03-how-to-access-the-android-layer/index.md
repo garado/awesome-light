@@ -17,6 +17,8 @@ What you will need:
     - If the keyboard is wired but doesn’t have USB-C, USB-A to USB-C adapters will work fine as well.
     - Do not use any keyboards that have RGB or additional firmware – mobile phones do not supply enough power to power these keyboards and they will not work.
 
+{{< steps >}}
+
 1. Unlock the Light Phone III.
 2. Connect your keyboard to the device.
 3. Use the key sequence `WIN + B` to open Chromium (AOSP web browser).
@@ -56,3 +58,5 @@ What you will need:
 11. You’re now in the Android System Settings.
 
     ![The Android System Settings home screen.](./assets/p010-2.png)
+
+{{< /steps >}}
