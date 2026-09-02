@@ -140,7 +140,7 @@ For fast charging, it's nice if you need it in a pinch but I would use it in mod
 
 This should go without saying: _the more you use your phone, the more battery life you will consume._
 
-The more you use the phone, the hotter the phone will get. As stated above, heat can cause premature degradation of the lithium-ion battery so we want to avoid that as much as possible. This can also include anything that is running in the background, even if you are not using the phone. You can find more information on lower-level Android processes **[HERE](/resources/modding-guide/technical-context/#android-layers)**.
+The more you use the phone, the hotter the phone will get. As stated above, heat can cause premature degradation of the lithium-ion battery so we want to avoid that as much as possible. This can also include anything that is running in the background, even if you are not using the phone. You can find more information on lower-level Android processes **[HERE](../technical-context/#android-layers)**.
 
 The Light Phone was designed to be used as little as possible. Regardless of whether you want full functionality of the phone or digital minimalist approach, you only have 1800mAH to use. That is a fraction compared to most modern smartphones that have nearly 3x that. Use it wisely.
 
@@ -449,7 +449,7 @@ The first thing you should absolutely do when rooting or flashing a phone is to 
     ```
 
 5. Enable Developer Options.
-    a. You can find the [complete guide](/resources/modding-guide/developer-options/#android) since it works regardless of which version of Android you are using.
+    a. You can find the [complete guide](../developer-options/#android) since it works regardless of which version of Android you are using.
     b. In Developer Options, enable 'OEM unlocking'.
 
 {{< /steps >}}

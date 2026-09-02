@@ -7,10 +7,10 @@ I will always emphasize the use of Full Android mode in terms of customisation, 
 
 For Full Android, you will want to follow the guide in this order:
 
-1. [How to Access the Android Layer](/resources/modding-guide/how-to-access-the-android-layer/)
-2. [Developer Options](/resources/modding-guide/developer-options/) (Android and / or LightOS)
-3. [Setting Up Android](/resources/modding-guide/setting-up-android/)
-4. [Key Mapper](/resources/modding-guide/key-maps-and-macros/#key-mapper)
+1. [How to Access the Android Layer](../how-to-access-the-android-layer/)
+2. [Developer Options](../developer-options/) (Android and / or LightOS)
+3. [Setting Up Android](../setting-up-android/)
+4. [Key Mapper](../key-maps-and-macros/#key-mapper)
 
 Everything else in this guide is meant for you to tailor to your own use, and trying out launchers, applications, keyboards, etc. is encouraged to all users. I can give some recommendations, but there is so many apps, key maps and macros that can all be customised to your own preferences.
 
@@ -37,7 +37,7 @@ For Hybrid Mode users, this is necessary for enabling Bluetooth pairing and addi
 
 ## Change Launcher
 
-If you haven't already, enable LightOS developer options. You can find instructions on how to do so **[HERE](/resources/modding-guide/developer-options/#lightos)**.
+If you haven't already, enable LightOS developer options. You can find instructions on how to do so **[HERE](../developer-options/#lightos)**.
 
 > [!NOTE]
 > 'Change Launcher' is only able to be accessed through LightOS Developer Options. As of [Firmware v.1.440000](https://support.thelightphone.com/hc/en-us/articles/360031105751-Software-Versions-Change-Log), access to LightOS Developer Options is no longer possible as the factory version is now reverted to v52x or higher. If you have already enabled LightOS Developer Options prior to Firmware v1.440000, you will still be able to access these settings.
@@ -56,8 +56,8 @@ If you haven't already, enable LightOS developer options. You can find instructi
 3. You will then be prompted to change your default home app to the one of your choice.
 4. Once fully booted into Android, you should be able to see the status bar.
 5. Go ahead and change your other default apps to AOSP or any alternative applications you like as well as changing navigation if you wish.
-    a. You can click **[HERE](/resources/modding-guide/setting-up-android/#default-applications)** to jump to 'Default Applications' if you are unsure of how to do so.
-    b. You can click **[HERE](/resources/modding-guide/setting-up-android/#gesture-navigation)** to jump to 'Gesture Navigation', if you are unsure of how to change navigation settings.
+    a. You can click **[HERE](../setting-up-android/#default-applications)** to jump to 'Default Applications' if you are unsure of how to do so.
+    b. You can click **[HERE](../setting-up-android/#gesture-navigation)** to jump to 'Gesture Navigation', if you are unsure of how to change navigation settings.
 
 {{< /steps >}}
 

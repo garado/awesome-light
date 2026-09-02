@@ -6,17 +6,6 @@
     <article class="page-prose">
       <h1>{{ .Title }}</h1>
       {{ .Content }}
-
-      {{ with .Pages }}
-      <ul class="page-children">
-        {{ range . }}
-        <li>
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          {{ with .Params.summary }}<span class="page-children-summary">{{ . }}</span>{{ end }}
-        </li>
-        {{ end }}
-      </ul>
-      {{ end }}
     </article>
   </main>
 </div>

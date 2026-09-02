@@ -2,4 +2,4 @@
 title: Resources
 ---
 
-Guides and reference material for building and modding Light Phone apps.
+Guides and reference materials for the Light Phone.

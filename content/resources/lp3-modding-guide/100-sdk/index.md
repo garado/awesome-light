@@ -93,9 +93,9 @@ What you will need:
 
 You will need to follow two sections detailed in this guide:
 
-1. [How to Access the Android Layer](/resources/modding-guide/how-to-access-the-android-layer/)
-2. [Android Developer Options](/resources/modding-guide/developer-options/#android)
-3. [Enabling ADB / Debugging via Android SDK](/resources/modding-guide/full-android/#adb-via-android-sdk) (Steps 1-10)
+1. [How to Access the Android Layer](../how-to-access-the-android-layer/)
+2. [Android Developer Options](../developer-options/#android)
+3. [Enabling ADB / Debugging via Android SDK](../full-android/#adb-via-android-sdk) (Steps 1-10)
 
 ## Installing applications
 
@@ -105,11 +105,11 @@ You can install applications a few ways:
 - Default Android Package Installer
 - Via ADB
 
-All community-made tools for the LP3 are recommended to be downloaded via [Obtainium](https://github.com/ImranR98/Obtainium) as this will allow them to stay updated frequently as developers frequently push out new fixes and releases. A list of current community-made Light tools can be found **[HERE](/resources/modding-guide/applications/#community-made-light-tools)**.
+All community-made tools for the LP3 are recommended to be downloaded via [Obtainium](https://github.com/ImranR98/Obtainium) as this will allow them to stay updated frequently as developers frequently push out new fixes and releases. A list of current community-made Light tools can be found **[HERE](../applications/#community-made-light-tools)**.
 
 ### Via an App Store
 
-In this guide, under [Applications](/resources/modding-guide/applications/), the section [Clients](/resources/modding-guide/applications/#clients) walks you through how to install [Aurora](https://auroraoss.com/files) and/or your preferred choice of FOSS/OSS app store client.
+In this guide, under [Applications](../applications/), the section [Clients](../applications/#clients) walks you through how to install [Aurora](https://auroraoss.com/files) and/or your preferred choice of FOSS/OSS app store client.
 
 For proprietary non-FOSS applications (i.e. Discord, WhatsApp, Apple Music, Spotify, etc.) you will need the Aurora store. Aurora store is a Google Play client so anything that you would normally find on the Google Play Store will be here, however, there is no guarantee that it will work on the LP3. There is a [mega thread on r/ModifiedLightPhones](https://www.reddit.com/r/ModifiedLightPhones/comments/1qxejib/which_apps_work_on_the_light_phone_23_mega_thread/) that details some of the known applications that work on the LP3.
 
@@ -149,7 +149,7 @@ What you will need:
 - Reliable wired USB-C to USB-A or USB-C to USB-C connection
 - PC with ADB via Android SDK
 
-At this point, USB debugging should already be enabled. If it is not, please go through steps 1-14 in the section [ADB via Android SDK](/resources/modding-guide/full-android/#adb-via-android-sdk).
+At this point, USB debugging should already be enabled. If it is not, please go through steps 1-14 in the section [ADB via Android SDK](../full-android/#adb-via-android-sdk).
 
 {{< steps >}}
 

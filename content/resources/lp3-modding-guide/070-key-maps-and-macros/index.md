@@ -69,7 +69,7 @@ You can also organise your key maps via groups and sub-groups depending on how m
 In this section, I'll show you how to make a new key map, and while this will be for the flashlight button, it is applicable to any key maps you make. In LightOS, you use the scroll wheel button as a long press in order to activate the flashlight. When we access Android, we lose that functionality.
 
 > [!NOTE]
-> Make sure your display and font size are at the smallest possible, otherwise you will not be able to record triggers for key maps. If you skipped this step, click **[HERE](/resources/modding-guide/setting-up-android/#display-and-font-size)** to jump to the section explaining how to do so.
+> Make sure your display and font size are at the smallest possible, otherwise you will not be able to record triggers for key maps. If you skipped this step, click **[HERE](../setting-up-android/#display-and-font-size)** to jump to the section explaining how to do so.
 
 **Creating key maps, re-creating LightOS flashlight button (example):**
 

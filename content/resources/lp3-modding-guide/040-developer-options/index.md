@@ -7,7 +7,7 @@ There are two different developer options, one in LightOS and one in Android. Th
 
 Android developer options will give you more access to side-loading and installing applications or granting permissions to applications.
 
-LightOS developer options will give you access to the entire 'tools' list including Beta 'tools' without connecting a Light Account to access them. This is also how you can disable `light_mode`, and Change Launcher is covered **[HERE](/resources/modding-guide/full-android/#global-setting-light_mode)**.
+LightOS developer options will give you access to the entire 'tools' list including Beta 'tools' without connecting a Light Account to access them. This is also how you can disable `light_mode`, and Change Launcher is covered **[HERE](../full-android/#global-setting-light_mode)**.
 
 # Android
 
@@ -58,7 +58,7 @@ Settings > 'About Phone' > 'Build Number'
 > [!NOTE]
 > This will factory reset the LightOS app. Any Light Account information will be deleted as well as any software updates that may be on the phone. Any data such as contacts, call logs, texts, photos or music that is stored locally on the phone can still be accessed after this.
 
-If you are performing this step later on after enabling Hybrid / Full Android Mode, make sure your default applications are all set to LightOS prior to enabling developer options on the LightOS side. Changing default applications can be found [HERE](/resources/modding-guide/setting-up-android/#default-applications).
+If you are performing this step later on after enabling Hybrid / Full Android Mode, make sure your default applications are all set to LightOS prior to enabling developer options on the LightOS side. Changing default applications can be found [HERE](../setting-up-android/#default-applications).
 
 ```
 Settings > Apps > 'All Apps' > 'LightOS' > 'Uninstall Updates'

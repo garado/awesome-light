@@ -80,7 +80,7 @@ This is for basic navigation between apps, the home screen and recent applicatio
 
 For Hybrid users, you do not have the option to select 3-button navigation. LightOS uses a global setting called `light_mode` which disables 3-button navigation, the status bar and other missing UI elements on Android. Every time LightOS is opened, `light_mode` is changed to `[1]` and is enabled again, even if you disable it with `[0]`.
 
-Only Full Android users will be able to use the full functionality of 3-button navigation, the Android status bar and any formerly missing UI elements without needing to constantly change `light_mode`. You can find out how to disable `light_mode` **[HERE](/resources/modding-guide/full-android/#global-setting-light_mode)**.
+Only Full Android users will be able to use the full functionality of 3-button navigation, the Android status bar and any formerly missing UI elements without needing to constantly change `light_mode`. You can find out how to disable `light_mode` **[HERE](../full-android/#global-setting-light_mode)**.
 
 ```
 Settings > System > 'Gestures' > 'Navigation Mode' > 'Gesture Navigation'

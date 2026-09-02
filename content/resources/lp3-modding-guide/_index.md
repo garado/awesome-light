@@ -25,7 +25,7 @@ I will try to provide screenshots as much as possible, although I am doing this 
 i.e. `Settings > System > Developer Options`
 {{< /center >}}
 
-This file is best viewed as a PDF or the original .docx file. A lot of the original formatting and OCR is lost during conversion to Google Docs. This document is also frequently being updated. All updates are viewable in the Document Change History **[HERE](/resources/modding-guide/document-change-history/)**.
+This file is best viewed as a PDF or the original .docx file. A lot of the original formatting and OCR is lost during conversion to Google Docs. This document is also frequently being updated. All updates are viewable in the Document Change History **[HERE](document-change-history/)**.
 
 This guide is not meant to be followed top down. It is simply a compilation of information that I have acquired over a few months with the Light Phone III and everything I wish to share and give back to the community.
 
@@ -33,4 +33,4 @@ Initially starting out, you want to access Android first, then set Android up an
 
 This guide relies on the navigation pane to denote different sections. Any indented sections are sub-sections of the main section. Using Adobe Acrobat, you can find the navigation pane on the right side of the screen under Bookmarks:
 
-* If you wish to skip the technical jargon, you can click **[HERE](/resources/modding-guide/how-to-access-the-android-layer/)**.
+* If you wish to skip the technical jargon, you can click **[HERE](how-to-access-the-android-layer/)**.
