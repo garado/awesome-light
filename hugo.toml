@@ -15,6 +15,11 @@ enableRobotsTXT = true
   githubRepo = "https://github.com/garado/awesome-light"
   githubBranch = "main"
 
+# Registry of maintainers.
+[params.maintainers]
+  sirbloodysabbath = "https://github.com/sirbloodysabbath"
+  garado = "https://garado.dev"
+
 [markup.goldmark.renderer]
   unsafe = true
 

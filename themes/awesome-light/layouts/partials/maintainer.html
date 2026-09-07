@@ -1,0 +1,19 @@
+{{/*
+  Renders "Maintained by X" for a sidebar footer.
+
+  Cascades into child pages until overridden by a deeper `maintainer` param.
+
+  Expects: . = the current page
+*/}}
+{{ $maintainer := .Params.maintainer }}
+{{ if not $maintainer }}
+  {{ range .Ancestors }}
+    {{ if and (not $maintainer) .Params.maintainer }}
+      {{ $maintainer = .Params.maintainer }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ with $maintainer }}
+  {{ $url := index $.Site.Params.maintainers . }}
+  <div class="sidebar-footer-maintainer">Maintained by {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ . }}</a>{{ else }}{{ . }}{{ end }}</div>
+{{ end }}

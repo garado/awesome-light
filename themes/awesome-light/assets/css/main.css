@@ -326,10 +326,20 @@ button { font-family: inherit; touch-action: manipulation; }
   font-size: 1rem;
   color: var(--fg);
   text-decoration: none;
-  padding: 0.4rem 0.5rem;
   text-align: center;
 }
 .sidebar-footer-link:hover { text-decoration: underline; }
+
+.sidebar-footer-maintainer {
+  font-size: 1rem;
+  color: var(--fg);
+  text-align: center;
+}
+
+.sidebar-footer-maintainer a {
+  color: inherit;
+  text-decoration: underline;
+}
 
 .sidebar-mobile-toggle {
   display: none;

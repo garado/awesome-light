@@ -1,6 +1,7 @@
 ---
 title: "Light Phone III Hybrid/Full Android Modding Guide"
 layout: modding-guide
+maintainer: sirbloodysabbath
 outputs:
   - HTML
   - JSON
