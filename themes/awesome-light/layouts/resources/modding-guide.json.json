@@ -1,0 +1,21 @@
+{{- /*
+  Search index for the modding guide sidebar's live search.
+  One entry per page, each carrying its heading list + plain-text body.
+*/ -}}
+{{- $all := .Pages -}}
+{{- $all = $all | append . -}}
+{{- $index := slice -}}
+{{- range $all -}}
+  {{- $p := . -}}
+  {{- $heads := slice -}}
+  {{- range partial "flatten-headings.html" .Fragments.Headings -}}
+    {{- $heads = $heads | append (dict "title" .title "href" (printf "%s#%s" $p.RelPermalink .id)) -}}
+  {{- end -}}
+  {{- $body := .Plain | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+  {{- $index = $index | append (dict
+      "title" (.Title | htmlUnescape)
+      "href" .RelPermalink
+      "body" $body
+      "headings" $heads) -}}
+{{- end -}}
+{{- $index | jsonify -}}

@@ -5,15 +5,15 @@ theme = "awesome-light"
 
 enableRobotsTXT = true
 
-[outputs]
-  section = ["HTML", "JSON"]
-
 [frontmatter]
   date = ["date_added", "date", ":default"]
+  lastmod = [":git", "lastmod", "date", ":fileModTime"]
 
 [params]
   description = "Community-developed apps and tools for the Light Phone."
   bg = "#464646"
+  githubRepo = "https://github.com/garado/awesome-light"
+  githubBranch = "main"
 
 [markup.goldmark.renderer]
   unsafe = true

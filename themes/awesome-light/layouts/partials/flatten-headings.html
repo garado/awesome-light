@@ -1,0 +1,18 @@
+{{- /*
+  Recursively flattens a heading tree (.Fragments.Headings or .Headings)
+  into a flat slice of {id, title} dicts. Headings without an id/title are
+  skipped but their children are kept.
+  Expects: . = a slice of headings.
+*/ -}}
+{{- $out := slice -}}
+{{- range . -}}
+  {{- if and .ID .Title -}}
+    {{- $out = $out | append (dict "id" .ID "title" (.Title | plainify | htmlUnescape | strings.TrimSpace)) -}}
+  {{- end -}}
+  {{- with .Headings -}}
+    {{- range partial "flatten-headings.html" . -}}
+      {{- $out = $out | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}
