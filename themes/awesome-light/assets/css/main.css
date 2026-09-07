@@ -297,6 +297,7 @@ button { font-family: inherit; touch-action: manipulation; }
   overflow-y: auto;
 }
 
+.sidebar-cat[hidden] { display: none; }
 .sidebar-cat {
   display: flex;
   align-items: center;

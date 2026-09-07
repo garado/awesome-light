@@ -1,0 +1,22 @@
+{{- /*
+  Search index for a generic content section's sidebar (partials/page-sidebar.html).
+  Same shape as resources/modding-guide.json.json, but scoped to this
+  section's direct children rather than a deep chapter tree.
+*/ -}}
+{{- $all := where .Pages "Params.hidden" "!=" true -}}
+{{- $all = $all | append . -}}
+{{- $index := slice -}}
+{{- range $all -}}
+  {{- $p := . -}}
+  {{- $heads := slice -}}
+  {{- range partial "flatten-headings.html" .Fragments.Headings -}}
+    {{- $heads = $heads | append (dict "title" .title "href" (printf "%s#%s" $p.RelPermalink .id)) -}}
+  {{- end -}}
+  {{- $body := .Plain | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+  {{- $index = $index | append (dict
+      "title" (.Title | htmlUnescape)
+      "href" .RelPermalink
+      "body" $body
+      "headings" $heads) -}}
+{{- end -}}
+{{- $index | jsonify -}}

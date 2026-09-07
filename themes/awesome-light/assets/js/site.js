@@ -2,6 +2,98 @@
   "use strict";
 
   /* ---------------------------------------------------------------- */
+  /* Shared: live search over a section's JSON index                  */
+  /* Used by the modding-guide sidebar (doc-*) and any generic content */
+  /* section sidebar (page-*) - same index shape, same behavior.       */
+  /* ---------------------------------------------------------------- */
+  const initSectionSearch = ({ inputId, clearId, resultsId, contentsId }) => {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const clearBtn = document.getElementById(clearId);
+    const resultsEl = document.getElementById(resultsId);
+    const contentsEl = document.getElementById(contentsId);
+    let indexPromise = null;
+
+    const loadIndex = () => {
+      if (!indexPromise) {
+        indexPromise = fetch(input.dataset.index)
+          .then((r) => (r.ok ? r.json() : []))
+          .catch(() => []);
+      }
+      return indexPromise;
+    };
+
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
+
+    const render = (rows) => {
+      resultsEl.innerHTML = rows.length
+        ? rows.map((r) =>
+            `<a class="sidebar-search-hit" href="${r.href}">` +
+            `<span class="sidebar-search-hit-title">${esc(r.title)}</span>` +
+            (r.section ? `<span class="sidebar-search-hit-sec">${esc(r.section)}</span>` : "") +
+            "</a>"
+          ).join("")
+        : '<p class="sidebar-search-empty">No matches.</p>';
+    };
+
+    const search = (raw) => {
+      const q = raw.trim().toLowerCase();
+      if (!q) {
+        resultsEl.hidden = true;
+        if (contentsEl) contentsEl.hidden = false;
+        return;
+      }
+      loadIndex().then((pages) => {
+        if (input.value.trim().toLowerCase() !== q) return; // superseded
+        const hits = [];
+        const seen = new Set();
+        const add = (title, section, href, rank) => {
+          if (seen.has(href)) return;
+          seen.add(href);
+          hits.push({ title, section, href, rank });
+        };
+        pages.forEach((p) => {
+          if (p.title.toLowerCase().indexOf(q) !== -1) add(p.title, "", p.href, 0);
+          (p.headings || []).forEach((h) => {
+            if (h.title.toLowerCase().indexOf(q) !== -1) add(h.title, p.title, h.href, 1);
+          });
+          if (!seen.has(p.href) && (p.body || "").toLowerCase().indexOf(q) !== -1) {
+            add(p.title, "in text", p.href, 2);
+          }
+        });
+        hits.sort((a, b) => a.rank - b.rank);
+        render(hits.slice(0, 40));
+        resultsEl.hidden = false;
+        if (contentsEl) contentsEl.hidden = true;
+      });
+    };
+
+    let debounce;
+    input.addEventListener("input", () => {
+      if (clearBtn) clearBtn.hidden = !input.value;
+      clearTimeout(debounce);
+      debounce = setTimeout(() => search(input.value), 110);
+    });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        input.value = "";
+        if (clearBtn) clearBtn.hidden = true;
+        search("");
+      }
+    });
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        input.value = "";
+        clearBtn.hidden = true;
+        search("");
+        input.focus();
+      });
+    }
+  };
+
+  /* ---------------------------------------------------------------- */
   /* Theme toggle                                                     */
   /* ---------------------------------------------------------------- */
   const themeToggle = document.getElementById("theme-toggle");
@@ -63,30 +155,14 @@
   }
 
   /* ---------------------------------------------------------------- */
-  /* Content-page search box: hand the query off to the home grid     */
+  /* Content-page sidebar: live search over the section JSON index    */
   /* ---------------------------------------------------------------- */
-  const pageSearch = document.getElementById("page-search");
-  if (pageSearch) {
-    const goSearch = () => {
-      const q = pageSearch.value.trim();
-      if (q) sessionStorage.setItem("appSearch", q);
-      window.location.href = "/";
-    };
-    pageSearch.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") { e.preventDefault(); goSearch(); }
-    });
-    const pageSearchClear = document.getElementById("page-search-clear");
-    if (pageSearchClear) {
-      pageSearch.addEventListener("input", () => {
-        pageSearchClear.hidden = !pageSearch.value;
-      });
-      pageSearchClear.addEventListener("click", () => {
-        pageSearch.value = "";
-        pageSearchClear.hidden = true;
-        pageSearch.focus();
-      });
-    }
-  }
+  initSectionSearch({
+    inputId: "page-search",
+    clearId: "page-search-clear",
+    resultsId: "page-search-results",
+    contentsId: "page-contents",
+  });
 
   /* ---------------------------------------------------------------- */
   /* Document outline: scrollspy for the modding-guide sidebar         */
@@ -220,89 +296,12 @@
   /* ---------------------------------------------------------------- */
   /* Modding-guide sidebar: live search over the section JSON index    */
   /* ---------------------------------------------------------------- */
-  const docSearch = document.getElementById("doc-search");
-  if (docSearch) {
-    const clearBtn = document.getElementById("doc-search-clear");
-    const resultsEl = document.getElementById("doc-search-results");
-    const contentsEl = document.getElementById("doc-contents");
-    let indexPromise = null;
-
-    const loadIndex = () => {
-      if (!indexPromise) {
-        indexPromise = fetch(docSearch.dataset.index)
-          .then((r) => (r.ok ? r.json() : []))
-          .catch(() => []);
-      }
-      return indexPromise;
-    };
-
-    const esc = (s) => s.replace(/[&<>"]/g, (c) => (
-      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
-    ));
-
-    const render = (rows) => {
-      resultsEl.innerHTML = rows.length
-        ? rows.map((r) =>
-            `<a class="sidebar-search-hit" href="${r.href}">` +
-            `<span class="sidebar-search-hit-title">${esc(r.title)}</span>` +
-            (r.section ? `<span class="sidebar-search-hit-sec">${esc(r.section)}</span>` : "") +
-            "</a>"
-          ).join("")
-        : '<p class="sidebar-search-empty">No matches.</p>';
-    };
-
-    const search = (raw) => {
-      const q = raw.trim().toLowerCase();
-      if (!q) {
-        resultsEl.hidden = true;
-        if (contentsEl) contentsEl.hidden = false;
-        return;
-      }
-      loadIndex().then((pages) => {
-        if (docSearch.value.trim().toLowerCase() !== q) return; // superseded
-        const hits = [];
-        const seen = new Set();
-        const add = (title, section, href, rank) => {
-          if (seen.has(href)) return;
-          seen.add(href);
-          hits.push({ title, section, href, rank });
-        };
-        pages.forEach((p) => {
-          if (p.title.toLowerCase().indexOf(q) !== -1) add(p.title, "", p.href, 0);
-          (p.headings || []).forEach((h) => {
-            if (h.title.toLowerCase().indexOf(q) !== -1) add(h.title, p.title, h.href, 1);
-          });
-          if (!seen.has(p.href) && (p.body || "").toLowerCase().indexOf(q) !== -1) {
-            add(p.title, "in text", p.href, 2);
-          }
-        });
-        hits.sort((a, b) => a.rank - b.rank);
-        render(hits.slice(0, 40));
-        resultsEl.hidden = false;
-        if (contentsEl) contentsEl.hidden = true;
-      });
-    };
-
-    let debounce;
-    docSearch.addEventListener("input", () => {
-      clearBtn.hidden = !docSearch.value;
-      clearTimeout(debounce);
-      debounce = setTimeout(() => search(docSearch.value), 110);
-    });
-    docSearch.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        docSearch.value = "";
-        clearBtn.hidden = true;
-        search("");
-      }
-    });
-    clearBtn.addEventListener("click", () => {
-      docSearch.value = "";
-      clearBtn.hidden = true;
-      search("");
-      docSearch.focus();
-    });
-  }
+  initSectionSearch({
+    inputId: "doc-search",
+    clearId: "doc-search-clear",
+    resultsId: "doc-search-results",
+    contentsId: "doc-contents",
+  });
 
   /* ---------------------------------------------------------------- */
   /* Grid: category filter + search                                   */
