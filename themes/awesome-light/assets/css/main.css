@@ -1109,6 +1109,23 @@ a.sidebar-cat:hover { color: var(--muted); }
   margin: 1.75rem 0 0.5rem;
   color: var(--muted);
 }
+
+/* hover-reveal "#" anchor on content headings */
+.page-prose :is(h1, h2, h3, h4, h5, h6) { position: relative; }
+.heading-anchor {
+  position: relative;
+  margin-left: 0.35em;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+.page-prose :is(h1, h2, h3, h4, h5, h6):hover > .heading-anchor,
+.heading-anchor:focus-visible { opacity: 1; }
+.heading-anchor:hover,
+.heading-anchor.is-copied { color: var(--fg); }
+
 .page-prose p,
 .page-prose ul,
 .page-prose ol { margin: 0 0 1rem; }

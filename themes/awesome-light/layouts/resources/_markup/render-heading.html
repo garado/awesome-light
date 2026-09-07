@@ -1,0 +1,9 @@
+{{- /*
+  Heading render hook for /resources/ content.
+  Same as the default heading, plus a hover-reveal "#" anchor that links to (and copies a link to) the heading
+*/ -}}
+<h{{ .Level }} id="{{ .Anchor }}"
+  {{- range $k, $v := .Attributes }} {{ $k }}="{{ $v }}"{{ end }}>
+  {{- .Text -}}
+  <a class="heading-anchor" href="#{{ .Anchor }}" aria-label="Copy link to this section">#</a>
+</h{{ .Level }}>

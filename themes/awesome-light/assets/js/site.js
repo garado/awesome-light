@@ -202,6 +202,22 @@
   }
 
   /* ---------------------------------------------------------------- */
+  /* Content headings: click the "#" to copy a link to that section    */
+  /* ---------------------------------------------------------------- */
+  document.querySelectorAll(".heading-anchor").forEach((anchor) => {
+    anchor.addEventListener("click", () => {
+      // the <a href="#id"> still handles nav + hash; we just copy the URL
+      const url = location.origin + location.pathname + anchor.getAttribute("href");
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).catch(() => {});
+      }
+      anchor.classList.add("is-copied");
+      clearTimeout(anchor._copyTimer);
+      anchor._copyTimer = setTimeout(() => anchor.classList.remove("is-copied"), 1200);
+    });
+  });
+
+  /* ---------------------------------------------------------------- */
   /* Modding-guide sidebar: live search over the section JSON index    */
   /* ---------------------------------------------------------------- */
   const docSearch = document.getElementById("doc-search");
