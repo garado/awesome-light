@@ -12,7 +12,8 @@
 {{ $pages := where $section.Pages "Params.hidden" "!=" true }}
 
 <aside class="sidebar" id="sidebar">
-  <a class="sidebar-site-title" href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+  <a class="sidebar-site-title" href="{{ $section.RelPermalink }}">{{ $section.Title }}</a>
+  {{ partial "maintainer.html" $current }}
   <div class="sidebar-top">
     <div class="sidebar-search">
       <svg class="sidebar-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -44,7 +45,6 @@
       {{ end }}
     </nav>
   </div>
-  {{ partial "maintainer.html" $current }}
   <a class="sidebar-footer-link" href="https://github.com/garado/awesome-light" target="_blank" rel="noopener">Contribute on GitHub &rarr;</a>
 </aside>
 <button class="sidebar-mobile-toggle" id="sidebar-mobile-toggle" aria-label="Toggle menu">

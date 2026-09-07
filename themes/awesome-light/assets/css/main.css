@@ -91,8 +91,8 @@ button { font-family: inherit; touch-action: manipulation; }
 }
 
 .sidebar {
-  flex: 0 0 16rem;
-  width: 16rem;
+  flex: 0 0 18rem;
+  width: 18rem;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -314,7 +314,7 @@ button { font-family: inherit; touch-action: manipulation; }
   text-underline-offset: 0.25em;
 }
 .sidebar-cat:hover { color: var(--muted); }
-.sidebar-cat--active { color: var(--fg); font-weight: normal; }
+.sidebar-cat--active { color: var(--fg); font-weight: 700; }
 .sidebar-cat--active .sidebar-cat-name { text-decoration: underline; }
 
 .sidebar-cat-count {
@@ -330,13 +330,13 @@ button { font-family: inherit; touch-action: manipulation; }
 }
 .sidebar-footer-link:hover { text-decoration: underline; }
 
-.sidebar-footer-maintainer {
-  font-size: 1rem;
-  color: var(--fg);
-  text-align: center;
+.sidebar-maintainer {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: -0.5rem;
 }
 
-.sidebar-footer-maintainer a {
+.sidebar-maintainer a {
   color: inherit;
   text-decoration: underline;
 }
@@ -1223,10 +1223,11 @@ a.sidebar-cat:hover { color: var(--muted); }
 .sidebar-toc-link:hover { color: var(--fg); }
 .sidebar-toc-link--active {
   color: var(--fg);
+  font-weight: 700;
   text-decoration: underline;
 }
 /* the chapter you are currently on (top-level, expanded) */
-.sidebar-toc-link--current { color: var(--fg); }
+.sidebar-toc-link--current { color: var(--fg); font-weight: 700; }
 
 /* prev / next chapter links at the foot of the content */
 .doc-page-footer {

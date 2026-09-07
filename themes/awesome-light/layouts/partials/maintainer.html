@@ -15,5 +15,5 @@
 {{ end }}
 {{ with $maintainer }}
   {{ $url := index $.Site.Params.maintainers . }}
-  <div class="sidebar-footer-maintainer">Maintained by {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ . }}</a>{{ else }}{{ . }}{{ end }}</div>
+  <div class="sidebar-maintainer">Maintained by {{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ . }}</a>{{ else }}{{ . }}{{ end }}</div>
 {{ end }}
