@@ -23,35 +23,35 @@ This application is crucial in helping to restore button functionality while in 
     ![Key Mapper showing '2 warnings' at the top of the screen.](./assets/p047-2.png)
 
 4. Enable accessibility services:
-    a. Select 'Fix'.
+    - a. Select 'Fix'.
 
     ![The accessibility service warning with 'Fix' highlighted.](./assets/p048-1.png)
 
-    b. Select 'Enable'.
+    - b. Select 'Enable'.
 
     ![The 'Accessibility service must be enabled' dialog with 'Enable' highlighted.](./assets/p048-2.png)
 
-    c. Make sure Key Mapper is 'ON' in Accessibility Settings.
+    - c. Make sure Key Mapper is 'ON' in Accessibility Settings.
 
     ![The Accessibility settings list with 'Key Mapper' set to On.](./assets/p049-1.png)
 
     ![The Key Mapper accessibility screen with 'Use Key Mapper' enabled.](./assets/p049-2.png)
 
-    d. Go back to Key Mapper.
+    - d. Go back to Key Mapper.
 5. Turn on notifications:
-    a. Select 'Fix'.
+    - a. Select 'Fix'.
 
     ![The notifications warning with 'Fix' highlighted.](./assets/p050-1.png)
 
-    b. Select 'Turn on'.
+    - b. Select 'Turn on'.
 
     ![The 'Turn on notifications' dialog with 'Turn on' highlighted.](./assets/p050-2.png)
 
-    c. Select 'Allow'.
+    - c. Select 'Allow'.
 
     ![The 'Allow Key Mapper to send you notifications?' dialog with 'ALLOW' highlighted.](./assets/p051-1.png)
 
-    d. Go back to Key Mapper.
+    - d. Go back to Key Mapper.
 6. Verify Key Mapper is running.
 
     ![Key Mapper showing a green 'Running' indicator at the top.](./assets/p051-2.png)
@@ -84,7 +84,7 @@ In this section, I'll show you how to make a new key map, and while this will be
     ![The 'Trigger' tab with 'Record trigger' highlighted.](./assets/p053-1.png)
 
 3. Press the button you wish to map.
-    a. In this case, the original flashlight button (centre button of scroll wheel) is 'unknown keycode 319'.
+    - a. In this case, the original flashlight button (centre button of scroll wheel) is 'unknown keycode 319'.
 4. Below the registered key trigger, select radial button 'Long press'.
 
     ![The recorded trigger 'unknown keycode 319' with 'Long press' selected.](./assets/p053-2.png)
@@ -103,16 +103,16 @@ In this section, I'll show you how to make a new key map, and while this will be
     ![The 'Toggle flashlight' options with 'Done' highlighted.](./assets/p055-1.png)
 
 9. If running in Hybrid mode, you'll want to add the following constraint so your key maps don't interfere with LightOS:
-    a. From the top banner, select 'Constraints'.
-    b. Select 'Add constraint'.
+    - a. From the top banner, select 'Constraints'.
+    - b. Select 'Add constraint'.
 
     ![The 'Constraints' tab with 'Add constraint' highlighted.](./assets/p055-2.png)
 
-    c. Select 'App not in foreground'
+    - c. Select 'App not in foreground'
 
     ![The 'Choose a constraint' screen with 'App not in foreground' highlighted.](./assets/p056-1.png)
 
-    d. Find LightOS and select it.
+    - d. Find LightOS and select it.
 
     ![The app list with 'LightOS' highlighted.](./assets/p056-2.png)
 
