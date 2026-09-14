@@ -6,6 +6,7 @@ download: "https://github.com/rsolter/matchday/releases"
 author: "rsolter"
 author_url: "https://github.com/rsolter"
 category: "Entertainment"
+light_sdk: true
 images:
   - "A.png"
   - "B.png"
