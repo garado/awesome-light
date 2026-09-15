@@ -5,7 +5,7 @@ repo: "https://github.com/Ashley-doRego/ashdev"
 download: "https://github.com/Ashley-doRego/ashdev/releases"
 author: "Ashley-doRego"
 author_url: "https://github.com/Ashley-doRego"
-category: "Productivity"
+category: "Health & Wellness"
 images:
   - "A.png"
   - "B.png"
