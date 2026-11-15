@@ -8,7 +8,7 @@ author_url: "https://github.com/mrrobashcroft"
 category: "Music/Audio"
 light_sdk: true
 images:
-  - Playing Live Stream
+  - Home 01 Playing [favourited].png
   - Multiple screenshots
 description: "Find and stream online radio stations, and save your favourites."
 ---
