@@ -9,7 +9,7 @@ category: "Music/Audio"
 light_sdk: true
 images:
   - Home 01 Playing [favourited].png
-  - Multiple screenshots
+  - Snapshots of Radio Tool.png
 description: "Find and stream online radio stations, and save your favourites."
 ---
 
