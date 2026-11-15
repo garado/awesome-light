@@ -5,7 +5,7 @@ repo: "https://github.com/cmg-ops/LP3-Bible"
 download: "https://github.com/cmg-ops/LP3-Bible/releases"
 author: "cmg-ops"
 author_url: "https://github.com/cmg-ops"
-category: "Utility"
+category: "Reading & Reference"
 images:
   - A.png
   - B.png

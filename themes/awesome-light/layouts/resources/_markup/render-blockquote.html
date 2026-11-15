@@ -1,0 +1,48 @@
+{{- /*
+  Blockquote render hook for /resources/ pages.
+
+  GitHub-style alerts become styled callouts:
+
+      > [!NOTE]
+      > [!TIP]
+      > [!IMPORTANT]
+      > [!WARNING]
+      > [!CAUTION]
+
+  Also tolerates the common typo `> ![WARNING]`. Everything else renders
+  as a plain <blockquote>.
+*/ -}}
+
+{{- $type := "" -}}
+{{- $title := "" -}}
+{{- $body := .Text -}}
+{{- $known := slice "note" "tip" "important" "warning" "caution" -}}
+
+{{- if eq .Type "alert" -}}
+  {{- $type = .AlertType -}}
+  {{- $title = .AlertTitle -}}
+{{- else -}}
+  {{- $probe := .Text | plainify | strings.TrimSpace -}}
+  {{- $tag := lower (replaceRE `(?is)^!?\[!?([a-z]+)\].*` "$1" $probe) -}}
+  {{- if and (ne $tag $probe) (in $known $tag) -}}
+    {{- $type = $tag -}}
+    {{- $body = replaceRE `(?is)(<p>\s*)!?\[!?[a-z]+\]\s*(<br\s*/?>\s*)?` "$1" .Text -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $type -}}
+  {{- $labels := dict "note" "Note" "tip" "Tip" "important" "Important" "warning" "Warning" "caution" "Caution" -}}
+<div class="callout callout--{{ $type }}">
+  <p class="callout-title">
+    {{ partial "callout-icon.html" $type }}
+    <span>{{ with $title }}{{ . }}{{ else }}{{ index $labels $type }}{{ end }}</span>
+  </p>
+  <div class="callout-body">
+    {{ $body }}
+  </div>
+</div>
+{{- else -}}
+<blockquote>
+  {{ .Text }}
+</blockquote>
+{{- end -}}

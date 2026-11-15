@@ -2,6 +2,98 @@
   "use strict";
 
   /* ---------------------------------------------------------------- */
+  /* Shared: live search over a section's JSON index                  */
+  /* Used by the modding-guide sidebar (doc-*) and any generic content */
+  /* section sidebar (page-*) - same index shape, same behavior.       */
+  /* ---------------------------------------------------------------- */
+  const initSectionSearch = ({ inputId, clearId, resultsId, contentsId }) => {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const clearBtn = document.getElementById(clearId);
+    const resultsEl = document.getElementById(resultsId);
+    const contentsEl = document.getElementById(contentsId);
+    let indexPromise = null;
+
+    const loadIndex = () => {
+      if (!indexPromise) {
+        indexPromise = fetch(input.dataset.index)
+          .then((r) => (r.ok ? r.json() : []))
+          .catch(() => []);
+      }
+      return indexPromise;
+    };
+
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]
+    ));
+
+    const render = (rows) => {
+      resultsEl.innerHTML = rows.length
+        ? rows.map((r) =>
+            `<a class="sidebar-search-hit" href="${r.href}">` +
+            `<span class="sidebar-search-hit-title">${esc(r.title)}</span>` +
+            (r.section ? `<span class="sidebar-search-hit-sec">${esc(r.section)}</span>` : "") +
+            "</a>"
+          ).join("")
+        : '<p class="sidebar-search-empty">No matches.</p>';
+    };
+
+    const search = (raw) => {
+      const q = raw.trim().toLowerCase();
+      if (!q) {
+        resultsEl.hidden = true;
+        if (contentsEl) contentsEl.hidden = false;
+        return;
+      }
+      loadIndex().then((pages) => {
+        if (input.value.trim().toLowerCase() !== q) return; // superseded
+        const hits = [];
+        const seen = new Set();
+        const add = (title, section, href, rank) => {
+          if (seen.has(href)) return;
+          seen.add(href);
+          hits.push({ title, section, href, rank });
+        };
+        pages.forEach((p) => {
+          if (p.title.toLowerCase().indexOf(q) !== -1) add(p.title, "", p.href, 0);
+          (p.headings || []).forEach((h) => {
+            if (h.title.toLowerCase().indexOf(q) !== -1) add(h.title, p.title, h.href, 1);
+          });
+          if (!seen.has(p.href) && (p.body || "").toLowerCase().indexOf(q) !== -1) {
+            add(p.title, "in text", p.href, 2);
+          }
+        });
+        hits.sort((a, b) => a.rank - b.rank);
+        render(hits.slice(0, 40));
+        resultsEl.hidden = false;
+        if (contentsEl) contentsEl.hidden = true;
+      });
+    };
+
+    let debounce;
+    input.addEventListener("input", () => {
+      if (clearBtn) clearBtn.hidden = !input.value;
+      clearTimeout(debounce);
+      debounce = setTimeout(() => search(input.value), 110);
+    });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        input.value = "";
+        if (clearBtn) clearBtn.hidden = true;
+        search("");
+      }
+    });
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        input.value = "";
+        clearBtn.hidden = true;
+        search("");
+        input.focus();
+      });
+    }
+  };
+
+  /* ---------------------------------------------------------------- */
   /* Theme toggle                                                     */
   /* ---------------------------------------------------------------- */
   const themeToggle = document.getElementById("theme-toggle");
@@ -61,6 +153,155 @@
       setMobileToggleLabel(sidebar.classList.contains("open"));
     });
   }
+
+  /* ---------------------------------------------------------------- */
+  /* Content-page sidebar: live search over the section JSON index    */
+  /* ---------------------------------------------------------------- */
+  initSectionSearch({
+    inputId: "page-search",
+    clearId: "page-search-clear",
+    resultsId: "page-search-results",
+    contentsId: "page-contents",
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Document outline: scrollspy for the modding-guide sidebar         */
+  /* ---------------------------------------------------------------- */
+  const tocLinks = Array.from(document.querySelectorAll(".sidebar-toc-link"));
+  if (tocLinks.length) {
+    const entries = tocLinks
+      .map((link) => {
+        const id = decodeURIComponent((link.hash || "").slice(1));
+        const el = id && document.getElementById(id);
+        return el ? { id, el, link } : null;
+      })
+      .filter(Boolean);
+
+    if (entries.length) {
+      let activeId = null;
+      const setActive = (id) => {
+        if (id === activeId) return;
+        activeId = id;
+        entries.forEach(({ link }) => link.classList.remove("sidebar-toc-link--active"));
+        const match = entries.find((e) => e.id === id);
+        if (match) {
+          match.link.classList.add("sidebar-toc-link--active");
+          match.link.scrollIntoView({ block: "nearest" });
+        }
+      };
+
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const cutoff = window.scrollY + 120;
+        let current = entries[0].id;
+        for (const e of entries) {
+          if (e.el.getBoundingClientRect().top + window.scrollY <= cutoff) current = e.id;
+        }
+        setActive(current);
+      };
+
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+          }
+        },
+        { passive: true }
+      );
+      update();
+    }
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Image lightbox (`resources/` only)                               */
+  /* ---------------------------------------------------------------- */
+  const figureImgs = Array.from(document.querySelectorAll(".page-figure img"));
+  if (figureImgs.length) {
+    const box = document.createElement("div");
+    box.className = "lightbox";
+    box.id = "lightbox";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-hidden", "true");
+    box.innerHTML =
+      '<button class="lightbox-close" type="button" aria-label="Close image">×</button>' +
+      '<figure class="lightbox-figure">' +
+      '<img class="lightbox-img" alt="">' +
+      '<figcaption class="lightbox-caption"></figcaption>' +
+      "</figure>";
+    document.body.appendChild(box);
+
+    const boxImg = box.querySelector(".lightbox-img");
+    const boxCap = box.querySelector(".lightbox-caption");
+    const boxClose = box.querySelector(".lightbox-close");
+    let lastFocused = null;
+
+    const openLightbox = (img) => {
+      lastFocused = img;
+      boxImg.src = img.currentSrc || img.src;
+      boxImg.alt = img.alt || "";
+      const fig = img.closest(".page-figure");
+      const cap = fig && fig.querySelector("figcaption");
+      const text = (cap && cap.textContent.trim()) || img.alt || "";
+      boxCap.textContent = text;
+      boxCap.hidden = !text;
+      box.classList.add("open");
+      box.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      boxClose.focus();
+    };
+
+    const closeLightbox = () => {
+      box.classList.remove("open");
+      box.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      boxImg.removeAttribute("src");
+      if (lastFocused) lastFocused.focus();
+    };
+
+    figureImgs.forEach((img) => {
+      img.setAttribute("role", "button");
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("aria-label", "Expand image" + (img.alt ? ": " + img.alt : ""));
+      img.addEventListener("click", () => openLightbox(img));
+      img.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(img); }
+      });
+    });
+    box.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && box.classList.contains("open")) closeLightbox();
+    });
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Content headings: click the "#" to copy a link to that section    */
+  /* ---------------------------------------------------------------- */
+  document.querySelectorAll(".heading-anchor").forEach((anchor) => {
+    anchor.addEventListener("click", () => {
+      // the <a href="#id"> still handles nav + hash; we just copy the URL
+      const url = location.origin + location.pathname + anchor.getAttribute("href");
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).catch(() => {});
+      }
+      anchor.classList.add("is-copied");
+      clearTimeout(anchor._copyTimer);
+      anchor._copyTimer = setTimeout(() => anchor.classList.remove("is-copied"), 1200);
+    });
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Modding-guide sidebar: live search over the section JSON index    */
+  /* ---------------------------------------------------------------- */
+  initSectionSearch({
+    inputId: "doc-search",
+    clearId: "doc-search-clear",
+    resultsId: "doc-search-results",
+    contentsId: "doc-contents",
+  });
 
   /* ---------------------------------------------------------------- */
   /* Grid: category filter + search                                   */
@@ -198,6 +439,15 @@
       applyFilters();
     };
     searchInput.addEventListener("input", runSearch);
+
+    const carried = sessionStorage.getItem("appSearch");
+    if (carried) {
+      sessionStorage.removeItem("appSearch");
+      selectBadge("");
+      searchInput.value = carried;
+      runSearch();
+    }
+
     if (searchClear) {
       searchClear.addEventListener("click", () => {
         searchInput.value = "";

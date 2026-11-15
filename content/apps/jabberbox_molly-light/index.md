@@ -6,6 +6,7 @@ download: "https://github.com/jabberbox/molly-light/releases"
 author: "jabberbox"
 author_url: "https://github.com/jabberbox"
 category: "Communication"
+light_sdk: true
 images:
     - v.png
     - welcome.png

@@ -14,14 +14,14 @@
   {{ end }}
   {{ with $img }}
     {{ $out := . }}
-    {{ if gt .Width 1200 }}
-      {{ $out = .Resize "1200x" }}
+    {{ if gt .Width 1800 }}
+      {{ $out = .Resize "1800x" }}
     {{ end }}
     {{ $images = $images | append (printf "%s,%d,%d" $out.RelPermalink $out.Width $out.Height) }}
 
     {{ $thumbOut := . }}
-    {{ if gt .Width 700 }}
-      {{ $thumbOut = .Resize "700x" }}
+    {{ if gt .Width 900 }}
+      {{ $thumbOut = .Resize "900x" }}
     {{ end }}
     {{ $thumbImages = $thumbImages | append $thumbOut.RelPermalink }}
   {{ end }}
@@ -39,6 +39,7 @@
 {{ end }}
 
 {{ $linkIcon := `<svg class="modal-meta-link-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>` }}
+{{ $helpIcon := `<svg class="modal-meta-link-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>` }}
 
 {{ $releaseVersion := "" }}
 {{ $releaseDate := "" }}
@@ -66,7 +67,7 @@
      data-light-sdk="{{ if $page.Params.light_sdk }}sdk{{ else }}diy{{ end }}"
      data-light-approved="{{ if $page.Params.light_approved }}true{{ else }}false{{ end }}"
      data-editor-pick="{{ if $page.Params.editor_pick }}true{{ else }}false{{ end }}"
-     data-search="{{ lower (printf "%s %s %s %s" $page.Title ($page.Params.author | default "") ($page.Params.category | default "") $page.Plain) }}"
+     data-search="{{ lower (printf "%s %s %s %s %s" $page.Title ($page.Params.author | default "") ($page.Params.category | default "") ($page.Params.description | default "") $page.Plain) }}"
      data-images="{{ delimit $images "|" }}"
      data-videos="{{ delimit $videos "|" }}"
      data-content-id="app-{{ $page.File.UniqueID }}">
@@ -78,7 +79,6 @@
     {{ else }}
       <span class="app-card-fallback">{{ substr $page.Title 0 1 }}</span>
     {{ end }}
-    {{ if $page.Params.light_sdk }}<span class="app-card-badge" title="Built with the Light SDK">SDK</span>{{ end }}
     {{ if $page.Params.light_approved }}
     <div class="app-card-badge-stack">
       <span class="app-card-badge app-card-badge--approved" title="Light Approved">Light Approved</span>
@@ -126,10 +126,11 @@
       {{ $first = false }}
       <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">source</span>{{ $linkIcon | safeHTML }}</a>
     {{ end }}
-    {{ with $page.Params.download }}
+    {{ if ne $page.Params.category "Companion Tools" }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}
       {{ $first = false }}
-      <a class="modal-meta-value modal-meta-link" href="{{ . }}" target="_blank" rel="noopener"><span class="modal-meta-link-text">download</span>{{ $linkIcon | safeHTML }}</a>
+      <a class="modal-meta-value modal-meta-link has-tooltip" href="lpm://install-repo?url={{ $page.Params.repo | urlquery }}" aria-label="Opens this tool in Light Phone Manager to install over USB." data-tooltip="Opens this tool in Light Phone Manager to install over USB."><span class="modal-meta-link-text">install with Light Phone Manager</span></a>
+      <a class="modal-meta-link has-tooltip" href="/apps/greghare_light-phone-manager/" aria-label="What is Light Phone Manager?" data-tooltip="What is Light Phone Manager?">{{ $helpIcon | safeHTML }}</a>
     {{ end }}
     {{ with $releaseVersion }}
       {{ if not $first }}<span class="modal-meta-sep">/</span>{{ end }}

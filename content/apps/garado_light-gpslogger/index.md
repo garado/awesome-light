@@ -5,7 +5,7 @@ repo: "https://github.com/garado/light-gpslogger"
 download: "https://github.com/garado/light-gpslogger/releases"
 author: "garado"
 author_url: "https://github.com/garado"
-category: "Utility"
+category: "Navigation"
 images:
   - A.png
   - B.png

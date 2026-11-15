@@ -2,13 +2,19 @@
 
 Thanks for contributing to the Light community!
 
-## Submission guidelines
+## Unofficial guidelines for community apps
 
 1. **Apps should make an effort to match the Light aesthetic as closely as possible.** This doesn't mean just black-and-white. This means adhering to the design language as well.
 
 2. **Apps should preferably match the Light ethos as closely as possible.** Everyone's definition of going Light is different so it's difficult to draw a line, but it's worth a reminder.
 
-## Submission PR process
+## Submitting an app with the issue form
+
+The easiest way to submit an app is to [open a submission issue](../../issues/new?template=submit-app.yml). Fill out the form and a bot will automatically open a pull request adding your app to the list!
+
+## Submitting an app with a hand-rolled PR
+
+If you'd rather open the PR directly, that works too. More instructions below (and reference existing submissions for guidance).
 
 - All entries should go in `content/apps`. Create a new directory there.
     - If you have multiple entries to submit, feel free to submit them all in a single PR.

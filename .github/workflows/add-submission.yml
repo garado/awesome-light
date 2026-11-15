@@ -1,0 +1,347 @@
+name: Add submission
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse issue fields
+        id: extract
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = (context.payload.issue.labels || []).map((l) => l.name);
+            if (!labels.includes("submission")) {
+              core.setOutput("proceed", "false");
+              return;
+            }
+
+            // avoid re-triggering ourselves when we rename the issue title below
+            if (context.payload.sender && context.payload.sender.login === "github-actions[bot]") {
+              core.setOutput("proceed", "false");
+              return;
+            }
+
+            const body = context.payload.issue.body || "";
+
+            // Issue forms render each field as "### Label\n\nvalue"
+            function field(label) {
+              const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+              const re = new RegExp(`### ${escapedLabel}\\s*\\n\\s*([^\\n]*(?:\\n(?!### )[^\\n]*)*)`, "i");
+              const match = body.match(re);
+              if (!match) return "";
+              const value = match[1].trim();
+              return value === "_No response_" ? "" : value;
+            }
+
+            const name = field("App name");
+            const repoUrl = field("Repository URL").replace(/\/+$/, "");
+            const downloadUrl = repoUrl ? `${repoUrl}/releases` : "";
+            // derived from the repo, not submitter
+            const author = (repoUrl.match(/^https:\/\/github\.com\/([^/]+)\//) || [])[1] || "";
+            const category = field("Category");
+            const description = field("Short description");
+            const longDescription = field("Long description");
+            const screenshotLines = field("Screenshots")
+              .split("\n")
+              .map((s) => s.trim())
+              .filter(Boolean)
+              // ignore the <details>/<summary> wrapper we add below, in case this body was already collapsed
+              .filter((s) => !/^<\/?details>$/i.test(s) && !/^<summary>/i.test(s));
+            const lightSdk = field("Built with the Light SDK?") === "Yes";
+
+            if (name) {
+              const desiredTitle = `[Submission]: Add ${name}`;
+              if (context.payload.issue.title !== desiredTitle) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  title: desiredTitle,
+                });
+              }
+            }
+
+            // collapse the (often huge) Screenshots section of the issue body into a <details> block
+            {
+              const screenshotsSectionRe = /### Screenshots\s*\n\s*([^\n]*(?:\n(?!### )[^\n]*)*)/i;
+              const screenshotsMatch = body.match(screenshotsSectionRe);
+              if (screenshotsMatch && !screenshotsMatch[1].trim().startsWith("<details>")) {
+                const rawScreenshots = screenshotsMatch[1].trim();
+                const wrapped = `### Screenshots\n\n<details>\n<summary>Show screenshots</summary>\n\n${rawScreenshots}\n\n</details>`;
+                const newBody =
+                  body.slice(0, screenshotsMatch.index) +
+                  wrapped +
+                  body.slice(screenshotsMatch.index + screenshotsMatch[0].length);
+
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: newBody,
+                });
+              }
+            }
+
+            const missing = [];
+            if (!name) missing.push("App name");
+            if (!repoUrl) missing.push("Repository URL");
+            if (!category) missing.push("Category");
+            if (!description) missing.push("Short description");
+            if (screenshotLines.length === 0) missing.push("Screenshots");
+
+            if (missing.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `Couldn't parse this submission - missing or unreadable field(s): ${missing.join(", ")}. Please edit the issue and it will retry automatically.`,
+              });
+              core.setOutput("proceed", "false");
+              return;
+            }
+
+            require("fs").writeFileSync("submission.json", JSON.stringify({
+              name,
+              repoUrl,
+              downloadUrl,
+              author,
+              category,
+              description,
+              longDescription,
+              screenshotLines,
+              lightSdk,
+            }));
+            core.setOutput("proceed", "true");
+
+      - name: Resolve screenshot URLs
+        if: steps.extract.outputs.proceed == 'true'
+        run: python3 .github/scripts/resolve_screenshots.py
+
+      - name: Open or update PR
+        if: steps.extract.outputs.proceed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {
+              name,
+              repoUrl,
+              downloadUrl,
+              author,
+              category,
+              description,
+              longDescription,
+              lightSdk,
+              screenshots,
+            } = JSON.parse(require("fs").readFileSync("submission.json", "utf8"));
+
+            const slug = name
+              .toLowerCase()
+              .trim()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "");
+            const dirName = `${author}_${slug}`;
+            const entryPath = `content/apps/${dirName}/index.md`;
+
+            const { data: existing } = await github.rest.repos.getContent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: "content/apps",
+              ref: "main",
+            }).catch(() => ({ data: [] }));
+
+            if (Array.isArray(existing) && existing.some((e) => e.name === dirName)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `It looks like **${name}** by **${author}** is already on the list (\`${dirName}\`). If this is a mistake, let me know!`,
+              });
+              return;
+            }
+
+            const branch = `submission/issue-${context.issue.number}`;
+            const { data: mainRef } = await github.rest.git.getRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "heads/main",
+            });
+            const { data: baseCommit } = await github.rest.git.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: mainRef.object.sha,
+            });
+
+            // download each screenshot, falling back to linking the external URL if it fails.
+            // also commit everything at once
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const imageRefs = [];
+            const downloadFailures = [];
+            const treeEntries = [];
+
+            for (let i = 0; i < screenshots.length; i++) {
+              const url = screenshots[i];
+              try {
+                const res = await fetch(url, { headers: { "User-Agent": "awesome-light-submission-bot" } });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+                const contentType = res.headers.get("content-type") || "";
+                if (!contentType.startsWith("image/")) {
+                  throw new Error(`expected an image, got content-type "${contentType.split(";")[0]}"`);
+                }
+
+                const buf = Buffer.from(await res.arrayBuffer());
+                const ext = (url.split("?")[0].match(/\.[a-zA-Z0-9]+$/) || [".png"])[0].toLowerCase();
+                const filename = `${letters[i] || `img${i}`}${ext}`;
+
+                const { data: blob } = await github.rest.git.createBlob({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  content: buf.toString("base64"),
+                  encoding: "base64",
+                });
+
+                treeEntries.push({
+                  path: `content/apps/${dirName}/${filename}`,
+                  mode: "100644",
+                  type: "blob",
+                  sha: blob.sha,
+                });
+                imageRefs.push(filename);
+              } catch (err) {
+                // keep comments/PR bodies readable even if a failure carries a huge or malformed message
+                const reason = String(err.message || err).replace(/\s+/g, " ").trim().slice(0, 150);
+                downloadFailures.push(`${url} (${reason})`);
+                imageRefs.push(url);
+              }
+            }
+
+            const yamlStr = (s) => JSON.stringify(s);
+            const dateAdded = new Date().toISOString().slice(0, 10);
+
+            const frontmatterLines = [
+              "---",
+              `title: ${yamlStr(name)}`,
+              `date_added: ${dateAdded}`,
+              `repo: ${yamlStr(repoUrl)}`,
+              `download: ${yamlStr(downloadUrl)}`,
+              `author: ${yamlStr(author)}`,
+              `author_url: ${yamlStr(`https://github.com/${author}`)}`,
+              `category: ${yamlStr(category)}`,
+            ];
+            if (lightSdk) frontmatterLines.push("light_sdk: true");
+            frontmatterLines.push(
+              "images:",
+              ...imageRefs.map((ref) => `  - ${yamlStr(ref)}`),
+              `description: ${yamlStr(description)}`,
+              "---",
+              "",
+            );
+
+            const content = frontmatterLines.join("\n") + (longDescription ? `\n${longDescription}\n` : "");
+
+            const { data: indexBlob } = await github.rest.git.createBlob({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              content: Buffer.from(content).toString("base64"),
+              encoding: "base64",
+            });
+            treeEntries.push({
+              path: entryPath,
+              mode: "100644",
+              type: "blob",
+              sha: indexBlob.sha,
+            });
+
+            const { data: newTree } = await github.rest.git.createTree({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              base_tree: baseCommit.tree.sha,
+              tree: treeEntries,
+            });
+
+            const { data: newCommit } = await github.rest.git.createCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              message: `Add ${name} to the list`,
+              tree: newTree.sha,
+              parents: [mainRef.object.sha],
+            });
+
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/heads/${branch}`,
+              sha: newCommit.sha,
+            }).catch(() =>
+              github.rest.git.updateRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${branch}`,
+                sha: newCommit.sha,
+                force: true,
+              })
+            ); // branch may already exist on re-edit
+
+            const existingPrs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              state: "open",
+            });
+
+            const commentMarker = "<!-- awesome-light-submission-bot -->";
+
+            async function upsertBotComment(body) {
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              });
+              const prior = comments.find((c) => c.body && c.body.startsWith(commentMarker));
+
+              if (prior) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: prior.id,
+                  body: `${commentMarker}\n${body}`,
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: `${commentMarker}\n${body}`,
+                });
+              }
+            }
+
+            const failureNote = downloadFailures.length
+              ? `\n\n<details>\n<summary>Couldn't download ${downloadFailures.length} screenshot(s), so they are linked externally instead of committed</summary>\n\n${downloadFailures.map((u) => `- ${u}`).join("\n")}\n\n</details>`
+              : "";
+
+            if (existingPrs.data.length === 0) {
+              const { data: pr } = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Add ${name}`,
+                head: branch,
+                base: "main",
+                body: `Adds **${name}** to the list.\n\nCloses #${context.issue.number}${failureNote}`,
+              });
+
+              await upsertBotComment(`Thanks for the submission! Opened #${pr.number} - a maintainer will review it shortly.${failureNote}`);
+            } else {
+              await upsertBotComment(`Thanks for the submission! Opened #${existingPrs.data[0].number} - a maintainer will review it shortly. Updated with your latest edits.${failureNote}`);
+            }

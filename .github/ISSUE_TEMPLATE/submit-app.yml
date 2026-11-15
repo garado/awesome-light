@@ -1,0 +1,82 @@
+name: Submit an app
+description: Submit your Light Phone app or tool to be added to the list.
+title: "[Submission]: "
+labels: ["submission"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: App name
+      description: The name of your app
+      placeholder: Luma
+    validations:
+      required: true
+
+  - type: input
+    id: repo_url
+    attributes:
+      label: Repository URL
+      description: Link to the app's GitHub repository
+      placeholder: https://github.com/username/app-name
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Communication
+        - Companion Tools
+        - Entertainment
+        - Health & Wellness
+        - Keyboard
+        - Launchers
+        - Music/Audio
+        - Navigation
+        - Photos
+        - Productivity
+        - Reading & Reference
+        - Utility
+    validations:
+      required: true
+
+  - type: dropdown
+    id: light_sdk
+    attributes:
+      label: Built with the Light SDK?
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Short description
+      description: One sentence describing the app, shown in the list view
+      placeholder: A minimal launcher for the Light Phone III.
+    validations:
+      required: true
+
+  - type: textarea
+    id: long_description
+    attributes:
+      label: Long description
+      description: Optional longer description with more details, features, etc. Shown in the app's popup. Leave blank to just reuse the short description there.
+      placeholder: Luma replaces the stock launcher with...
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Add showcase images for your app, in the order they should be displayed (the first is used as the cover/thumbnail). Input direct image URLs or drag images into this textbox. A bot will parse this for image links, download them, and include the images directly in the PR.
+      placeholder: |
+        https://github.com/user-attachments/assets/...
+        https://github.com/user-attachments/assets/...
+    validations:
+      required: true

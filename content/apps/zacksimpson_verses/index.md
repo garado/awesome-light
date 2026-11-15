@@ -5,7 +5,7 @@ repo: "https://github.com/zacksimpson/verses-tool"
 download: "https://github.com/zacksimpson/verses-tool/releases"
 author: "zacksimpson"
 author_url: "https://github.com/zacksimpson/"
-category: "Utility"
+category: "Reading & Reference"
 images:
   - A.jpg
   - B.jpg

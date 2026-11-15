@@ -5,7 +5,7 @@ repo: "https://github.com/zacksimpson/reminders-web"
 download: https://github.com/zacksimpson/reminders-web/releases/
 author: "zacksimpson"
 author_url: "https://github.com/zacksimpson/"
-category: "Productivity"
+category: "Companion Tools"
 light_sdk: false
 images: 
   - hero.png

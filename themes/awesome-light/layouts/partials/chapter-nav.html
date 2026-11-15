@@ -1,0 +1,29 @@
+{{/*
+  Previous / next links at the foot of a chapter.
+  Expects: . = the current chapter page
+*/}}
+{{ $chapters := sort .CurrentSection.Pages "File.Path" }}
+{{ $prev := false }}
+{{ $next := false }}
+{{ range $i, $p := $chapters }}
+  {{ if eq $p $ }}
+    {{ if gt $i 0 }}{{ $prev = index $chapters (sub $i 1) }}{{ end }}
+    {{ if lt (add $i 1) (len $chapters) }}{{ $next = index $chapters (add $i 1) }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ if or $prev $next }}
+<nav class="chapter-nav">
+  {{ with $prev }}
+  <a class="chapter-nav-link chapter-nav-prev" href="{{ .RelPermalink }}">
+    <span class="chapter-nav-dir">&larr;&ensp;Previous</span>
+    <span class="chapter-nav-title">{{ .Title }}</span>
+  </a>
+  {{ else }}<span></span>{{ end }}
+  {{ with $next }}
+  <a class="chapter-nav-link chapter-nav-next" href="{{ .RelPermalink }}">
+    <span class="chapter-nav-dir">Next&ensp;&rarr;</span>
+    <span class="chapter-nav-title">{{ .Title }}</span>
+  </a>
+  {{ end }}
+</nav>
+{{ end }}

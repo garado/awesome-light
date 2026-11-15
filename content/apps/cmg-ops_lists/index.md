@@ -5,7 +5,7 @@ repo: "https://github.com/cmg-ops/LP3-Lists"
 download: "https://github.com/cmg-ops/LP3-Lists/releases"
 author: "cmg-ops"
 author_url: "https://github.com/cmg-ops"
-category: "Utility"
+category: "Productivity"
 images:
   - A.png
   - B.png

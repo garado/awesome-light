@@ -14,7 +14,6 @@ description: "Find and stream online radio stations, and save your favourites."
 ---
 
 # Radio
-
 Built with the Light Phone SDK. This tool allows users to discover, play, and curate their favorite online radio stations.
 
 ## Features
